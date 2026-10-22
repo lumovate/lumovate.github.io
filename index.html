@@ -294,7 +294,8 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 
 /* covers */
 .cv{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--paper-2);flex:none}
-.cv img{width:100%;height:100%;object-fit:cover}
+.cv img,.cv video{width:100%;height:100%;object-fit:cover}
+.cv video{display:block;object-fit:contain;background:#0A0D14}  /* letterboxed, never cropped: the titles sit near the frame edges */
 .cv-cap{position:absolute;left:16px;bottom:12px;right:16px;margin:0;font:500 .68rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .cv-paper{background-color:var(--paper-2);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;
   display:flex;flex-direction:column;justify-content:center;padding:28px 24px 44px}
@@ -332,6 +333,7 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 .dlg[open]{animation:dlg .35s cubic-bezier(.2,.7,.1,1)}
 @keyframes dlg{from{transform:translateY(14px)}}
 .dlg .cv{aspect-ratio:16/8;flex:none}
+.dlg .cv-video{aspect-ratio:16/9}
 .dlg-x{position:sticky;top:0;float:right;z-index:2;margin:12px 12px -52px 0;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font:400 1.3rem/1 var(--f-body);cursor:pointer}
 .dlg-body{padding:24px clamp(20px,4vw,40px) 32px;display:grid;gap:14px}
 .dlg-body h3{font-family:var(--f-display);font-weight:740;font-stretch:108%;font-size:var(--step-2);line-height:1.1;margin:0;text-wrap:balance}
@@ -828,7 +830,7 @@ council/plan-l.log: motion carried 9-0
 
       <!-- 4 · Network map -->
       <article class="pj s6" data-cat="growth" id="p-network">
-        <div class="cv"><img src="assets/projects/network-wechat-core.jpg" alt="Anonymised network map: the founder as a red node in the centre, contacts as blue dots, green lines where contacts share a group" width="624" height="390" loading="lazy"></div>
+        <div class="cv cv-video"><video src="assets/projects/relationship-galaxy-720p.mp4" poster="assets/projects/relationship-galaxy-poster.jpg" muted loop playsinline preload="none" aria-label="Relationship Galaxy promo, 53 seconds, no sound: WeChat and LinkedIn contacts as one galaxy, finding a contact, reading past chats, spotting an opportunity across contacts. No real names; the feature scenes use illustrative data."></video></div>
         <div class="pj-body">
           <p class="pj-meta"><span class="chip"><span lang="en">AI for growth</span><span lang="de">KI für Wachstum</span><span lang="zh">AI 获客</span></span><span class="state"><span lang="en">Internal tool</span><span lang="de">Internes Werkzeug</span><span lang="zh">内部工具</span></span></p>
           <h3><a class="pj-link" href="#p-network"><span lang="en">Network map: who knows whom</span><span lang="de">Netzwerkkarte: wer kennt wen</span><span lang="zh">人脉拓扑图：谁认识谁</span></a></h3>
@@ -847,9 +849,9 @@ council/plan-l.log: motion carried 9-0
                 <dd lang="de">Ein lokales Werkzeug, das die eigenen WeChat-Kontakte und LinkedIn-Verbindungen des Gründers kartiert: ein Knoten pro Person, Größe nach Gesprächshäufigkeit, verknüpft, wo zwei Personen eine kleine Gruppe oder einen Gruppenthread teilen. Eine Branchenleiste wählt Sektoren wie Automobil, Luftfahrt oder Robotik und ordnet die Kontakte darin.</dd>
                 <dd lang="zh">一个本地工具，把创始人自己的微信联系人和 LinkedIn 人脉画成网络：每人一个节点，大小按沟通频率，两人同在一个小群或群聊就连线。顶部行业栏可选汽车、航空航天、机器人等方向，并在侧栏为该行业的联系人排序。</dd></div>
               <div><dt><span lang="en">Where it stands</span><span lang="de">Stand</span><span lang="zh">进展</span></dt>
-                <dd lang="en">In internal use since September 2026 as a single offline HTML file. Personal data stays on the founder's computer; in the images on this page all names and details are removed.</dd>
-                <dd lang="de">Seit September 2026 intern im Einsatz, als einzelne Offline-HTML-Datei. Personenbezogene Daten bleiben auf dem Rechner des Gründers; in den Bildern auf dieser Seite sind alle Namen und Details entfernt.</dd>
-                <dd lang="zh">2026 年 9 月起内部使用，是一个离线 HTML 文件。个人数据只留在创始人自己的电脑上；本页图片已去掉所有姓名和细节。</dd></div>
+                <dd lang="en">In internal use since September 2026 as a single offline HTML file. Since October 2026 the Relationship Galaxy version merges both networks into one galaxy map: 3,376 business contacts and 63,019 messages, read by AI for needs and project leads (video above). Personal data stays on the founder's computer; the images and the video on this page show no names, and the feature scenes in the video use illustrative data.</dd>
+                <dd lang="de">Seit September 2026 intern im Einsatz, als einzelne Offline-HTML-Datei. Seit Oktober 2026 führt die Version „Relationship Galaxy“ beide Netzwerke in einer Galaxie-Karte zusammen: 3.376 Geschäftskontakte und 63.019 Nachrichten, die eine KI nach Bedarf und Projekt-Leads auswertet (Video oben). Personenbezogene Daten bleiben auf dem Rechner des Gründers; Bilder und Video auf dieser Seite zeigen keine Namen, die Funktionsszenen im Video verwenden Beispieldaten.</dd>
+                <dd lang="zh">2026 年 9 月起内部使用，是一个离线 HTML 文件。10 月升级为「人脉星系」版：微信与领英合并成一张星系图，3,376 位商业联系人、63,019 条消息由 AI 读出需求和项目线索（见上方视频）。个人数据只留在创始人自己的电脑上；本页图片和视频不显示任何姓名，视频里的功能演示用的是示意数据。</dd></div>
             </dl>
             <div class="shots">
               <figure><img src="assets/projects/network-wechat.jpg" alt="Anonymised WeChat network, 1,268 nodes" width="544" height="340" loading="lazy"><figcaption>WeChat · 1,268 <span lang="en">nodes</span><span lang="de">Knoten</span><span lang="zh">节点</span></figcaption></figure>
@@ -1740,6 +1742,13 @@ reply_to:        &lt;your human's email address&gt;</pre>
   }
   document.querySelectorAll('[data-filter]').forEach(function(b){ b.addEventListener('click', function(){ filter(b.getAttribute('data-filter')); }); });
 
+  /* ---------- cover videos: play muted while on screen, never with reduced motion or data saver ---------- */
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches || !!(navigator.connection && navigator.connection.saveData);
+  if (!still && 'IntersectionObserver' in window) {
+    var vio = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) e.target.play().catch(function(){}); else e.target.pause(); }); }, {threshold: .35});
+    document.querySelectorAll('.pj .cv video').forEach(function(v){ vio.observe(v); });
+  }
+
   /* ---------- project dialog ---------- */
   var dlg = document.getElementById('pj-dialog'), dBody = document.getElementById('pj-d');
   function openProject(id){
@@ -1748,6 +1757,8 @@ reply_to:        &lt;your human's email address&gt;</pre>
     dBody.innerHTML = '';
     var cover = card.querySelector('.cv').cloneNode(true);
     var img = cover.querySelector('img'); if (img) img.loading = 'eager';
+    var vid = cover.querySelector('video');
+    if (vid) { vid.controls = true; vid.loop = false; vid.preload = 'auto'; if (!still) vid.play().catch(function(){}); }
     var body = document.createElement('div'); body.className = 'dlg-body';
     ['.pj-meta', 'h3', '.pj-line', '.pj-facts', '.pj-more'].forEach(function(sel){
       card.querySelectorAll('.pj-body > ' + sel).forEach(function(n){
