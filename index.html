@@ -445,7 +445,7 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 .av-state{color:var(--t-mid)}
 .av-state[data-s="listen"],.av-state[data-s="speak"]{color:var(--t-ok)}
 .av-state::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-right:7px;vertical-align:1px}
-.av-stage{flex:1;display:grid;place-items:center;min-height:270px;padding:10px 8px;overflow:hidden}
+.av-stage{flex:1;display:grid;place-items:center;min-height:320px;padding:10px 8px;overflow:hidden}
 .ascii{margin:0;font-family:var(--f-mono);font-size:10px;line-height:1;letter-spacing:0;white-space:pre;color:var(--t-fg);text-shadow:0 0 7px var(--t-glow);user-select:none}
 .meter{font:500 .72rem var(--f-mono);color:var(--t-mid);letter-spacing:0;white-space:pre}
 .tx{list-style:none;margin:0;padding:16px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;height:clamp(280px,46vh,440px)}
@@ -1098,13 +1098,13 @@ council/plan-l.log: motion carried 9-0
     </div>
     <div class="talk-grid">
       <div class="avatar">
-        <div class="av-bar top"><span>LUMO · ascii · v0.1</span><span class="av-state" id="av-state" data-s="idle">IDLE</span></div>
+        <div class="av-bar top"><span>LUMO · AI · ascii</span><span class="av-state" id="av-state" data-s="idle">IDLE</span></div>
         <div class="av-stage" id="av-stage"><pre class="ascii" id="ascii" aria-hidden="true"></pre></div>
         <div class="av-bar bot"><span class="meter" id="meter">[            ]</span><span id="av-lang">EN</span></div>
       </div>
       <div class="chat">
         <ol class="tx" id="tx" aria-live="polite">
-          <li class="ai"><b>LUMO</b><span class="t"><span lang="en">Hello, I'm LUMO, the Lumovate assistant. Ask me what we do, about the next delegations or our AI projects. Press the microphone or type.</span><span lang="de">Hallo, ich bin LUMO, der Assistent von Lumovate. Fragen Sie mich, was wir tun, nach den nächsten Delegationen oder unseren KI-Projekten. Drücken Sie das Mikrofon oder tippen Sie.</span><span lang="zh">您好，我是 Lumovate 的 AI 助理 LUMO。可以问我业务、近期的代表团，或者我们的 AI 项目。点麦克风说话，或者直接打字。</span></span></li>
+          <li class="ai"><b>LUMO</b><span class="t"><span lang="en">Hello, I'm LUMO, the Lumovate AI assistant. My face is drawn from a photo of our founder, but I'm an AI. Ask me what we do, about the next delegations or our AI projects. Press the microphone or type.</span><span lang="de">Hallo, ich bin LUMO, der KI-Assistent von Lumovate. Mein Gesicht ist aus einem Foto unseres Gründers gezeichnet, aber ich bin eine KI. Fragen Sie mich, was wir tun, nach den nächsten Delegationen oder unseren KI-Projekten. Drücken Sie das Mikrofon oder tippen Sie.</span><span lang="zh">您好，我是 Lumovate 的 AI 助理 LUMO。我的脸是用创始人的照片画成的，但我是 AI，不是他本人。可以问我业务、近期的代表团，或者我们的 AI 项目。点麦克风说话，或者直接打字。</span></span></li>
         </ol>
         <div class="chips" id="chips">
           <button type="button"><span lang="en">What do you do?</span><span lang="de">Was macht Lumovate?</span><span lang="zh">你们做什么？</span></button>
@@ -1127,9 +1127,9 @@ council/plan-l.log: motion carried 9-0
         </form>
       </div>
     </div>
-    <p class="talk-note" lang="en">Demo: the answers come from this page and are put together in your browser; nothing is sent to us. Voice input uses your browser's own speech recognition (in Chrome it is processed by Google) and may not work on every network. Typing always works.</p>
-    <p class="talk-note" lang="de">Demo: Die Antworten stammen von dieser Seite und entstehen in Ihrem Browser; an uns wird nichts gesendet. Die Spracheingabe nutzt die Spracherkennung Ihres Browsers (in Chrome verarbeitet von Google) und funktioniert nicht in jedem Netz. Tippen funktioniert immer.</p>
-    <p class="talk-note" lang="zh">演示版：回答内容来自本页面，在您的浏览器内生成，不会发送给我们。语音输入使用浏览器自带的语音识别（Chrome 中由 Google 处理），在部分网络环境下可能不可用；打字输入始终可用。</p>
+    <p class="talk-note" lang="en">LUMO's face is an ASCII drawing of a photo of Haoyang Wu; LUMO itself is an AI. Demo: the answers come from this page and are put together in your browser; nothing is sent to us. Voice input uses your browser's own speech recognition (in Chrome it is processed by Google) and may not work on every network. Typing always works.</p>
+    <p class="talk-note" lang="de">LUMOs Gesicht ist eine ASCII-Zeichnung nach einem Foto von Haoyang Wu; LUMO selbst ist eine KI. Demo: Die Antworten stammen von dieser Seite und entstehen in Ihrem Browser; an uns wird nichts gesendet. Die Spracheingabe nutzt die Spracherkennung Ihres Browsers (in Chrome verarbeitet von Google) und funktioniert nicht in jedem Netz. Tippen funktioniert immer.</p>
+    <p class="talk-note" lang="zh">LUMO 的脸是根据吴昊阳的照片画成的 ASCII 图像，LUMO 本身是 AI。演示版：回答内容来自本页面，在您的浏览器内生成，不会发送给我们。语音输入使用浏览器自带的语音识别（Chrome 中由 Google 处理），在部分网络环境下可能不可用；打字输入始终可用。</p>
   </div>
 </section>
 
@@ -1979,9 +1979,9 @@ reply_to:        &lt;your human's email address&gt;</pre>
     };
     var KB = [
       {k:['are you human','are you a human','are you a robot','are you real','real person','are you ai','mensch','roboter','bist du echt','真人','机器人','你是谁','你是ai','你是 ai'],
-       a:{en:"I'm an AI assistant, and this is a demo that answers from this website. Prices, contracts and signatures always come from a person at Lumovate.",
-          de:'Ich bin ein KI-Assistent, und dies ist eine Demo, die aus den Inhalten dieser Website antwortet. Preise, Verträge und Unterschriften kommen immer von einem Menschen bei Lumovate.',
-          zh:'我是 AI 助理，这是一个根据本网站内容作答的演示版。价格、合同和签字永远由 Lumovate 的真人负责。'}},
+       a:{en:"I'm an AI assistant. My face is drawn from a photo of our founder, Haoyang Wu, but I am not him. This demo answers from this website; prices, contracts and signatures always come from a person at Lumovate.",
+          de:'Ich bin ein KI-Assistent. Mein Gesicht ist aus einem Foto unseres Gründers Haoyang Wu gezeichnet, aber ich bin nicht er. Diese Demo antwortet aus den Inhalten dieser Website; Preise, Verträge und Unterschriften kommen immer von einem Menschen bei Lumovate.',
+          zh:'我是 AI 助理。我的脸是用创始人吴昊阳的照片画成的，但我不是他本人。这个演示版根据本网站内容作答；价格、合同和签字永远由 Lumovate 的真人负责。'}},
       {k:['cost','price','fee','how much','pay','airfare','budget','kosten','kostet','preis','gebühr','zahlen','teuer','费用','价格','多少钱','收费','机票','预算'],
        a:{en:'For the Chifeng delegation, guests pay their international flight, and EIC and the City of Chifeng cover the costs in China, with no participation fee. Prices for our own services are agreed by a person, not by me. Write to hello@lumovate.de.',
           de:'Bei der Chifeng-Delegation zahlen Gäste den internationalen Flug; EIC und die Stadt Chifeng übernehmen die Kosten in China, eine Teilnahmegebühr gibt es nicht. Preise für unsere eigenen Leistungen vereinbart ein Mensch, nicht ich. Schreiben Sie an hello@lumovate.de.',
@@ -2170,64 +2170,105 @@ reply_to:        &lt;your human's email address&gt;</pre>
       catch (e) { note('other'); }
     }
 
-    /* the ASCII head: a shaded ellipsoid with eyes, brows and mouth placed in object space, so they turn with the head */
-    // skin uses light characters so the features, drawn in dense ones, stay readable
-    var COLS = 60, ROWS = 30, CX = 30, CY = 12.5, RX = 17, RY = 10.4, RAMP = ' .,:;-=+*', HAIR = '+*%#', LX = -.3, LY = -.4, LZ = .87;
-    var mouth = 0, nextBlink = 1800, blinkAt = -1000, gx = 0, gy = 0, running = false, visible = false, raf = 0, lastDraw = 0;
-    function feature(ox, oy, ch, open, b){
-      if (oy < -.5 + .07 * Math.cos(ox * 5)) return HAIR.charAt(Math.min(HAIR.length - 1, Math.floor(b * HAIR.length)));
-      for (var sgn = -1; sgn <= 1; sgn += 2) {
-        var ex = sgn * .34, ey = -.06;
-        var brow = -.27 - (state === 'listen' ? .04 : 0) - (state === 'think' && sgn > 0 ? .05 : 0);
-        if (Math.abs(ox - ex) < .19 && Math.abs(oy - brow) < .04) return '#';
-        var ry = .11 * open;
-        if (ry < .03) { if (Math.abs(ox - ex) < .17 && Math.abs(oy - ey) < .035) return '='; continue; }
-        var e = Math.pow((ox - ex) / .17, 2) + Math.pow((oy - ey) / ry, 2);
-        if (e < 1) {
-          var p = Math.pow((ox - ex - gx) / .07, 2) + Math.pow((oy - ey - gy) / Math.min(.07, ry), 2);
-          return p < 1 ? '@' : e > .6 ? 'O' : ' ';
-        }
-      }
-      if (Math.abs(ox - .02) < .05 && oy > .06 && oy < .26) return oy > .21 ? '_' : '|';
-      var my = .44, mrx = .3 - .05 * mouth, mry = .03 + .16 * mouth;
-      if (mouth < .1) { if (Math.abs(ox) < .27 && Math.abs(oy - my) < .035) return '='; }
-      else { var m = Math.pow(ox / mrx, 2) + Math.pow((oy - my) / mry, 2); if (m < 1) return m > .55 ? '#' : ' '; }
-      return ch;
-    }
+    /* LUMO's face: an ASCII rendering of the founder's photo (60 x 100 cells, background removed).
+       Blinks, mouth movement, a scan line and small glitches are applied to the character grid each frame. */
+    var COLS = 100, ROWS = 60, RAMP = " `.:,^<+|7xjVXO8BQ&&@@";
+    var FACE = [
+      "                                                                                                    ",
+      "                                                                                                    ",
+      "                                         QBBBB8OXO    &BO                                           ",
+      "                                        &QQ8V7||||+^+xOBOjj  &                                      ",
+      "                                      8j|<^,:::......::<xXx<V888                                    ",
+      "                                   &X7<::::.....``````..:,|+^+V7V                                   ",
+      "                                  V^:.`.....`....`````````....,,^<V                                 ",
+      "                                V<:.`...`````````````````````.``..,<                                ",
+      "                              O^::.`...`````````````````````````````..,+j                           ",
+      "                            B<:..``.:....``````````````````.``..``````.,+                           ",
+      "                           j:.:.`.::...``````````..`````````..````````..:                           ",
+      "                          7::....:..```....`..```````````````````````````:                          ",
+      "                         7:::...:..::.::.....``....```````````.````.`````.:7                        ",
+      "                        j,:::..:.:....``..```..``````````````````````````..:                        ",
+      "                       Q<::.::,...:....`..`....```````````````````````````.:<                       ",
+      "                       V,,,:::::.::.:..`......::.......```````````.``.``..`.:                       ",
+      "                       7^::...........:...::,,,,^^^^^^^,:....``.`````````....<                      ",
+      "                      &+,:....``..`.::,,^<++++||77x7|7+^,,,,,,:::.````````...^                      ",
+      "                      x^,.``.``.`.:^<+|7xjjjVVVVVVXVx|||||||||++<^,.```````..,                      ",
+      "                     B+^::.````.,<|7jVVXOO8B8OOO8888XOjVVjVXXVjjj7+^:.`.```..:                      ",
+      "                     O|^,:.``.:^|jXO8B8BBBB888BBQQ&Q8OOXOO8OO8OOOV7<,:..```..:                      ",
+      "                     &|<,:...:^|jXO888888B&QBB8BBQQ&&&QQQQQB88B88Xx|^....``..:                      ",
+      "                     B^,,.:..,7XVXOXO8BB&&@@@@&&&&&&@&&&&&@&&&QB8Xx7<:.`.:....<                     ",
+      "                     O^,::..,xVXXXXjVO8Q&@@@@@@@@@@@@@@@@&&QBOOXVXV7|<:.......<                     ",
+      "                     |,::`..+VX8Xj7+++++|xVX8Q@@@@@@&&Q8XVj7+<<++7xx|+^.`.`...                      ",
+      "                     +:....:xO8j7777xjjx|+<+xj8Q&&&BOOx||<<+7x||||++|7+,`....:                      ",
+      "                     X:...`^O88O88O8888XjjjjVVO8BBBXjjjjjXB&Q8OOOOVVjjj|.`...,                      ",
+      "                      +,..`xQQ88Oj+,<::..,+7xVOBQ&8XVjxjjx|<<:,<<+xVVVVj,``..<                      ",
+      "                      V7:..OQ8Oj7+||x+,:,<,+7V8Q@@QBXx7jx+V:..<7,,^|jjVV+``.:|                      ",
+      "                      OX<..O88OXOOOOOXx+<<+xXO8B&@QOx7xOjjVjjjO8OXVXVxjj7..:^                       ",
+      "                      XO+:,XXVjjVOXXVXVjVXQQBOOB&&QXx7xXOXj777xjVOXVjx7x|.`,+                       ",
+      "                      8O|,^OOVVX8BBBQQ&&&@&B8BBBB&BXx7xOO8BB8BQ&QBOVVjxj|..^7                       ",
+      "                      &XO7^88O88B&&&Q&&@&&&Q8B88BQ8V77jXVXB&&&&&&QB8XVjj7,^<                        ",
+      "                       BOO<8QBBQ&&@&&&&Q&QQQ8X88BB8Vx|7jVOBQ&Q&&QQB8OVjj|<|x                        ",
+      "                        BXxOQ&Q&&&&@&QQ8Vjjj77j88&Bxx<^<+7X8BQ&QBQB8OXVV<<7                         ",
+      "                        &8XOQ&QBBQQQ8Oj7|xxOB88BB@&XV|7jx<+7xV888OOOVVXV|x                          ",
+      "                           &Q&Q8O8Oj7<^|jVVjxxXB8BOVj7||+^+||+|jVVVVjVVV                            ",
+      "                            BBBOVV7<<+jO8888OXV|||+<,:,<|7jVjx+<+777xjjV                            ",
+      "                            QB8OXx|7|jVVXVO8OOO8Oj7+<<+|7xj7xxx||||77xj                             ",
+      "                             8OOVjjx777xOO8O8XO88XXOx||xjjj|||++xx77xjV                             ",
+      "                             B8OXXXjxx7^:,<+|<<<<<<^,^^^^,,:,+xVVjxxxVX                             ",
+      "                              8OXXOXXXOOV<<V&Q@&@&B@Q&&Q<.,xjxjOVxxjVX                              ",
+      "                              &OOXXXXX8BQBj77jXX8888VV|<<+VVVxXV7xjVX                               ",
+      "                             &j|VVVXXX8Q&@&QOVOQBBOxxx|xVXVXVVV77xjX                                ",
+      "                            8|..|xjVOX8Q&&&&&&8VVVx77jVVXXXXVjx7xjX                                 ",
+      "                           O+...+x7xVVOBQ&&&&&B8Xj|xVVXOOXVXVjxjVX                                  ",
+      "                          Ox,.`:<xj77jVOQ&&Q&&&BOVjxjjVXXVVjxxjVVV                                  ",
+      "                       Q&QV<:`:,<7VXj7jjOQ&&&&&BBB8OOOVOXVVx7jjVV<|                                 ",
+      "                 &QBOO8&@8x^.`::^7VOOXx|xXBQQQQQBB88OOVXVjjxx7jjx.:                                 ",
+      "          &&&QB8OOOXXVQ@&Bx,`.::^|jO8B8j+|VO88OOO8OOOXXx|+|+|7xx<`.                                 ",
+      "    &&&QQQBBBBB8XXOOO8&@&8j,``.:,+jXBQQBV+<+7jjXVXjjjx|<<<<+|77<:`.                                 ",
+      "&&QQBB888BOXOOQQOXOV8&&@&8V<``..,<7V8Q&Q8V7+<<<<<<<<^^^<+||77|<,.``jB&BXO                           ",
+      "&Q&QXOQB8OXV8O&&QXx8&Q@@@8Xj:``.:^|jOBQ&BOVxxj|<<^^<<++|7xxx7+^:```jQ&QBOOO8                        ",
+      "&&&QXXQOVVXVB8&@BjO&Q&@@&&OV|``.:,<7VO8QQ8VjVO8XVjx7|777xjjx+^:.``:O&&QQOOOOOOB                     ",
+      "@&&&QVOXjVXV&QQ&OO@&@@&V|<<OV,``.,^+xjXO88OVjj88OXx|||7jVVx|<::.`.xB@@&BOX8B8OOO8                   ",
+      "&8Q&@OjXjjXO&@&&Q&@@@&^..:,xV|`..:,<|xVXOOOXXVjjx7xxxjVXVj7<,:.`.jO&@&QBBXOOOO88O88B                ",
+      "88&&@&xjVVOOQ@&@@@@@@X::,,^+8V+...,^+|xVXXOOXVjjxjVVVVVVj|<^,:.<X88&@@Q888OOOBBOO8OOOB              ",
+      "8Q&&&@X7jXB88&&@@@@@&^:,^<|7BOj,.::<|xjXOOOOOOOOOOXOXVVx|<,^,:|O88B@@@QO8BVV8QBBBB88OBBB&           ",
+      "Q&&&B@&x7VBB8Q&@@@@&^:^<<7xj8QOj^,:,7jX8BQ8OOOO8OOOVjjx|<,^<<jOBB8&@@&BO8BOVBB8QBOOBBQBBBBQ         ",
+      "&&QQB@@j|jOB8Q@@@@O,,^<+7xVXQQBX+^<,|VO8Q&QB8OOOOXVVVj|<,<+|O88&QQ@@@&B8B8BVBBBQBQQBQBBQBBBBB&      "
+    ];
+    var EYES = [[38, 28], [61, 28]], MOUTH = {x:50.0, y:41.5, hw:10.0};
+    var GRID = FACE.map(function(r){ return r.split(''); }), LEVEL = {};
+    for (var li = RAMP.length - 1; li >= 0; li--) LEVEL[RAMP.charAt(li)] = li;
+    function brighter(ch, k){ return ch === ' ' ? ch : RAMP.charAt(Math.max(1, Math.min(RAMP.length - 1, (LEVEL[ch] || 1) + k))); }
+    var mouth = .45, nextBlink = 1800, blinkAt = -1000, running = false, visible = false, raf = 0, lastDraw = 0;
     function render(t){
-      var yaw = .2 * Math.sin(t / 2600) + (state === 'listen' ? .08 * Math.sin(t / 700) : 0);
-      var pitch = (state === 'think' ? -.12 : 0) + .04 * Math.sin(t / 1900);
-      if (t > nextBlink) { blinkAt = t; nextBlink = t + 2200 + Math.random() * 3800; }
-      var bp = (t - blinkAt) / 170, open = bp >= 0 && bp < 1 ? Math.abs(1 - 2 * bp) : 1;
-      if (state === 'listen') open *= 1.12;
-      gx += ((state === 'think' ? .05 : 0) - gx) * .12; gy += ((state === 'think' ? -.04 : 0) - gy) * .12;
+      if (t > nextBlink) { blinkAt = t; nextBlink = t + 2400 + Math.random() * 3600; }
+      var closed = t - blinkAt >= 0 && t - blinkAt < 140;
       mouthTarget *= .86; pulse *= .8;
-      var want = state === 'speak' ? Math.max(mouthTarget, pulse * .9, .12 + .08 * Math.sin(t / 55)) : 0;
+      // .45 keeps the photo's own smile; lower closes the lips, higher opens the mouth
+      var want = state === 'speak' ? Math.max(mouthTarget, pulse * .9, .3 + .12 * Math.sin(t / 55)) : .45;
       mouth += (want - mouth) * .45;
-      var cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch), rows = [];
-      for (var r = 0; r < ROWS; r++) {
-        var row = '';
-        for (var c = 0; c < COLS; c++) {
-          var x = (c + .5 - CX) / RX, y = (r + .5 - CY) / RY, ch = ' ';
-          var w = y > 0 ? 1 - .22 * y * y : 1, xs = x / w, d = xs * xs + y * y;
-          if (d < 1) {
-            var z = Math.sqrt(1 - d);
-            var ox = xs * cy - z * sy, oz = xs * sy + z * cy, oy = y * cp + oz * sp;
-            oz = -y * sp + oz * cp;
-            var b = .12 + .88 * Math.max(0, xs * LX + y * LY + z * LZ);
-            ch = RAMP.charAt(Math.min(RAMP.length - 1, Math.floor(b * RAMP.length)));
-            if (oz > .15) ch = feature(ox, oy, ch, open, b);
-            else if (oy < -.45) ch = HAIR.charAt(Math.min(HAIR.length - 1, Math.floor(b * HAIR.length)));
-          } else if (y > .7) {
-            var sx2 = (c + .5 - CX) / (RX * 1.8), sy2 = (r + .5 - (CY + RY * 1.98)) / (RY * .95), sd = sx2 * sx2 + sy2 * sy2;
-            if (sd < 1) { var bz = Math.sqrt(1 - sd); ch = RAMP.charAt(Math.floor((.1 + .7 * Math.max(0, sx2 * LX + sy2 * LY + bz * LZ)) * (RAMP.length - 1))); }
-            else if (Math.abs(x) < .3 && y < 1.3) ch = Math.abs(x) > .24 ? ':' : '=';
-          }
-          row += ch;
+      var rows = GRID.map(function(r){ return r.slice(); }), r, c;
+      var st = .78 + .5 * mouth, y0 = Math.floor(MOUTH.y - 3), y1 = Math.ceil(MOUTH.y + 4);
+      for (r = y0; r <= y1; r++) {
+        for (c = Math.floor(MOUTH.x - MOUTH.hw - 2); c <= Math.ceil(MOUTH.x + MOUTH.hw + 2); c++) {
+          var w = 1 - Math.abs(c - MOUTH.x) / (MOUTH.hw + 2); if (w <= 0) continue;
+          var sr = Math.round(MOUTH.y + (r - MOUTH.y) / (1 + (st - 1) * w));
+          rows[r][c] = GRID[Math.max(y0, Math.min(y1, sr))][c];
         }
-        rows.push(row);
       }
-      pre.textContent = rows.join('\n');
+      if (closed) EYES.forEach(function(e){
+        for (var rr = e[1] - 1; rr <= e[1] + 1; rr++) for (var cc = e[0] - 5; cc <= e[0] + 5; cc++) rows[rr][cc] = GRID[e[1] - 3][cc];
+      });
+      var band = Math.floor((t / (state === 'listen' ? 900 : 2800)) % 1 * (ROWS + 12)) - 6;
+      for (r = band; r < band + 2; r++) if (r >= 0 && r < ROWS) rows[r] = rows[r].map(function(ch){ return brighter(ch, 3); });
+      var glitches = state === 'think' ? 3 : state === 'listen' ? 2 : state === 'speak' ? 1 : .4;
+      for (var g = 0; g < glitches; g++) {
+        if (Math.random() > glitches - g) break;
+        var gr = Math.floor(Math.random() * ROWS), d = Math.random() < .5 ? -1 : 1;
+        rows[gr] = d > 0 ? [' '].concat(rows[gr].slice(0, -1)) : rows[gr].slice(1).concat([' ']);
+      }
+      for (var f = 0; f < 14; f++) { var fr = Math.floor(Math.random() * ROWS), fc = Math.floor(Math.random() * COLS); rows[fr][fc] = brighter(rows[fr][fc], 2); }
+      pre.textContent = rows.map(function(x){ return x.join(''); }).join('\n');
       var lv = state === 'speak' ? mouth : state === 'listen' ? .25 + .6 * pulse + .15 * Math.abs(Math.sin(t / 120)) : 0, n = Math.max(0, Math.min(12, Math.round(lv * 12)));
       meter.textContent = '[' + new Array(n + 1).join('|') + new Array(13 - n).join(' ') + ']';
     }
@@ -2245,7 +2286,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
     function wake(){ if (!running) render(performance.now()); }
     function fit(){
       var w = stage.clientWidth - 16, h = stage.clientHeight - 20;
-      var fs = Math.max(5, Math.min(13, w / (COLS * .6), h > 120 ? h / ROWS : 13));
+      var fs = Math.max(3, Math.min(11, w / (COLS * .6), h > 120 ? h / ROWS : 11));
       pre.style.fontSize = fs.toFixed(2) + 'px';
     }
 
