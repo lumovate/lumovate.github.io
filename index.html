@@ -327,6 +327,82 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 .bus .hub text{fill:var(--t-bg)}
 .bus .pkt{fill:var(--t-hi)}
 
+/* China tours: atlas plotted like a technical drawing, edition tabs, one panel at a time, industry matrix */
+.tours{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+.atlas{margin:0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:10px 10px 12px}
+.atlas svg{display:block;width:100%;height:auto}
+.atlas figcaption{font:400 .72rem/1.5 var(--f-mono);color:var(--muted);padding:6px 4px 0}
+.a-grid line{stroke:var(--line);stroke-dasharray:2 4}
+.a-grid text,.a-scale text{font:400 10px var(--f-mono);fill:var(--muted)}
+.a-scale path{fill:none;stroke:var(--muted)}
+.a-past path{fill:none;stroke:var(--steel);stroke-opacity:.32;stroke-width:1;stroke-dasharray:3 4}
+.a-route{fill:none;stroke:var(--lumen);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.a-dot{fill:var(--lumen-ink)}
+.a-city circle{fill:var(--card);stroke:var(--ink);stroke-width:1.3}
+.a-city .a-ring{fill:none;stroke:none}
+.a-city text{font:600 10px var(--f-mono);fill:var(--ink)}
+.a-city .a-name{font:400 10px var(--f-body);fill:var(--muted);display:none}
+.a-city.on circle{fill:var(--lumen);stroke:var(--lumen-ink)}
+.a-city.on .a-ring{stroke:var(--lumen);stroke-opacity:.5;fill:none;transform-box:fill-box;transform-origin:center;animation:ring 2.4s ease-out infinite}
+:root[data-lang="en"] .a-city.on .a-name[lang="en"],:root[data-lang="de"] .a-city.on .a-name[lang="de"],:root[data-lang="zh"] .a-city.on .a-name[lang="zh"],
+:root:not([data-lang]) .a-city.on .a-name[lang="en"]{display:inline}
+@keyframes ring{from{transform:scale(.6);opacity:1}to{transform:scale(1.6);opacity:0}}
+.tour-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tour-tabs button{display:grid;gap:1px;text-align:left;font:600 .86rem/1.1 var(--f-mono);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:6px 10px;cursor:pointer}
+.tour-tabs button small{font:400 .66rem var(--f-mono);color:var(--muted)}
+.tour-tabs button.todo{border-style:dashed;background:transparent;color:var(--muted)}
+.tour-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.tour-tabs button[aria-selected="true"] small{color:inherit;opacity:.75}
+.tour-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.tour{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px 20px;display:grid;gap:12px;animation:tour-in .35s cubic-bezier(.2,.7,.1,1)}
+@keyframes tour-in{from{transform:translateY(8px)}}
+.tour[hidden]{display:none}
+.tour[data-todo]{background:transparent;border-style:dashed}
+.t-when{margin:0;font:500 .74rem var(--f-mono);letter-spacing:.06em;color:var(--lumen-ink)}
+.tour h3{margin:0;font-family:var(--f-display);font-weight:740;font-stretch:108%;font-size:var(--step-1);line-height:1.15}
+:root[data-lang="zh"] .tour h3{font-stretch:100%}
+.t-sum{margin:0;color:var(--muted)}
+.t-open{margin:0;font:400 .8rem var(--f-mono);color:var(--muted);padding:10px 12px;border:1px dashed var(--line);border-radius:4px}
+.t-facts{margin:0;display:grid;gap:10px}
+.t-facts div{display:grid;grid-template-columns:minmax(0,6.5rem) minmax(0,1fr);gap:4px 16px}
+.t-facts dt{font:500 .7rem var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--lumen-ink);padding-top:3px}
+.t-facts dd{margin:0}
+.t-route{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+.t-route span{display:inline-flex;gap:6px;align-items:baseline}
+.t-route b{font:600 .8rem var(--f-mono)}
+.t-route i{font-style:normal;color:var(--lumen-ink)}
+.t-inds{display:flex;flex-wrap:wrap;gap:6px}
+.t-inds .chip{font-size:.82rem}
+.t-proj{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.t-proj em{font:600 .66rem var(--f-mono);font-style:normal;letter-spacing:.08em;text-transform:uppercase;margin-right:8px;padding:1px 6px;border-radius:3px;background:var(--lumen);color:var(--on-lumen)}
+.t-proj [data-s="intent"] em{background:transparent;color:var(--lumen-ink);border:1px solid var(--lumen)}
+.t-photos{display:grid;place-items:center;aspect-ratio:16/6;border:1px dashed var(--line);border-radius:4px;font:400 .74rem var(--f-mono);color:var(--muted)}
+.tour-list:not(.js) .t-photos{display:none}
+.t-gallery{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,80%);gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;padding-bottom:6px}
+.t-gallery figure{margin:0;scroll-snap-align:start;display:grid;gap:4px}
+.t-gallery img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:4px;background:var(--paper-2)}
+.t-gallery figcaption{font:400 .72rem var(--f-mono);color:var(--muted)}
+.tour-sum{margin-top:clamp(24px,3vw,36px);padding-top:18px;border-top:1px solid var(--line)}
+.tour-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.tour-stats div{display:grid;gap:2px}
+.tour-stats b{font:780 var(--step-2)/1 var(--f-display);font-stretch:118%;color:var(--ink)}
+.tour-stats span{font:400 .76rem var(--f-mono);color:var(--muted)}
+.tour-note{margin:10px 0 0;font:400 .72rem var(--f-mono);color:var(--muted)}
+.tour-matrix{margin-top:22px;overflow-x:auto}
+.tmx{border-collapse:collapse;min-width:100%;font:400 .8rem var(--f-body)}
+.tmx caption{text-align:left;font:500 .7rem var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-bottom:8px}
+.tmx th,.tmx td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:center}
+.tmx tbody th{text-align:left;font-weight:500;white-space:nowrap}
+.tmx thead button{display:grid;margin:auto;font:600 .78rem/1.1 var(--f-mono);color:var(--ink);background:none;border:0;padding:2px 4px;cursor:pointer}
+.tmx thead button small{font:400 .62rem var(--f-mono);color:var(--muted)}
+.tmx .todo button{color:var(--muted)}
+.tmx .sel{background:color-mix(in srgb,var(--lumen) 14%,transparent)}
+.tmx i{display:inline-block;width:10px;height:10px;border-radius:50%;border:1px solid var(--line);font:400 .66rem/9px var(--f-mono);font-style:normal;color:var(--muted)}
+.tmx i.on{background:var(--lumen);border-color:var(--lumen-ink)}
+.tmx i.q{border-style:dashed}
+@media (max-width:860px){.tours{grid-template-columns:minmax(0,1fr)}.tour-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.tour-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.t-facts div{grid-template-columns:minmax(0,1fr)}}
+
 /* project dialog */
 .dlg{width:min(900px,calc(100vw - 32px));max-height:calc(100svh - 32px);padding:0;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);overflow:auto}
 .dlg::backdrop{background:var(--scrim,#05070ACC)}
@@ -603,6 +679,7 @@ council/plan-l.log: motion carried 9-0
     </a>
     <nav class="nav" aria-label="Sections">
       <a href="#projects"><span lang="en">Projects</span><span lang="de">Projekte</span><span lang="zh">项目</span></a>
+      <a href="#tours"><span lang="en">China tours</span><span lang="de">China-Touren</span><span lang="zh">中国行</span></a>
       <a href="#talk"><span lang="en">Talk to AI</span><span lang="de">KI-Gespräch</span><span lang="zh">AI 对话</span></a>
       <a href="#services"><span lang="en">Services</span><span lang="de">Leistungen</span><span lang="zh">业务</span></a>
       <a href="#process"><span lang="en">How we work</span><span lang="de">Ablauf</span><span lang="zh">工作方式</span></a>
@@ -676,7 +753,7 @@ council/plan-l.log: motion carried 9-0
         </a></li>
         <li><a class="b-row" href="#talk">
           <span class="b-when"><span lang="en">NOW</span><span lang="de">JETZT</span><span lang="zh">现在</span></span>
-          <span class="b-what">LUMO<small><span lang="en">AI concierge · voice</span><span lang="de">KI-Concierge · Sprache</span><span lang="zh">AI 接待 · 语音</span></small></span>
+          <span class="b-what">Lumo<small><span lang="en">AI concierge · voice</span><span lang="de">KI-Concierge · Sprache</span><span lang="zh">AI 接待 · 语音</span></small></span>
           <span class="b-st" data-k="live">LIVE</span>
         </a></li>
       </ol>
@@ -741,7 +818,8 @@ council/plan-l.log: motion carried 9-0
             </dl>
             <ul class="specs">
               <li><b>Route</b>SHA → PEK → DSN → JZ</li>
-              <li><b><span lang="en">Organiser</span><span lang="de">Veranstalter</span><span lang="zh">主办</span></b><span lang="en">SG-EIC, 9th tour since 2019; parts of the trip are publicly funded</span><span lang="de">SG-EIC, 9. Tour seit 2019; Teile der Reise sind öffentlich gefördert</span><span lang="zh">中德赋能创新中心（SG-EIC），2019 年以来第九届；部分行程获公共资金支持</span></li>
+              <li><b><span lang="en">All tours</span><span lang="de">Alle Touren</span><span lang="zh">历届</span></b><a href="#tours"><span lang="en">route atlas, industries, projects</span><span lang="de">Routen, Branchen, Projekte</span><span lang="zh">路线图、专题行业、项目</span></a></li>
+              <li><b><span lang="en">Organiser</span><span lang="de">Veranstalter</span><span lang="zh">主办</span></b><span lang="en">SG-EIC, 9th tour since 2024; parts of the trip are publicly funded</span><span lang="de">SG-EIC, 9. Tour seit 2024; Teile der Reise sind öffentlich gefördert</span><span lang="zh">中德赋能创新中心（SG-EIC），2024 年以来第九届；部分行程获公共资金支持</span></li>
             </ul>
           </div>
         </div>
@@ -1097,26 +1175,148 @@ council/plan-l.log: motion carried 9-0
   </div>
 </section>
 
+<section class="sec" id="tours">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label"><span lang="en">China tours</span><span lang="de">China-Touren</span><span lang="zh">中国行</span></p>
+      <div>
+        <h2><span lang="en">Where we went, which industries, what came of it.</span><span lang="de">Wohin, welche Branchen, was daraus wurde.</span><span lang="zh">去了哪些城市，聊了哪些行业，促成了哪些项目。</span></h2>
+        <p class="sec-intro" lang="en">Since 2024 SG-EIC has taken European companies to China's industrial regions. Pick an edition to see its route, its focus industries and the projects that came out of it. Editions not yet documented here are left open; photos follow.</p>
+        <p class="sec-intro" lang="de">Seit 2024 bringt SG-EIC europäische Unternehmen in Chinas Industrieregionen. Wählen Sie eine Tour für Route, Schwerpunktbranchen und die daraus entstandenen Projekte. Noch nicht dokumentierte Touren bleiben vorerst offen; Fotos folgen.</p>
+        <p class="sec-intro" lang="zh">2024 年起，中德赋能创新中心带欧洲企业走进中国各产业区域。选一届，看它的路线、专题行业和促成的项目。尚未整理的届次先空着，活动照片随后补上。</p>
+      </div>
+    </div>
+
+    <div class="tours">
+      <figure class="atlas">
+        <svg id="tour-atlas" viewBox="0 0 520 500" role="img" aria-label="Schematic plot of the tour cities by latitude and longitude, with the route of the selected edition"></svg>
+        <figcaption><span lang="en">Schematic: cities plotted by latitude and longitude, no borders. Dot size = number of visits.</span><span lang="de">Schematisch: Städte nach Breiten- und Längengrad, ohne Grenzen. Punktgröße = Anzahl der Besuche.</span><span lang="zh">示意图：按经纬度标出城市，不含边界。圆点大小 = 到访次数。</span></figcaption>
+      </figure>
+
+      <div class="tour-side">
+        <div class="tour-tabs" id="tour-tabs" role="tablist" aria-label="Editions"></div>
+        <!-- one item per edition; the script turns this list into the atlas, the tabs and the matrix.
+             data-route: city codes in travel order (see CITY in the script); data-ind: industry keys (see IND);
+             projects: <li data-s="landed"> or <li data-s="intent">; data-todo marks an edition with no details yet -->
+        <ol class="tour-list" id="tour-list">
+          <li class="tour" data-n="1" data-year="2024" data-route="DLC" data-ind="">
+            <p class="t-when">2024.03</p>
+            <h3><span lang="en">1st EIC China Tour · Dalian</span><span lang="de">1. EIC China-Tour · Dalian</span><span lang="zh">第一届 · 走进辽宁·大连</span></h3>
+            <p class="t-sum" lang="en">The first tour went to Dalian, Liaoning: talks with the city leadership and the signing for an SG-EIC innovation centre in Dalian.</p>
+            <p class="t-sum" lang="de">Die erste Tour führte nach Dalian, Liaoning: Gespräche mit der Stadtführung und die Unterzeichnung für ein SG-EIC-Innovationszentrum in Dalian.</p>
+            <p class="t-sum" lang="zh">首届走进辽宁·大连：与大连市主要领导座谈，签约中德赋能（大连）创新中心项目。</p>
+            <ul class="t-proj">
+              <li data-s="intent"><span lang="en">SG-EIC (Dalian) Innovation Centre: agreement signed</span><span lang="de">SG-EIC-Innovationszentrum Dalian: Vereinbarung unterzeichnet</span><span lang="zh">中德赋能（大连）创新中心项目签约</span></li>
+            </ul>
+          </li>
+          <li class="tour" data-n="2" data-todo>
+            <h3><span lang="en">2nd EIC China Tour</span><span lang="de">2. EIC China-Tour</span><span lang="zh">第二届 EIC 欧洲企业中国行</span></h3>
+            <p class="t-open"><span lang="en">Not documented here yet: cities, focus industries, projects and photos will follow.</span><span lang="de">Hier noch nicht dokumentiert: Städte, Schwerpunktbranchen, Projekte und Fotos folgen.</span><span lang="zh">尚未整理：城市、专题行业、项目和照片随后补上。</span></p>
+          </li>
+          <li class="tour" data-n="3" data-year="2025" data-route="TSN" data-ind="machinery bio energy materials">
+            <p class="t-when">2025.04</p>
+            <h3><span lang="en">3rd EIC China Tour · Tianjin</span><span lang="de">3. EIC China-Tour · Tianjin</span><span lang="zh">第三届 · 走进天津·泰达</span></h3>
+            <p class="t-sum" lang="en">Tianjin Economic-Technological Development Area (TEDA): an industry matchmaking conference with about 70 Chinese and German entrepreneurs, then a visit to the SEW plant and one-to-one talks.</p>
+            <p class="t-sum" lang="de">Tianjin Economic-Technological Development Area (TEDA): eine Matchmaking-Konferenz mit rund 70 chinesischen und deutschen Unternehmern, danach Besuch des SEW-Werks und Einzelgespräche.</p>
+            <p class="t-sum" lang="zh">天津经开区（泰达）产业对接会，中德双方 70 余名企业家参加；会后参观 SEW 工厂，并与重点企业一对一座谈。</p>
+            <ul class="t-proj">
+              <li data-s="landed"><span lang="en">TEDA Germany Service Station and SG-EIC (Tianjin TEDA) Innovation Centre opened</span><span lang="de">TEDA Germany Service Station und SG-EIC-Innovationszentrum Tianjin TEDA eröffnet</span><span lang="zh">泰达德国服务站暨中德赋能（天津·泰达）创新中心挂牌</span></li>
+            </ul>
+          </li>
+          <li class="tour" data-n="4" data-todo>
+            <h3><span lang="en">4th EIC China Tour</span><span lang="de">4. EIC China-Tour</span><span lang="zh">第四届 EIC 欧洲企业中国行</span></h3>
+            <p class="t-open"><span lang="en">Not documented here yet: cities, focus industries, projects and photos will follow.</span><span lang="de">Hier noch nicht dokumentiert: Städte, Schwerpunktbranchen, Projekte und Fotos folgen.</span><span lang="zh">尚未整理：城市、专题行业、项目和照片随后补上。</span></p>
+          </li>
+          <li class="tour" data-n="5" data-year="2025" data-route="TC BAO DAT" data-ind="auto machinery energy materials">
+            <p class="t-when">2025.12</p>
+            <h3><span lang="en">5th EIC China Tour</span><span lang="de">5. EIC China-Tour</span><span lang="zh">第五届 EIC 欧洲企业中国行</span></h3>
+            <p class="t-sum" lang="en">Taicang, Baoji and Datong: matchmaking conferences on new-energy vehicles and parts, equipment, new energy and new materials, with companies from Germany, Italy and other countries.</p>
+            <p class="t-sum" lang="de">Taicang, Baoji und Datong: Matchmaking-Konferenzen zu Elektrofahrzeugen und Zulieferteilen, Anlagenbau, neuen Energien und neuen Werkstoffen, mit Unternehmen aus Deutschland, Italien und weiteren Ländern.</p>
+            <p class="t-sum" lang="zh">太仓、宝鸡、大同：围绕新能源汽车及零部件、装备制造、新能源、新材料举办产业对接会，德国、意大利等国企业参加。</p>
+            <p class="t-open"><span lang="en">Projects from this tour are not documented here yet.</span><span lang="de">Projekte aus dieser Tour sind hier noch nicht dokumentiert.</span><span lang="zh">本届促成的项目尚未整理。</span></p>
+          </li>
+          <li class="tour" data-n="6" data-year="2026" data-route="PEK JZ" data-ind="auto hydrogen capital">
+            <p class="t-when">2026.04.12–17</p>
+            <h3><span lang="en">6th EIC China Tour</span><span lang="de">6. EIC China-Tour</span><span lang="zh">第六届 EIC 欧洲企业中国行</span></h3>
+            <p class="t-sum" lang="en">Beijing (Tianzhu and Daxing), then Jinzhong, Shanxi, with companies from Germany, Portugal, Czechia and other countries. The SG-EIC (Jinzhong) Innovation Centre was opened.</p>
+            <p class="t-sum" lang="de">Peking (Tianzhu und Daxing), dann Jinzhong, Shanxi, mit Unternehmen aus Deutschland, Portugal, Tschechien und weiteren Ländern. Das SG-EIC-Innovationszentrum Jinzhong wurde eröffnet.</p>
+            <p class="t-sum" lang="zh">北京（天竺、大兴）→ 山西晋中，德国、葡萄牙、捷克等国企业参加；中德赋能（晋中）创新中心揭牌。</p>
+            <ul class="t-proj">
+              <li data-s="landed"><span lang="en">SG-EIC (Jinzhong) Innovation Centre opened</span><span lang="de">SG-EIC-Innovationszentrum Jinzhong eröffnet</span><span lang="zh">中德赋能（晋中）创新中心揭牌</span></li>
+              <li data-s="landed" data-count="6"><span lang="en">6 companies and institutions moved in (as reported by SG-EIC)</span><span lang="de">6 Unternehmen und Einrichtungen angesiedelt (laut SG-EIC)</span><span lang="zh">6 家企业和机构入驻（据中德赋能创新中心）</span></li>
+              <li data-s="intent" data-count="8"><span lang="en">8 new letters of intent (as reported by SG-EIC)</span><span lang="de">8 neue Absichtserklärungen (laut SG-EIC)</span><span lang="zh">新签合作意向 8 项（据中德赋能创新中心）</span></li>
+            </ul>
+          </li>
+          <li class="tour" data-n="7" data-year="2026" data-route="CKG" data-ind="machinery bio ai services">
+            <p class="t-when">2026.05</p>
+            <h3><span lang="en">7th EIC China Tour · Chongqing</span><span lang="de">7. EIC China-Tour · Chongqing</span><span lang="zh">第七届 · 走进重庆</span></h3>
+            <p class="t-sum" lang="en">Chongqing: a China–Europe matchmaking conference on intelligent equipment, biomedicine, AI and modern services, with eight European companies presenting, then visits to Bishan and Tongliang.</p>
+            <p class="t-sum" lang="de">Chongqing: eine chinesisch-europäische Matchmaking-Konferenz zu intelligenter Ausrüstung, Biomedizin, KI und modernen Dienstleistungen mit acht europäischen Unternehmenspräsentationen, danach Besuche in Bishan und Tongliang.</p>
+            <p class="t-sum" lang="zh">重庆：中欧产业对接会，聚焦智能装备、生物医药、人工智能与现代服务，8 家欧洲企业路演；随后考察璧山、铜梁。</p>
+            <p class="t-open"><span lang="en">Projects from this tour are not documented here yet.</span><span lang="de">Projekte aus dieser Tour sind hier noch nicht dokumentiert.</span><span lang="zh">本届促成的项目尚未整理。</span></p>
+          </li>
+          <li class="tour" data-n="8" data-year="2026" data-route="TNA ZP" data-ind="machinery auto energy materials metals services">
+            <p class="t-when">2026.09.06–11</p>
+            <h3><span lang="en">8th EIC China Tour · Shandong</span><span lang="de">8. EIC China-Tour · Shandong</span><span lang="zh">第八届 · 走进山东</span></h3>
+            <p class="t-sum" lang="en">Jinan and Zouping, Shandong: an industry matchmaking conference hosted by the Shandong Department of Commerce with more than 50 Shandong companies, company visits and a welcome in Zouping.</p>
+            <p class="t-sum" lang="de">Jinan und Zouping, Shandong: eine Matchmaking-Konferenz des Handelsministeriums der Provinz Shandong mit über 50 Unternehmen aus Shandong, Firmenbesuche und ein Empfang in Zouping.</p>
+            <p class="t-sum" lang="zh">山东济南、邹平：山东省商务厅主办的产业对接会，50 余家山东企业参加；企业参访，邹平欢迎晚宴。</p>
+            <p class="t-open"><span lang="en">Projects from this tour are not documented here yet.</span><span lang="de">Projekte aus dieser Tour sind hier noch nicht dokumentiert.</span><span lang="zh">本届促成的项目尚未整理。</span></p>
+            <div class="t-gallery">
+              <figure><img src="assets/tours/shandong-2026-09-1.jpg" alt="Welcome dinner in Zouping, 8th EIC China Tour, Shandong, September 2026" width="1600" height="1200" loading="lazy"><figcaption><span lang="en">Welcome dinner in Zouping</span><span lang="de">Willkommensessen in Zouping</span><span lang="zh">邹平欢迎晚宴</span></figcaption></figure>
+              <figure><img src="assets/tours/shandong-2026-09-2.jpg" alt="The delegation, 8th EIC China Tour, Shandong, September 2026" width="1600" height="1200" loading="lazy"><figcaption><span lang="en">The delegation</span><span lang="de">Die Delegation</span><span lang="zh">代表团合影</span></figcaption></figure>
+              <figure><img src="assets/tours/shandong-2026-09-3.jpg" alt="Company visit, 8th EIC China Tour, Shandong, September 2026" width="1600" height="1200" loading="lazy"><figcaption><span lang="en">Company visit</span><span lang="de">Firmenbesuch</span><span lang="zh">企业参访</span></figcaption></figure>
+              <figure><img src="assets/tours/shandong-2026-09-4.jpg" alt="One-to-one talks, 8th EIC China Tour, Shandong, September 2026" width="1600" height="1200" loading="lazy"><figcaption><span lang="en">One-to-one talks</span><span lang="de">Einzelgespräche</span><span lang="zh">一对一对接</span></figcaption></figure>
+              <figure><img src="assets/tours/shandong-2026-09-5.jpg" alt="Evening with the delegation, 8th EIC China Tour, Shandong, September 2026" width="1600" height="1200" loading="lazy"><figcaption><span lang="en">Evening with the delegation</span><span lang="de">Abend mit der Delegation</span><span lang="zh">代表团晚间交流</span></figcaption></figure>
+            </div>
+          </li>
+          <li class="tour" data-n="9" data-default data-year="2026" data-route="SHA PEK DSN JZ" data-ind="energy hydrogen machinery tech">
+            <p class="t-when">2026.10.23–31</p>
+            <h3><span lang="en">9th EIC China Tour</span><span lang="de">9. EIC China-Tour</span><span lang="zh">第九届 EIC 欧洲企业中国行</span></h3>
+            <p class="t-sum" lang="en">Up to 25 European companies: company visits in energy, industry and technology, B2B matchmaking, an economic conference and official receptions.</p>
+            <p class="t-sum" lang="de">Bis zu 25 europäische Unternehmen: Firmenbesuche in Energie, Industrie und Technologie, B2B-Matchmaking, eine Wirtschaftskonferenz und offizielle Empfänge.</p>
+            <p class="t-sum" lang="zh">最多 25 家欧洲企业：能源、工业与科技企业参访，B2B 对接，经济会议与官方接待。</p>
+            <ul class="t-proj"></ul>
+            <p class="t-open"><span lang="en">Under way now. Signed and intended projects will be listed here after the tour.</span><span lang="de">Läuft gerade. Unterzeichnete und geplante Projekte stehen nach der Tour hier.</span><span lang="zh">活动进行中，落地与意向项目将在活动结束后列在这里。</span></p>
+          </li>
+          <li class="tour" data-n="cif" data-tab="CIF" data-year="2026" data-route="CIF" data-ind="chem materials hydrogen">
+            <p class="t-when"><span lang="en">Mid-Nov 2026 · themed delegation</span><span lang="de">Mitte Nov. 2026 · Themen-Delegation</span><span lang="zh">2026 年 11 月中旬 · 专题团</span></p>
+            <h3><span lang="en">Chemical delegation to Chifeng</span><span lang="de">Chemie-Delegation nach Chifeng</span><span lang="zh">赤峰化工主题团</span></h3>
+            <p class="t-sum" lang="en">Ten European chemical companies, three days, four tracks: fluorochemicals and new materials, green hydrogen and ammonia, bio-based and fine chemicals, soda ash and salt chemicals.</p>
+            <p class="t-sum" lang="de">Zehn europäische Chemieunternehmen, drei Tage, vier Themen: Fluorchemie und neue Werkstoffe, grüner Wasserstoff und Ammoniak, biobasierte und Feinchemie, Soda und Salzchemie.</p>
+            <p class="t-sum" lang="zh">10 家欧洲化工企业，3 天，四个方向：氟化工与新材料、绿氢绿氨、生物基与精细化工、纯碱与盐化工。</p>
+            <ul class="t-proj"></ul>
+            <p class="t-open"><span lang="en">Upcoming. Results will be listed here.</span><span lang="de">Steht bevor. Ergebnisse folgen hier.</span><span lang="zh">即将出发，成果将在这里更新。</span></p>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="tour-sum" id="tour-sum"></div>
+    <div class="tour-matrix" id="tour-matrix"></div>
+  </div>
+</section>
+
 <section class="sec talk" id="talk">
   <div class="wrap">
     <div class="sec-head">
       <p class="label"><span lang="en">AI concierge</span><span lang="de">KI-Concierge</span><span lang="zh">AI 接待</span></p>
       <div>
-        <h2><span lang="en">Talk to LUMO, our AI concierge.</span><span lang="de">Sprechen Sie mit LUMO, unserem KI-Concierge.</span><span lang="zh">和 AI 接待员 LUMO 聊聊。</span></h2>
-        <p class="sec-intro" lang="en">Speak or type, in English, German or Chinese. LUMO answers from the facts on this website and passes anything about prices, contracts or commitments to a person.</p>
-        <p class="sec-intro" lang="de">Sprechen oder tippen Sie, auf Deutsch, Englisch oder Chinesisch. LUMO antwortet auf Basis der Fakten dieser Website und gibt alles zu Preisen, Verträgen oder Zusagen an einen Menschen weiter.</p>
-        <p class="sec-intro" lang="zh">可以说话，也可以打字，中文、德语、英语都行。LUMO 依据本网站的信息作答，涉及价格、合同或承诺的问题一律转给真人。</p>
+        <h2><span lang="en">Talk to Lumo, our AI concierge.</span><span lang="de">Sprechen Sie mit Lumo, unserem KI-Concierge.</span><span lang="zh">和 AI 接待员 Lumo 聊聊。</span></h2>
+        <p class="sec-intro" lang="en">Speak or type, in English, German or Chinese. Lumo answers from the facts on this website and passes anything about prices, contracts or commitments to a person.</p>
+        <p class="sec-intro" lang="de">Sprechen oder tippen Sie, auf Deutsch, Englisch oder Chinesisch. Lumo antwortet auf Basis der Fakten dieser Website und gibt alles zu Preisen, Verträgen oder Zusagen an einen Menschen weiter.</p>
+        <p class="sec-intro" lang="zh">可以说话，也可以打字，中文、德语、英语都行。Lumo 依据本网站的信息作答，涉及价格、合同或承诺的问题一律转给真人。</p>
       </div>
     </div>
     <div class="talk-grid">
       <div class="avatar">
-        <div class="av-bar top"><span>LUMO · AI · ascii</span><span class="av-state" id="av-state" data-s="idle">IDLE</span></div>
+        <div class="av-bar top"><span>Lumo · AI · ascii</span><span class="av-state" id="av-state" data-s="idle">IDLE</span></div>
         <div class="av-stage" id="av-stage"><pre class="ascii rain" id="ascii-rain" aria-hidden="true"></pre><pre class="ascii" id="ascii" aria-hidden="true"></pre></div>
         <div class="av-bar bot"><span class="meter" id="meter">[            ]</span><span id="av-lang">EN</span></div>
       </div>
       <div class="chat">
         <ol class="tx" id="tx" aria-live="polite">
-          <li class="ai"><b>LUMO</b><span class="t"><span lang="en">Hello, I'm LUMO, the Lumovate AI assistant. My face is drawn from a photo of our founder, but I'm an AI. Ask me what we do, about the next delegations or our AI projects. Press the microphone or type.</span><span lang="de">Hallo, ich bin LUMO, der KI-Assistent von Lumovate. Mein Gesicht ist aus einem Foto unseres Gründers gezeichnet, aber ich bin eine KI. Fragen Sie mich, was wir tun, nach den nächsten Delegationen oder unseren KI-Projekten. Drücken Sie das Mikrofon oder tippen Sie.</span><span lang="zh">您好，我是 Lumovate 的 AI 助理 LUMO。我的脸是用创始人的照片画成的，但我是 AI，不是他本人。可以问我业务、近期的代表团，或者我们的 AI 项目。点麦克风说话，或者直接打字。</span></span></li>
+          <li class="ai"><b>Lumo</b><span class="t"><span lang="en">Hello, I'm Lumo, Lumovate's AI assistant. Ask me what we do, about the next delegations or our AI projects. Press the microphone or type.</span><span lang="de">Hallo, ich bin Lumo, der KI-Assistent von Lumovate. Fragen Sie mich, was wir tun, nach den nächsten Delegationen oder unseren KI-Projekten. Drücken Sie das Mikrofon oder tippen Sie.</span><span lang="zh">您好，我是 Lumovate 的 AI 助理 Lumo。可以问我业务、近期的代表团，或者我们的 AI 项目。点麦克风说话，或者直接打字。</span></span></li>
         </ol>
         <div class="chips" id="chips">
           <button type="button"><span lang="en">What do you do?</span><span lang="de">Was macht Lumovate?</span><span lang="zh">你们做什么？</span></button>
@@ -1139,9 +1339,9 @@ council/plan-l.log: motion carried 9-0
         </form>
       </div>
     </div>
-    <p class="talk-note" lang="en">LUMO's face is an ASCII drawing of a photo of Haoyang Wu; LUMO itself is an AI. Demo: the answers come from this page and are put together in your browser; nothing is sent to us. Voice input uses your browser's own speech recognition (in Chrome it is processed by Google) and may not work on every network. Typing always works.</p>
-    <p class="talk-note" lang="de">LUMOs Gesicht ist eine ASCII-Zeichnung nach einem Foto von Haoyang Wu; LUMO selbst ist eine KI. Demo: Die Antworten stammen von dieser Seite und entstehen in Ihrem Browser; an uns wird nichts gesendet. Die Spracheingabe nutzt die Spracherkennung Ihres Browsers (in Chrome verarbeitet von Google) und funktioniert nicht in jedem Netz. Tippen funktioniert immer.</p>
-    <p class="talk-note" lang="zh">LUMO 的脸是根据吴昊阳的照片画成的 ASCII 图像，LUMO 本身是 AI。演示版：回答内容来自本页面，在您的浏览器内生成，不会发送给我们。语音输入使用浏览器自带的语音识别（Chrome 中由 Google 处理），在部分网络环境下可能不可用；打字输入始终可用。</p>
+    <p class="talk-note" lang="en">Lumo is an AI; its face is an ASCII drawing. Demo: the answers come from this page and are put together in your browser; nothing is sent to us. Voice input uses your browser's own speech recognition (in Chrome it is processed by Google) and may not work on every network. Typing always works.</p>
+    <p class="talk-note" lang="de">Lumo ist eine KI; das Gesicht ist eine ASCII-Zeichnung. Demo: Die Antworten stammen von dieser Seite und entstehen in Ihrem Browser; an uns wird nichts gesendet. Die Spracheingabe nutzt die Spracherkennung Ihres Browsers (in Chrome verarbeitet von Google) und funktioniert nicht in jedem Netz. Tippen funktioniert immer.</p>
+    <p class="talk-note" lang="zh">Lumo 是 AI，脸是 ASCII 字符画。演示版：回答内容来自本页面，在您的浏览器内生成，不会发送给我们。语音输入使用浏览器自带的语音识别（Chrome 中由 Google 处理），在部分网络环境下可能不可用；打字输入始终可用。</p>
   </div>
 </section>
 
@@ -1331,9 +1531,9 @@ council/plan-l.log: motion carried 9-0
         <span>Sino-German Empowerment Innovation Center · Beijing</span>
       </div>
       <div>
-        <p lang="en">SG-EIC is a China-Germany business platform in Beijing built on registration in both countries, parks in both countries and cross-border operations. Since 2019 it has run delegation and matchmaking programmes with regional governments. Lumovate is its partner company in Germany: we prepare the European side, run the AI-assisted matching and follow every lead through.</p>
-        <p lang="de">SG-EIC ist eine deutsch-chinesische Wirtschaftsplattform in Peking, aufgebaut auf Registrierung in beiden Ländern, Parks in beiden Ländern und grenzüberschreitendem Betrieb. Seit 2019 organisiert SG-EIC Delegations- und Matchmaking-Programme gemeinsam mit Regionalregierungen. Lumovate ist das Partnerunternehmen in Deutschland: Wir bereiten die europäische Seite vor, übernehmen das KI-gestützte Matching und verfolgen jeden Kontakt weiter.</p>
-        <p lang="zh">中德赋能创新中心（SG-EIC）是总部位于北京的中德商务平台，以「双向注册、中德双园、跨境运营」为模式，2019 年起与地方政府合作举办考察与对接活动。Lumovate 是其在德国的合作公司：负责欧洲一侧的筹备与 AI 辅助撮合，并跟进每一条线索。</p>
+        <p lang="en">SG-EIC is a China-Germany business platform in Beijing built on registration in both countries, parks in both countries and cross-border operations. Founded in 2019, it has run the European Companies China Tour with regional governments since 2024. Lumovate is its partner company in Germany: we prepare the European side, run the AI-assisted matching and follow every lead through.</p>
+        <p lang="de">SG-EIC ist eine deutsch-chinesische Wirtschaftsplattform in Peking, aufgebaut auf Registrierung in beiden Ländern, Parks in beiden Ländern und grenzüberschreitendem Betrieb. SG-EIC wurde 2019 gegründet und organisiert seit 2024 mit Regionalregierungen die China-Tour für europäische Unternehmen. Lumovate ist das Partnerunternehmen in Deutschland: Wir bereiten die europäische Seite vor, übernehmen das KI-gestützte Matching und verfolgen jeden Kontakt weiter.</p>
+        <p lang="zh">中德赋能创新中心（SG-EIC）是总部位于北京的中德商务平台，以「双向注册、中德双园、跨境运营」为模式，2019 年成立，2024 年起与地方政府合作举办「欧洲企业中国行」。Lumovate 是其在德国的合作公司：负责欧洲一侧的筹备与 AI 辅助撮合，并跟进每一条线索。</p>
         <p class="note"><span lang="en">Depending on the programme, the hosts may cover in-China costs for eligible participants.</span><span lang="de">Je nach Programm können die Gastgeber für berechtigte Teilnehmer die Kosten in China übernehmen.</span><span lang="zh">视具体项目而定，符合条件的参访企业在华费用可由主办方承担。</span></p>
         <a class="ext" href="https://www.sgeic.com" rel="noopener" target="_blank">sgeic.com ↗</a>
       </div>
@@ -1463,7 +1663,7 @@ council/plan-l.log: motion carried 9-0
         <p>Die Schriftarten dieser Website (Archivo, JetBrains Mono) liegen auf demselben Server wie die Website. Beim Seitenaufruf wird keine Verbindung zu Google oder anderen Anbietern von Schriftarten hergestellt.</p>
         <h4>4. Keine Cookies, kein Tracking</h4>
         <p>Diese Website setzt keine Cookies und verwendet keine Analyse- oder Tracking-Dienste. Ihre Sprachauswahl wird nur lokal in Ihrem Browser (localStorage) gespeichert und nicht an uns übertragen.</p>
-        <h4>5. Sprach-Demo „LUMO“</h4>
+        <h4>5. Sprach-Demo „Lumo“</h4>
         <p>Die Demo läuft vollständig in Ihrem Browser: Fragen und Antworten werden nicht an uns übertragen und nicht gespeichert. Wenn Sie die Spracheingabe per Klick auf das Mikrofon aktivieren, nutzt Ihr Browser seine eingebaute Spracherkennung; je nach Browser wird die Aufnahme dafür an den Browser-Hersteller übertragen, bei Google Chrome an Google. Die Sprachausgabe nutzt die Stimmen Ihres Geräts bzw. Browsers. Die Nutzung ist freiwillig; Sie können Ihre Fragen auch eintippen.</p>
         <h4>6. Kontakt per E-Mail</h4>
         <p>Wenn Sie uns per E-Mail schreiben, verarbeiten wir Ihre Angaben zur Bearbeitung der Anfrage (Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO). Wir löschen die Daten, sobald sie nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
@@ -1646,7 +1846,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
 <span class="v">&lt;head&gt; JSON-LD</span>     <span class="cm">schema.org Organization: name, register, address, services</span>
 <span class="v">GET /#agents</span>       <span class="cm">this page; static HTML, readable without JavaScript</span>
 <span class="v">GET /#projects</span>     <span class="cm">ten projects, each with a full case in the HTML</span>
-<span class="v">GET /#talk</span>         <span class="cm">LUMO, voice and text demo; answers from this page, runs in the browser</span>
+<span class="v">GET /#talk</span>         <span class="cm">Lumo, voice and text demo; answers from this page, runs in the browser</span>
 <span class="v">GET /#human</span>        <span class="cm">the same company, written for people</span></pre>
       </section>
     </div>
@@ -1785,7 +1985,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
     var v = viewFor(h), prev = root.getAttribute('data-view');
     root.setAttribute('data-view', v);
     if (h === 'impressum' || h === 'datenschutz') { var d = document.getElementById(h); if (d) d.open = true; }
-    if (h.indexOf('p-') === 0) { openProject(h); corridor.active(true); return; }
+    if (h.indexOf('p-') === 0) { openProject(h); corridor.active(true); tours.active(true); return; }
     closeProject();
     // within one view the browser scrolls to the anchor itself; across views the target was hidden, so jump here
     var t = (h && ['gate','human','agents'].indexOf(h) < 0) ? document.getElementById(h) : null;
@@ -1796,7 +1996,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
       if (t) requestAnimationFrame(function(){ t.scrollIntoView({block:'start', behavior:'instant'}); });
       else window.scrollTo({top:0, behavior:'instant'});
     }
-    corridor.active(v === 'human');
+    corridor.active(v === 'human'); tours.active(v === 'human');
   }
   document.addEventListener('keydown', function(e){
     if (root.getAttribute('data-view') !== 'gate' || e.metaKey || e.ctrlKey || e.altKey) return;
@@ -1978,7 +2178,206 @@ reply_to:        &lt;your human's email address&gt;</pre>
     return {active:function(v){ on = v; if (v) size(); update(); }};
   })();
 
-  /* ---------- LUMO: ASCII avatar + voice demo (answers from this page, runs in the browser) ---------- */
+  /* ---------- China tours: the list in #tours becomes a route atlas, edition tabs, a summary and an industry matrix ---------- */
+  var tours = (function(){
+    var list = document.getElementById('tour-list');
+    if (!list) return {active:function(){}};
+    var svg = document.getElementById('tour-atlas'), tabs = document.getElementById('tour-tabs');
+    var sumEl = document.getElementById('tour-sum'), mx = document.getElementById('tour-matrix');
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)'), NS = 'http://www.w3.org/2000/svg';
+    // dx/dy place the city code next to its dot
+    var CITY = {
+      SHA:{lat:31.2304, lon:121.4737, dx:9, dy:4, en:'Shanghai', de:'Shanghai', zh:'上海'},
+      PEK:{lat:39.9042, lon:116.4074, dx:-9, dy:-8, al:'end', en:'Beijing', de:'Peking', zh:'北京'},
+      TVS:{lat:39.6305, lon:118.1802, dx:9, dy:-6, en:'Tangshan', de:'Tangshan', zh:'唐山'},
+      DLC:{lat:38.9140, lon:121.6147, dx:9, dy:4, en:'Dalian', de:'Dalian', zh:'大连'},
+      TNA:{lat:36.6512, lon:117.1201, dx:-9, dy:12, al:'end', en:'Jinan', de:'Jinan', zh:'济南'},
+      JZ: {lat:37.6870, lon:112.7528, dx:-9, dy:12, al:'end', en:'Jinzhong', de:'Jinzhong', zh:'晋中'},
+      DAT:{lat:40.0768, lon:113.3001, dx:-9, dy:-6, al:'end', en:'Datong', de:'Datong', zh:'大同'},
+      DSN:{lat:39.6086, lon:109.7810, dx:-9, dy:-8, al:'end', en:'Ordos', de:'Ordos', zh:'鄂尔多斯'},
+      CIF:{lat:42.2578, lon:118.8869, dx:9, dy:-6, en:'Chifeng', de:'Chifeng', zh:'赤峰'},
+      KMG:{lat:25.0389, lon:102.7183, dx:9, dy:4, en:'Kunming', de:'Kunming', zh:'昆明'},
+      TSN:{lat:39.0842, lon:117.2010, dx:9, dy:10, en:'Tianjin', de:'Tianjin', zh:'天津'},
+      TC: {lat:31.4497, lon:121.1300, dx:-9, dy:-6, al:'end', en:'Taicang', de:'Taicang', zh:'太仓'},
+      BAO:{lat:34.3619, lon:107.2376, dx:9, dy:4, en:'Baoji', de:'Baoji', zh:'宝鸡'},
+      CKG:{lat:29.5630, lon:106.5516, dx:9, dy:4, en:'Chongqing', de:'Chongqing', zh:'重庆'},
+      ZP: {lat:36.8630, lon:117.7430, dx:9, dy:4, en:'Zouping', de:'Zouping', zh:'邹平'}
+    };
+    var IND = {
+      energy:{en:'New energy', de:'Neue Energien', zh:'新能源'},
+      hydrogen:{en:'Hydrogen & storage', de:'Wasserstoff & Speicher', zh:'氢能与储能'},
+      machinery:{en:'Machinery', de:'Maschinenbau', zh:'装备制造'},
+      tech:{en:'Technology', de:'Technologie', zh:'科技'},
+      chem:{en:'Chemicals', de:'Chemie', zh:'化工'},
+      materials:{en:'New materials', de:'Neue Werkstoffe', zh:'新材料'},
+      auto:{en:'Vehicles & parts', de:'Fahrzeuge & Zulieferer', zh:'汽车及零部件'},
+      bio:{en:'Biomedicine', de:'Biomedizin', zh:'生物医药'},
+      ai:{en:'AI', de:'KI', zh:'人工智能'},
+      metals:{en:'Non-ferrous metals', de:'NE-Metalle', zh:'有色金属'},
+      services:{en:'Modern services', de:'Moderne Dienstleistungen', zh:'现代服务'},
+      capital:{en:'Investment', de:'Investitionen', zh:'资本对接'}
+    };
+    var T = {
+      cities:{en:'Cities', de:'Städte', zh:'城市'}, inds:{en:'Industries', de:'Branchen', zh:'专题行业'},
+      proj:{en:'Projects', de:'Projekte', zh:'项目'}, landed:{en:'Landed', de:'Umgesetzt', zh:'落地'}, intent:{en:'Signed · intent', de:'Unterzeichnet · Absicht', zh:'签约 · 意向'},
+      photos:{en:'Photos to come', de:'Fotos folgen', zh:'活动照片 · 待补'},
+      todo:{en:'open', de:'offen', zh:'待补充'},
+      editions:{en:'tours documented', de:'Touren dokumentiert', zh:'场活动已整理'},
+      ncity:{en:'cities', de:'Städte', zh:'座城市'}, nind:{en:'industries', de:'Branchen', zh:'个专题行业'},
+      nland:{en:'landed: centres opened, companies settled', de:'umgesetzt: Zentren eröffnet, Firmen angesiedelt', zh:'项落地（中心挂牌、企业入驻）'}, nint:{en:'agreements & letters of intent', de:'Vereinbarungen & Absichtserklärungen', zh:'项签约与意向'},
+      sumnote:{en:'Counted from what is documented on this page; open editions are not included.', de:'Gezählt aus dem, was hier dokumentiert ist; offene Touren sind nicht enthalten.', zh:'按本页已整理的内容统计，空着的届次未计入。'},
+      mxcap:{en:'Focus industries by edition', de:'Schwerpunktbranchen je Tour', zh:'各届专题行业'}
+    };
+    function L(o){ return '<span lang="en">' + o.en + '</span><span lang="de">' + o.de + '</span><span lang="zh">' + o.zh + '</span>'; }
+    function words(s){ return (s || '').split(/\s+/).filter(Boolean); }
+    function count(li, s){ return [].reduce.call(li.querySelectorAll('.t-proj [data-s="' + s + '"]'), function(n, p){ return n + (+p.getAttribute('data-count') || 1); }, 0); }
+    var data = [].slice.call(list.querySelectorAll('.tour')).map(function(li){
+      var n = li.getAttribute('data-n');
+      return {li:li, n:n, label:li.getAttribute('data-tab') || (n.length < 2 ? '0' + n : n), year:li.getAttribute('data-year') || '',
+              todo:li.hasAttribute('data-todo'),
+              route:words(li.getAttribute('data-route')).filter(function(c){ return CITY[c]; }),
+              ind:words(li.getAttribute('data-ind')).filter(function(k){ return IND[k]; }),
+              landed:count(li, 'landed'), intent:count(li, 'intent')};
+    });
+
+    /* panel rows: route, industries, a photo slot (the list stays readable without this script) */
+    data.forEach(function(d){
+      var dl = document.createElement('dl'); dl.className = 't-facts';
+      if (d.route.length) dl.innerHTML += '<div><dt>' + L(T.cities) + '</dt><dd class="t-route">' + d.route.map(function(c){ return '<span><b>' + c + '</b>' + L(CITY[c]) + '</span>'; }).join('<i aria-hidden="true">→</i>') + '</dd></div>';
+      if (d.ind.length) dl.innerHTML += '<div><dt>' + L(T.inds) + '</dt><dd class="t-inds">' + d.ind.map(function(k){ return '<span class="chip">' + L(IND[k]) + '</span>'; }).join('') + '</dd></div>';
+      var proj = d.li.querySelector('.t-proj');
+      if (proj && proj.children.length) {
+        [].forEach.call(proj.children, function(p){ var s = p.getAttribute('data-s'); if (T[s]) p.insertAdjacentHTML('afterbegin', '<em>' + L(T[s]) + '</em>'); });
+        var row = document.createElement('div'); row.innerHTML = '<dt>' + L(T.proj) + '</dt><dd></dd>'; row.lastChild.appendChild(proj); dl.appendChild(row);
+      }
+      if (dl.children.length) d.li.querySelector('h3').insertAdjacentElement('afterend', dl);
+      if (!d.li.querySelector('.t-photos, .t-gallery')) d.li.insertAdjacentHTML('beforeend', '<div class="t-photos"><span>' + L(T.photos) + '</span></div>');
+    });
+
+    /* atlas: equirectangular around the visited cities (3° margin), longitude squeezed by cos(36°) */
+    var visits = {};
+    data.forEach(function(d){ d.route.forEach(function(c, i){ if (d.route.indexOf(c) === i) visits[c] = (visits[c] || 0) + 1; }); });
+    var P = {l:46, r:14, t:14, b:40}, W = 520, H = 500, PW = W - P.l - P.r, PH = H - P.t - P.b, K = Math.cos(36 * Math.PI / 180);
+    var lons = Object.keys(visits).map(function(c){ return CITY[c].lon; }), lats = Object.keys(visits).map(function(c){ return CITY[c].lat; });
+    if (!lons.length) { lons = [110, 120]; lats = [30, 40]; }
+    var lo0 = Math.min.apply(null, lons) - 3, lo1 = Math.max.apply(null, lons) + 3, la0 = Math.min.apply(null, lats) - 3, la1 = Math.max.apply(null, lats) + 3;
+    var S = Math.min(PW / ((lo1 - lo0) * K), PH / (la1 - la0)), CX = (lo0 + lo1) / 2, CY = (la0 + la1) / 2;
+    function X(lon){ return P.l + PW / 2 + (lon - CX) * K * S; }
+    function Y(lat){ return P.t + PH / 2 - (lat - CY) * S; }
+    function el(name, attrs, parent){ var e = document.createElementNS(NS, name); for (var k in attrs) e.setAttribute(k, attrs[k]); (parent || svg).appendChild(e); return e; }
+    function curve(codes){
+      var d = '';
+      codes.forEach(function(c, i){
+        var x = X(CITY[c].lon), y = Y(CITY[c].lat);
+        if (!i) { d = 'M' + x.toFixed(1) + ' ' + y.toFixed(1); return; }
+        var px = X(CITY[codes[i-1]].lon), py = Y(CITY[codes[i-1]].lat), mx2 = (px + x) / 2, my = (py + y) / 2;
+        var cx = mx2 + (y - py) * .18, cy = my - (x - px) * .18;          // bow each leg a little, like a hand-drawn route
+        d += 'Q' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1);
+      });
+      return d;
+    }
+    var g = el('g', {'class':'a-grid'}), loMin = CX - PW / 2 / (K * S), loMax = CX + PW / 2 / (K * S), laMin = CY - PH / 2 / S, laMax = CY + PH / 2 / S;
+    var step = Math.max(loMax - loMin, laMax - laMin) > 16 ? 5 : 2;
+    for (var lon = Math.ceil(loMin / step) * step; lon <= loMax; lon += step) {
+      el('line', {x1:X(lon), x2:X(lon), y1:P.t, y2:H - P.b}, g);
+      el('text', {x:X(lon), y:H - P.b + 16, 'text-anchor':'middle'}, g).textContent = lon + '°E';
+    }
+    for (var lat = Math.ceil(laMin / step) * step; lat <= laMax; lat += step) {
+      el('line', {x1:P.l, x2:W - P.r, y1:Y(lat), y2:Y(lat)}, g);
+      el('text', {x:P.l - 6, y:Y(lat) + 3, 'text-anchor':'end'}, g).textContent = lat + '°N';
+    }
+    // scale bar: 1° of latitude is about 111 km
+    var km = 4.5 * S < PW / 3 ? 500 : 200, sb = el('g', {'class':'a-scale'}), sy = H - P.b - 12, sx = W - P.r - 12, sl = km / 111 * S;
+    el('path', {d:'M' + (sx - sl) + ' ' + (sy - 4) + 'V' + sy + 'H' + sx + 'V' + (sy - 4)}, sb);
+    el('text', {x:sx - sl / 2, y:sy - 7, 'text-anchor':'middle'}, sb).textContent = km + ' km';
+    var past = el('g', {'class':'a-past'});
+    data.forEach(function(d){ if (d.route.length > 1) el('path', {d:curve(d.route)}, past); });
+    var routeEl = el('path', {'class':'a-route', d:''}), dotEl = el('circle', {'class':'a-dot', r:4.2, cx:-20, cy:-20});
+    var cityEls = {};
+    Object.keys(visits).forEach(function(c){
+      var C = CITY[c], x = X(C.lon), y = Y(C.lat), cg = el('g', {'class':'a-city'});
+      el('circle', {'class':'a-ring', cx:x, cy:y, r:4 + 2.2 * visits[c]}, cg);
+      el('circle', {cx:x, cy:y, r:3 + 1.2 * visits[c]}, cg);
+      el('text', {x:x + C.dx, y:y + C.dy, 'text-anchor':C.al || 'start'}, cg).textContent = c;
+      ['en', 'de', 'zh'].forEach(function(l){ var t = el('text', {'class':'a-name', lang:l, x:x + C.dx, y:y + C.dy + 12, 'text-anchor':C.al || 'start'}, cg); t.textContent = C[l]; });
+      cityEls[c] = cg;
+    });
+
+    /* summary strip and industry × edition matrix */
+    var cities = {}, inds = {}, landed = 0, intent = 0, done = 0;
+    data.forEach(function(d){ if (!d.todo) done++; d.route.forEach(function(c){ cities[c] = 1; }); d.ind.forEach(function(k){ inds[k] = (inds[k] || 0) + 1; }); landed += d.landed; intent += d.intent; });
+    function stat(n, o){ return '<div><b>' + n + '</b><span>' + L(o) + '</span></div>'; }
+    sumEl.innerHTML = '<div class="tour-stats">' + stat(done, T.editions) + stat(Object.keys(cities).length, T.ncity) + stat(Object.keys(inds).length, T.nind) +
+      stat(landed || '—', T.nland) + stat(intent || '—', T.nint) + '</div><p class="tour-note">' + L(T.sumnote) + '</p>';
+    var keys = Object.keys(inds).sort(function(a, b){ return inds[b] - inds[a]; });
+    var html = '<table class="tmx"><caption>' + L(T.mxcap) + '</caption><thead><tr><td></td>';
+    data.forEach(function(d, i){ html += '<th scope="col" data-col="' + i + '"' + (d.todo ? ' class="todo"' : '') + '><button type="button" data-pick="' + i + '">' + d.label + '<small>' + d.year + '</small></button></th>'; });
+    html += '</tr></thead><tbody>';
+    keys.forEach(function(k){
+      html += '<tr><th scope="row">' + L(IND[k]) + '</th>';
+      data.forEach(function(d, i){ html += '<td data-col="' + i + '"' + (d.todo ? ' class="todo"' : '') + '>' + (d.ind.indexOf(k) >= 0 ? '<i class="on" aria-label="yes"></i>' : d.todo || !d.ind.length ? '<i class="q" aria-label="unknown">?</i>' : '<i></i>') + '</td>'; });
+      html += '</tr>';
+    });
+    mx.innerHTML = html + '</tbody></table>';
+
+    /* tabs and selection */
+    data.forEach(function(d, i){
+      var b = document.createElement('button');
+      b.type = 'button'; b.setAttribute('role', 'tab'); b.id = 'tour-tab-' + d.n; b.className = d.todo ? 'todo' : '';
+      b.innerHTML = d.label + '<small>' + (d.todo ? L(T.todo) : d.year) + '</small>';
+      b.addEventListener('click', function(){ select(i, true); });
+      tabs.appendChild(b); d.tab = b;
+      d.li.setAttribute('role', 'tabpanel'); d.li.setAttribute('aria-labelledby', b.id);
+    });
+    tabs.addEventListener('keydown', function(e){
+      var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!k) return;
+      e.preventDefault(); var i = (cur + k + data.length) % data.length; select(i, true); data[i].tab.focus();
+    });
+    mx.addEventListener('click', function(e){ var b = e.target.closest('[data-pick]'); if (b) select(+b.getAttribute('data-pick'), true); });
+
+    var cur = -1, len = 0, t0 = 0, raf = 0, running = false, visible = false, on = false, auto = true, autoAt = 0;
+    function select(i, user){
+      if (user) auto = false;
+      cur = i;
+      data.forEach(function(d, k){ var s = k === i; d.li.hidden = !s; d.tab.setAttribute('aria-selected', s ? 'true' : 'false'); d.tab.tabIndex = s ? 0 : -1; });
+      [].forEach.call(mx.querySelectorAll('[data-col]'), function(c){ c.classList.toggle('sel', +c.getAttribute('data-col') === i); });
+      Object.keys(cityEls).forEach(function(c){ cityEls[c].classList.toggle('on', data[i].route.indexOf(c) >= 0); });
+      routeEl.setAttribute('d', data[i].route.length > 1 ? curve(data[i].route) : '');
+      try { len = data[i].route.length > 1 ? routeEl.getTotalLength() : 0; } catch (e) { len = 0; }
+      routeEl.style.strokeDasharray = len + ' ' + len;
+      t0 = performance.now(); autoAt = t0;
+      paint(t0); update();
+    }
+    function paint(ts){
+      var t = ts - t0, p = reduce.matches ? 1 : Math.min(1, t / 1500), e = 1 - Math.pow(1 - p, 3);
+      routeEl.style.strokeDashoffset = len * (1 - e);
+      if (len && p >= 1 && !reduce.matches) { var q = routeEl.getPointAtLength(((t - 1500) / (len * 14)) % 1 * len); dotEl.setAttribute('cx', q.x); dotEl.setAttribute('cy', q.y); }
+      else { dotEl.setAttribute('cx', -20); dotEl.setAttribute('cy', -20); }
+    }
+    function frame(ts){
+      raf = 0; if (!running) return;
+      paint(ts);
+      if (auto && ts - autoAt > 7000) {                 // tour through the editions that have a route until someone picks one
+        var nx = cur; do { nx = (nx + 1) % data.length; } while (!data[nx].route.length && nx !== cur);
+        if (nx !== cur) select(nx, false);
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    function update(){
+      var should = on && visible && !reduce.matches && !document.hidden;
+      if (should && !running) { running = true; raf = requestAnimationFrame(frame); }
+      if (!should && running) { running = false; if (raf) cancelAnimationFrame(raf); raf = 0; }
+    }
+    list.classList.add('js');
+    var start = 0; data.forEach(function(d, i){ if (d.li.hasAttribute('data-default')) start = i; });
+    select(start, false);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ visible = es[0].isIntersecting; update(); }).observe(svg);
+    reduce.addEventListener('change', update);
+    document.addEventListener('visibilitychange', update);
+    return {active:function(v){ on = v; update(); }};
+  })();
+
+  /* ---------- Lumo: ASCII avatar + voice demo (answers from this page, runs in the browser) ---------- */
   var concierge = (function(){
     // Optional real agent backend: POST {lang, messages:[{role, text}]} and expect {text}. Empty = answers from this page.
     var ENDPOINT = '';
@@ -2000,9 +2399,9 @@ reply_to:        &lt;your human's email address&gt;</pre>
     };
     var KB = [
       {k:['are you human','are you a human','are you a robot','are you real','real person','are you ai','mensch','roboter','bist du echt','真人','机器人','你是谁','你是ai','你是 ai'],
-       a:{en:"I'm an AI assistant. My face is drawn from a photo of our founder, Haoyang Wu, but I am not him. This demo answers from this website; prices, contracts and signatures always come from a person at Lumovate.",
-          de:'Ich bin ein KI-Assistent. Mein Gesicht ist aus einem Foto unseres Gründers Haoyang Wu gezeichnet, aber ich bin nicht er. Diese Demo antwortet aus den Inhalten dieser Website; Preise, Verträge und Unterschriften kommen immer von einem Menschen bei Lumovate.',
-          zh:'我是 AI 助理。我的脸是用创始人吴昊阳的照片画成的，但我不是他本人。这个演示版根据本网站内容作答；价格、合同和签字永远由 Lumovate 的真人负责。'}},
+       a:{en:"I'm Lumo, Lumovate's AI assistant, not a real person. This demo answers from this website; prices, contracts and signatures always come from a person at Lumovate.",
+          de:'Ich bin Lumo, der KI-Assistent von Lumovate, kein Mensch. Diese Demo antwortet aus den Inhalten dieser Website; Preise, Verträge und Unterschriften kommen immer von einem Menschen bei Lumovate.',
+          zh:'我是 Lumovate 的 AI 助理 Lumo，不是真人。这个演示版根据本网站内容作答；价格、合同和签字永远由 Lumovate 的真人负责。'}},
       {k:['cost','price','fee','how much','pay','airfare','budget','kosten','kostet','preis','gebühr','zahlen','teuer','费用','价格','多少钱','收费','机票','预算'],
        a:{en:'For the Chifeng delegation, guests pay their international flight, and EIC and the City of Chifeng cover the costs in China, with no participation fee. Prices for our own services are agreed by a person, not by me. Write to hello@lumovate.de.',
           de:'Bei der Chifeng-Delegation zahlen Gäste den internationalen Flug; EIC und die Stadt Chifeng übernehmen die Kosten in China, eine Teilnahmegebühr gibt es nicht. Preise für unsere eigenen Leistungen vereinbart ein Mensch, nicht ich. Schreiben Sie an hello@lumovate.de.',
@@ -2028,13 +2427,13 @@ reply_to:        &lt;your human's email address&gt;</pre>
           de:'Wir betreiben unser eigenes Unternehmen mit Agenten: eine KI-Vertriebsmaschine, einen Bus, der Arbeit an sieben Agentensysteme verteilt, einen KI-Kernel auf einem Laptop von 2009 und eine Versammlung aus 81 Roboter-Agenten. Die Projektwand oben zeigt alle Details.',
           zh:'我们自己的公司就靠 Agent 运转：一套 AI 销售引擎、一条把工作分派给七个 Agent 系统的总线、一个跑在 2009 年笔记本上的 AI 内核，还有一场由 81 位机器人 Agent 组成的大会。上方的项目墙有完整案例。'}},
       {k:['founder','who is behind','haoyang','ceo','managing director','team','gründer','geschäftsführer','wer steckt','创始人','老板','总经理','团队','吴昊阳'],
-       a:{en:'Lumovate was founded by Haoyang Wu. He has fifteen years in European and Asia-Pacific industry and focuses on cross-border investment and M&A.',
-          de:'Gegründet wurde Lumovate von Haoyang Wu. Er hat fünfzehn Jahre Erfahrung in der europäischen und asiatisch-pazifischen Industrie und ist auf grenzüberschreitende Investitionen und M&A spezialisiert.',
-          zh:'Lumovate 由吴昊阳创立。他在欧洲和亚太工业界深耕十五年，专注跨境投资与国际并购。'}},
+       a:{en:"Lumovate's founder has fifteen years in European and Asia-Pacific industry and focuses on cross-border investment and M&A. The founder section on this page has more.",
+          de:'Der Gründer von Lumovate hat fünfzehn Jahre Erfahrung in der europäischen und asiatisch-pazifischen Industrie und ist auf grenzüberschreitende Investitionen und M&A spezialisiert. Mehr dazu im Abschnitt zum Gründer auf dieser Seite.',
+          zh:'Lumovate 的创始人在欧洲和亚太工业界深耕十五年，专注跨境投资与国际并购。本页「创始人」一栏有更多介绍。'}},
       {k:['eic','sg-eic','partner','中德赋能','合作伙伴','合作方'],
-       a:{en:'Our partner is the Sino-German Empowerment Innovation Center in Beijing, which has run delegation programmes with regional governments since 2019. Lumovate is its partner company in Germany.',
-          de:'Unser Partner ist das Sino-German Empowerment Innovation Center in Peking, das seit 2019 Delegationsprogramme mit Regionalregierungen organisiert. Lumovate ist sein Partnerunternehmen in Deutschland.',
-          zh:'我们的合作伙伴是北京的中德赋能创新中心，2019 年起与地方政府合作举办代表团项目。Lumovate 是它在德国的合作公司。'}},
+       a:{en:'Our partner is the Sino-German Empowerment Innovation Center in Beijing, founded in 2019, which has run the China Tour for European companies with regional governments since 2024. Lumovate is its partner company in Germany.',
+          de:'Unser Partner ist das Sino-German Empowerment Innovation Center in Peking, 2019 gegründet, das seit 2024 mit Regionalregierungen die China-Tour für europäische Unternehmen organisiert. Lumovate ist sein Partnerunternehmen in Deutschland.',
+          zh:'我们的合作伙伴是北京的中德赋能创新中心，2019 年成立，2024 年起与地方政府合作举办欧洲企业中国行。Lumovate 是它在德国的合作公司。'}},
       {k:['contact','email','e-mail','reach you','talk to someone','meeting','appointment','call','kontakt','erreichen','termin','anrufen','联系','邮箱','邮件','见面','电话'],
        a:{en:'Write to hello@lumovate.de with what you sell, which market you want and by when. We reply in German, English or Chinese.',
           de:'Schreiben Sie an hello@lumovate.de, was Sie verkaufen, welchen Markt Sie erreichen möchten und bis wann. Wir antworten auf Deutsch, Englisch oder Chinesisch.',
@@ -2050,7 +2449,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
       {k:['thank','danke','谢谢','感谢'],
        a:{en:"You're welcome. If you want to take it further, write to hello@lumovate.de.", de:'Gern geschehen. Wenn Sie weitermachen möchten, schreiben Sie an hello@lumovate.de.', zh:'不客气。想进一步沟通的话，请写信到 hello@lumovate.de。'}},
       {k:['hello','hi','hey','good morning','hallo','guten tag','moin','servus','你好','您好','嗨','哈喽','早上好'],
-       a:{en:"Hello! I'm LUMO. Ask me about our services, the next delegations or our AI projects.", de:'Hallo! Ich bin LUMO. Fragen Sie mich nach unseren Leistungen, den nächsten Delegationen oder unseren KI-Projekten.', zh:'您好！我是 LUMO。可以问我业务、近期的代表团，或者我们的 AI 项目。'}}
+       a:{en:"Hello! I'm Lumo. Ask me about our services, the next delegations or our AI projects.", de:'Hallo! Ich bin Lumo. Fragen Sie mich nach unseren Leistungen, den nächsten Delegationen oder unseren KI-Projekten.', zh:'您好！我是 Lumo。可以问我业务、近期的代表团，或者我们的 AI 项目。'}}
     ];
     var FALLBACK = {en:'I can answer questions about our services, delegations, projects and how to reach us. For anything else, a person will reply at hello@lumovate.de.',
                     de:'Ich beantworte Fragen zu unseren Leistungen, Delegationen, Projekten und zum Kontakt. Für alles andere antwortet Ihnen ein Mensch unter hello@lumovate.de.',
@@ -2084,7 +2483,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
     var state = 'idle', muted = false, history = [], speakTok = 0, mouthTarget = 0, pulse = 0, tts = {idx:0, done:true};
     function line(who, text){
       var li = document.createElement('li'); li.className = who;
-      var b = document.createElement('b'); b.textContent = who === 'ai' ? 'LUMO' : UI.you[lang()];
+      var b = document.createElement('b'); b.textContent = who === 'ai' ? 'Lumo' : UI.you[lang()];
       var t = document.createElement('span'); t.className = 't'; t.textContent = text;
       li.appendChild(b); li.appendChild(t); tx.appendChild(li); tx.scrollTop = tx.scrollHeight;
       return li;
@@ -2096,9 +2495,13 @@ reply_to:        &lt;your human's email address&gt;</pre>
     var LOC = {en:'en-GB', de:'de-DE', zh:'zh-CN'}, voices = [];
     function loadVoices(){ try { voices = speechSynthesis.getVoices() || []; } catch (e) {} }
     if ('speechSynthesis' in window) { loadVoices(); try { speechSynthesis.addEventListener('voiceschanged', loadVoices); } catch (e) {} }
+    // Lumo speaks with a male voice where the device has one (Windows, Edge, Chrome, macOS names); otherwise the default voice, pitched down
+    var MALE = /(male|guy|david|mark|george|james|ryan|thomas|daniel|alex|aaron|fred|andrew|brian|christopher|eric|roger|steffan|conrad|stefan|killian|florian|markus|yannick|hans|yunxi|yunyang|yunjian|yunze|yunfeng|yunhao|kangkang)/i;
     function pickVoice(l){
       var want = LOC[l].toLowerCase(), norm = function(v){ return (v.lang || '').replace('_', '-').toLowerCase(); };
-      return voices.filter(function(v){ return norm(v) === want; })[0] || voices.filter(function(v){ return norm(v).indexOf(l) === 0; })[0] || null;
+      var exact = voices.filter(function(v){ return norm(v) === want; }), same = voices.filter(function(v){ return norm(v).indexOf(l) === 0; });
+      var male = function(list){ return list.filter(function(v){ return MALE.test(v.name); })[0]; };
+      return male(exact) || male(same) || exact[0] || same[0] || null;
     }
     function speakAloud(text, l){
       var st = tts = {idx:0, done:false};
@@ -2107,7 +2510,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
         speechSynthesis.cancel();
         var u = new SpeechSynthesisUtterance(text), v = pickVoice(l);
         u.lang = LOC[l];
-        if (v) u.voice = v; else if (voices.length) { st.done = true; return false; } // no voice for this language: stay silent rather than mispronounce
+        if (v) { u.voice = v; u.pitch = MALE.test(v.name) ? 1 : .78; } else if (voices.length) { st.done = true; return false; } // no voice for this language: stay silent rather than mispronounce
         u.onboundary = function(e){ st.idx = Math.max(st.idx, (e.charIndex || 0) + (e.charLength || 1)); pulse = 1; };
         u.onend = u.onerror = function(){ st.done = true; };
         speechSynthesis.speak(u);
@@ -2191,7 +2594,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
       catch (e) { note('other'); }
     }
 
-    /* LUMO's face: the founder's photo cut to the head and reduced to a coarse texture, wrapped on an ellipsoid.
+    /* Lumo's face: the founder's photo cut to the head and reduced to a coarse texture, wrapped on an ellipsoid.
        Turns, nods, tilts, blinks and the mouth are computed per frame; a dim binary rain fills the background. */
     var TEX = "                                                              nn                              lk eedddfjl  n                         eccbbbabbbcg f                       nhcbbbbbbaaaaabede                      dbabbaaaaaaaaaaabbcc                   cbbbaaaaaaaaaaaaaaaabbe               icbabbaaaaaaaaaaaaaaaaaaabd            hbbabbbaaaaaaaaaaaaaaabaaaac           hbbabcbbaaaaaaabaaaaaabaaaaaac          cbbbbbaaabaaaaaaaaaaaaaaaaaaaae        dbbbbbbbbbbbbaaabaaaaaaaaaaaaaab        cbbbbbbbbbbaabbaaaaaaaaabaaaaaabc      fbbbcbbbabaaabbaaaaaaaaaaaabaaaaab      ccbbcbcbbbabbbbbbbaaaaaaaaaaaaababf     ccbbbbcbcbbbbbccccccbbaaaaabaaaaabc     cbbbbbbbbcbdeeefffffeccbbbaaaaaabbb    hcbbbbbabdefhhhhiiiihfeeeddcbaaaaabb    dcbabbbceghjkklkjkkihhhhhggfecaaaaab    dbbbabdgijkllnmllllkjiiijiiigdbbaaab    ccbaacgjlmmnnmlmmnnlkjkkjjjjhecbaaabe   dcbbbeiklmmmmnmllmmmmllkkjjjifcbbaab    cbbbchjkklmnopponnnonnnnmllkigcaabbae   cbbbfjjkkmnopppppppppoomlkjjjgfbabbae  gbbabikljhhikmooppppponlligggihfdaabb   ebbbckligfgffffimopnmkhfedeeefgheabab   gbbaelljklnoljijkmnmjjhhjlljkihihbabb    bbainmnmjihhijklmnljiijlkiijkkkjdaab    fbalnmjedfcbegiknpmkiigedbedfiklgabc    kcbmmljjkjgffgjmopnkhjgjedhfgijkiabe    lebmmllllkiggilmnpniikjjijmlklkjjbch    lfdlkklmllllnonmnomjiklkhijkmkjiibcj    mgdmllnoooppponnnomjiklmmmnomkkjibd     mlenmmnppopppommmnliikjmnnnonmkkjdf     omgnnnopppoooomlmnlihikmnnonnmlkifi      ninooppppomkjijmnliffgklmnmnmllhgk      nmmoooopnkhijlkmomifhggijllllklhi         nonmmlifhjjlmmnliiigeffikkkjkk          pnnlkgegklkhgiihfddehhgegiijk            nmkhggklkllligeddeghhhfefhij            nmkihhijjkkjljhgfghhffffgghk            nlkjigghkjjijiigefggeefhhhik            pmkkiiidbegfffeefecbcfhighj              mlkkkkkfglpppopokcdhgihgij              olkkjlmlhghijjhgddhhghfgi                ijjkkmnmjilkigfgihihgfhj               behjkkmmmnkhhgfhhiihgfgi               caeghjklmmmljhfhiiihhgghk                aeighilmlllkigghiihhghi                  dijghimmmmkkiiiiihfghhe                  hkighjlmmlkkjihihgghhb                   kljfhkkjkjjjiiffffhe                      mhegiiiiiihfeeef                         lgeefghhfedeef                             feddddde                ", TW = 40, TH = 55, LV = 16, ASPECT = 0.726;
     var EYES = [[-0.377, 0.038], [0.351, 0.038]], MOUTH = [0.0, 0.575, 0.325];

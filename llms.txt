@@ -19,12 +19,13 @@
 ## Projects
 
 - [9th EIC China Tour](/#p-eic-tour-9): 2026-10-23 to 2026-10-31, Shanghai, Ordos, Jinzhong; company visits, B2B matchmaking, official receptions; max. 25 European companies
+- [EIC China Tour, all editions](/#tours): run since 2024; documented so far: 1st Dalian (2024-03), 3rd Tianjin TEDA (2025-04), 5th Taicang, Baoji, Datong (2025-12), 6th Beijing and Jinzhong (2026-04), 7th Chongqing (2026-05), 8th Jinan and Zouping, Shandong (2026-09); routes, focus industries, centres opened and letters of intent
 - [Chemical delegation to Chifeng](/#p-chifeng): mid-November 2026, 10 European chemical companies, 3 days; guests pay international airfare, EIC and the City of Chifeng host in-China costs
 - [Delegation design for Shandong](/#p-shandong): proposal to the provincial government, 25 pre-screened European companies in 8 sectors
 - [Agent-CRM](/#p-agent-crm): AI customer acquisition engine in daily use; 18 sub-agents, 1,046 leads, 1,323 audited drafts; a person sends every email
 - [Business-card intelligence](/#p-cards): vision model plus web verification turns trade-fair cards into a company library (1,298 companies)
 - [Network map](/#p-network): internal tool mapping the founder's WeChat and LinkedIn contacts (1,268 + 2,110) by industry, to find warm introductions; names never published
-- [LUMO](/#talk): voice and text concierge demo on this site; answers from the site's facts, runs in the browser
+- [Lumo](/#talk): voice and text concierge demo on this site; answers from the site's facts, runs in the browser
 - [Agent bus](/#p-agent-bus): the company's own operations run on seven agent systems; ~3,900 tickets and ~2,200 unattended runs in the first two months
 - [AgentZero](/#p-agentzero): bare-metal x86 kernel driven by an AI agent over UDP; open source (https://github.com/WalterWood1995/AgentZero)
 - [CAX Agent](/#p-cax): agent-first design and simulation platform for robot makers on MuJoCo; prototype
