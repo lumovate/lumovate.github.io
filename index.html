@@ -254,13 +254,19 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 .pj[hidden]{display:none}
 .pj-grid.filtered .pj{grid-column:span 4;flex-direction:column}
 .pj-grid.filtered .pj .cv{flex:none;aspect-ratio:16/10;min-height:0}
+.pj-grid.filtered.pairs .pj{grid-column:span 6}
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.shots figure{margin:0;display:grid;gap:6px}
+.shots img{width:100%;height:auto;border-radius:4px;background:var(--t-bg)}
+.shots figcaption{font:400 .72rem var(--f-mono);color:var(--muted)}
+@media (max-width:640px){.shots{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:980px){
   .pj,.pj.s6,.pj-grid.filtered .pj{grid-column:span 6}
   .pj.s8{grid-column:1/-1}
   .pj-grid.filtered .pj.lead{grid-column:1/-1}
 }
 @media (max-width:640px){
-  .pj,.pj.s6,.pj.s8,.pj-grid.filtered .pj{grid-column:1/-1;flex-direction:column}
+  .pj,.pj.s6,.pj.s8,.pj-grid.filtered .pj,.pj-grid.filtered.pairs .pj{grid-column:1/-1;flex-direction:column}
   .pj.s8 .cv{flex:none;aspect-ratio:16/10;min-height:0}
 }
 .pj-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:9px;flex:1;min-width:0}
@@ -425,6 +431,46 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 .legal-body h4{font-size:.92rem;margin:16px 0 4px;color:var(--ink)}
 .legal-body p{margin:0 0 8px}
 
+/* AI concierge: a slice of the agent world inside the human page (fixed terminal palette in both themes) */
+.talk{background-color:var(--t-bg);background-image:repeating-linear-gradient(0deg,var(--t-scan) 0 1px,transparent 1px 3px);color:var(--t-hi);border-top:0;color-scheme:dark}
+.talk h2{color:var(--t-hi)}
+.talk .label{color:var(--t-dim)}
+.talk .sec-intro{color:var(--t-mid)}
+.talk-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;align-items:stretch}
+@media (max-width:900px){.talk-grid{grid-template-columns:minmax(0,1fr)}}
+.avatar,.chat{border:1px solid var(--t-line);border-radius:6px;background:var(--t-bg-2);display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.av-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;font:500 .68rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--t-dim)}
+.av-bar.top{border-bottom:1px solid var(--t-line)}
+.av-bar.bot{border-top:1px solid var(--t-line)}
+.av-state{color:var(--t-mid)}
+.av-state[data-s="listen"],.av-state[data-s="speak"]{color:var(--t-ok)}
+.av-state::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-right:7px;vertical-align:1px}
+.av-stage{flex:1;display:grid;place-items:center;min-height:270px;padding:10px 8px;overflow:hidden}
+.ascii{margin:0;font-family:var(--f-mono);font-size:10px;line-height:1;letter-spacing:0;white-space:pre;color:var(--t-fg);text-shadow:0 0 7px var(--t-glow);user-select:none}
+.meter{font:500 .72rem var(--f-mono);color:var(--t-mid);letter-spacing:0;white-space:pre}
+.tx{list-style:none;margin:0;padding:16px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;height:clamp(280px,46vh,440px)}
+.tx li{max-width:88%;font-size:.96rem;line-height:1.5;overflow-wrap:anywhere}
+.tx b{display:block;font:500 .64rem var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--t-dim);margin-bottom:3px}
+.tx .ai{align-self:flex-start;color:var(--t-hi)}
+.tx .me{align-self:flex-end;text-align:right;color:var(--g-paper)}
+.tx .interim .t{opacity:.6;font-style:italic}
+.tx .typing .t::after{content:"_";margin-left:1px;color:var(--t-fg);animation:blink 1s steps(1) infinite}
+.tx .sys{align-self:center;max-width:100%;font:400 .76rem/1.5 var(--f-mono);color:var(--t-dim);text-align:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 14px}
+.chips button{font:500 .72rem var(--f-mono);padding:6px 10px;border:1px solid var(--t-line);border-radius:999px;background:none;color:var(--t-mid);cursor:pointer}
+.chips button:hover{color:var(--t-hi);border-color:var(--t-dim)}
+.talk-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--t-line)}
+.talk-form input{flex:1;min-width:0;font:400 1rem var(--f-body);color:var(--t-hi);background:var(--t-bg);border:1px solid var(--t-line);border-radius:4px;padding:10px 12px}
+.talk-form input::placeholder{color:var(--t-dim)}
+.tbtn{display:inline-grid;place-items:center;min-width:44px;height:44px;padding:0 12px;border:1px solid var(--t-line);border-radius:4px;background:none;color:var(--t-fg);font:600 .78rem var(--f-mono);letter-spacing:.06em;cursor:pointer}
+.tbtn:hover{border-color:var(--t-dim);color:var(--t-hi)}
+.tbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tbtn.mic[aria-pressed="true"]{background:var(--t-fg);border-color:var(--t-fg);color:var(--t-bg);animation:blink 1.4s steps(1) infinite}
+.tbtn.send{background:var(--t-fg);border-color:var(--t-fg);color:var(--t-bg)}
+.tbtn.mute[aria-pressed="true"] .snd,.tbtn.mute[aria-pressed="false"] .mut{display:none}
+.talk-note{margin:14px 0 0;font:400 .76rem/1.6 var(--f-mono);color:var(--t-dim);max-width:110ch}
+@media (max-width:480px){.talk-form{flex-wrap:wrap}.talk-form input{flex-basis:100%;order:-1}}
+
 /* ============ AGENT VIEW ============ */
 .term{background-color:var(--t-bg);color:var(--t-fg);font-family:var(--f-mono);font-size:.92rem;line-height:1.65;min-height:100svh;
   background-image:repeating-linear-gradient(0deg,var(--t-scan) 0 1px,transparent 1px 3px)}
@@ -505,7 +551,7 @@ engines: [ai-acquisition, delegations]
 directions: [CN -> world, EU -> CN]
 partner: SG-EIC, Beijing
 human_in_the_loop: true
-projects: 9
+projects: 10
 languages: [de, en, zh]
 GET /llms.txt 200
 council/plan-l.log: motion carried 9-0
@@ -515,7 +561,7 @@ engines: [ai-acquisition, delegations]
 directions: [CN -> world, EU -> CN]
 partner: SG-EIC, Beijing
 human_in_the_loop: true
-projects: 9
+projects: 10
 languages: [de, en, zh]
 GET /llms.txt 200
 council/plan-l.log: motion carried 9-0
@@ -545,6 +591,7 @@ council/plan-l.log: motion carried 9-0
     </a>
     <nav class="nav" aria-label="Sections">
       <a href="#projects"><span lang="en">Projects</span><span lang="de">Projekte</span><span lang="zh">项目</span></a>
+      <a href="#talk"><span lang="en">Talk to AI</span><span lang="de">KI-Gespräch</span><span lang="zh">AI 对话</span></a>
       <a href="#services"><span lang="en">Services</span><span lang="de">Leistungen</span><span lang="zh">业务</span></a>
       <a href="#process"><span lang="en">How we work</span><span lang="de">Ablauf</span><span lang="zh">工作方式</span></a>
       <a href="#corridor"><span lang="en">Regions</span><span lang="de">Regionen</span><span lang="zh">区域</span></a>
@@ -573,7 +620,7 @@ council/plan-l.log: motion carried 9-0
       <p class="lead" lang="zh">Lumovate 帮助中小企业以低成本、高效率完成全球布局：中资企业出海，欧洲企业进入中国。我们的 AI Agent 负责研究市场、找到决策人，并用对方的语言建立联系；随后我们组织企业家代表团，让您与客户高管、企业与投资决策人以及政府高层面对面会谈。</p>
       <div class="ctas">
         <a class="btn btn-primary" href="#projects"><span lang="en">See our projects</span><span lang="de">Projekte ansehen</span><span lang="zh">查看项目</span> <span aria-hidden="true">↓</span></a>
-        <a class="btn" href="#contact"><span lang="en">Talk to us</span><span lang="de">Gespräch vereinbaren</span><span lang="zh">联系我们</span></a>
+        <a class="btn" href="#talk"><span lang="en">Ask our AI</span><span lang="de">Unsere KI fragen</span><span lang="zh">和 AI 对话</span> <span class="mono" aria-hidden="true">&gt;_</span></a>
       </div>
       <ul class="facts">
         <li><b>CN → <span lang="en">World</span><span lang="de">Welt</span><span lang="zh">全球</span></b></li>
@@ -615,6 +662,11 @@ council/plan-l.log: motion carried 9-0
           <span class="b-what">AgentZero<small>ring 0 · 2009 Asus</small></span>
           <span class="b-st" data-k="oss">OPEN SOURCE</span>
         </a></li>
+        <li><a class="b-row" href="#talk">
+          <span class="b-when"><span lang="en">NOW</span><span lang="de">JETZT</span><span lang="zh">现在</span></span>
+          <span class="b-what">LUMO<small><span lang="en">AI concierge · voice</span><span lang="de">KI-Concierge · Sprache</span><span lang="zh">AI 接待 · 语音</span></small></span>
+          <span class="b-st" data-k="live">LIVE</span>
+        </a></li>
       </ol>
       <p class="board-foot"><span lang="en">Click a row for the full project.</span><span lang="de">Zeile anklicken für das ganze Projekt.</span><span lang="zh">点击任意一行查看项目详情。</span></p>
     </div>
@@ -634,9 +686,9 @@ council/plan-l.log: motion carried 9-0
     </div>
 
     <div class="filters" role="group" aria-label="Filter projects">
-      <button type="button" data-filter="all" aria-pressed="true"><span lang="en">All</span><span lang="de">Alle</span><span lang="zh">全部</span><i>9</i></button>
+      <button type="button" data-filter="all" aria-pressed="true"><span lang="en">All</span><span lang="de">Alle</span><span lang="zh">全部</span><i>10</i></button>
       <button type="button" data-filter="deleg" aria-pressed="false"><span lang="en">Delegations</span><span lang="de">Delegationen</span><span lang="zh">代表团</span><i>3</i></button>
-      <button type="button" data-filter="growth" aria-pressed="false"><span lang="en">AI for growth</span><span lang="de">KI für Wachstum</span><span lang="zh">AI 获客与运营</span><i>3</i></button>
+      <button type="button" data-filter="growth" aria-pressed="false"><span lang="en">AI for growth</span><span lang="de">KI für Wachstum</span><span lang="zh">AI 获客与运营</span><i>4</i></button>
       <button type="button" data-filter="lab" aria-pressed="false"><span lang="en">AI lab</span><span lang="de">KI-Labor</span><span lang="zh">AI 实验室</span><i>3</i></button>
     </div>
 
@@ -764,8 +816,45 @@ council/plan-l.log: motion carried 9-0
         </div>
       </article>
 
-      <!-- 4 · Assembly of 81 -->
-      <article class="pj s6" data-cat="lab" id="p-assembly">
+      <!-- 4 · Network map -->
+      <article class="pj s6" data-cat="growth" id="p-network">
+        <div class="cv"><img src="assets/projects/network-wechat-core.jpg" alt="Anonymised network map: the founder as a red node in the centre, contacts as blue dots, green lines where contacts share a group" width="624" height="390" loading="lazy"></div>
+        <div class="pj-body">
+          <p class="pj-meta"><span class="chip"><span lang="en">AI for growth</span><span lang="de">KI für Wachstum</span><span lang="zh">AI 获客</span></span><span class="state"><span lang="en">Internal tool</span><span lang="de">Internes Werkzeug</span><span lang="zh">内部工具</span></span></p>
+          <h3><a class="pj-link" href="#p-network"><span lang="en">Network map: who knows whom</span><span lang="de">Netzwerkkarte: wer kennt wen</span><span lang="zh">人脉拓扑图：谁认识谁</span></a></h3>
+          <p class="pj-line" lang="en">Every WeChat and LinkedIn contact of the founder on one map, linked where people share a group and filterable by industry. It shows where a warm introduction is possible.</p>
+          <p class="pj-line" lang="de">Alle WeChat- und LinkedIn-Kontakte des Gründers auf einer Karte, verknüpft über gemeinsame Gruppen und nach Branche filterbar. So wird sichtbar, wo eine warme Vorstellung möglich ist.</p>
+          <p class="pj-line" lang="zh">把创始人所有微信与 LinkedIn 联系人放在一张图上，按共同群组连线，可按行业筛选，一眼看出哪里可以找人引荐。</p>
+          <p class="pj-facts"><span lang="en">1,268 WeChat · 2,110 LinkedIn · 26 industry tags</span><span lang="de">1.268 WeChat · 2.110 LinkedIn · 26 Branchen-Tags</span><span lang="zh">1,268 位微信联系人 · 2,110 位 LinkedIn 人脉 · 26 个行业标签</span></p>
+          <div class="pj-more">
+            <dl class="case">
+              <div><dt><span lang="en">Problem</span><span lang="de">Problem</span><span lang="zh">问题</span></dt>
+                <dd lang="en">Our own outreach data showed that warm contacts reply and cold ones do not. So the real question is where the warm paths into a target company or industry are.</dd>
+                <dd lang="de">Unsere eigenen Akquisedaten zeigen: Warme Kontakte antworten, kalte nicht. Die eigentliche Frage ist also, wo die warmen Wege zu einem Zielunternehmen oder einer Branche liegen.</dd>
+                <dd lang="zh">我们自己的获客数据表明：暖联系人会回复，冷联系人不会。所以真正的问题是：通往目标企业或行业的「暖路径」在哪里。</dd></div>
+              <div><dt><span lang="en">What we built</span><span lang="de">Was wir gebaut haben</span><span lang="zh">我们做了什么</span></dt>
+                <dd lang="en">A local tool that maps the founder's own WeChat contacts and LinkedIn connections: one node per person, sized by how often we talk, linked where two people share a small group or a group thread. An industry bar selects sectors such as automotive, aerospace or robotics and ranks the contacts in them.</dd>
+                <dd lang="de">Ein lokales Werkzeug, das die eigenen WeChat-Kontakte und LinkedIn-Verbindungen des Gründers kartiert: ein Knoten pro Person, Größe nach Gesprächshäufigkeit, verknüpft, wo zwei Personen eine kleine Gruppe oder einen Gruppenthread teilen. Eine Branchenleiste wählt Sektoren wie Automobil, Luftfahrt oder Robotik und ordnet die Kontakte darin.</dd>
+                <dd lang="zh">一个本地工具，把创始人自己的微信联系人和 LinkedIn 人脉画成网络：每人一个节点，大小按沟通频率，两人同在一个小群或群聊就连线。顶部行业栏可选汽车、航空航天、机器人等方向，并在侧栏为该行业的联系人排序。</dd></div>
+              <div><dt><span lang="en">Where it stands</span><span lang="de">Stand</span><span lang="zh">进展</span></dt>
+                <dd lang="en">In internal use since September 2026 as a single offline HTML file. Personal data stays on the founder's computer; in the images on this page all names and details are removed.</dd>
+                <dd lang="de">Seit September 2026 intern im Einsatz, als einzelne Offline-HTML-Datei. Personenbezogene Daten bleiben auf dem Rechner des Gründers; in den Bildern auf dieser Seite sind alle Namen und Details entfernt.</dd>
+                <dd lang="zh">2026 年 9 月起内部使用，是一个离线 HTML 文件。个人数据只留在创始人自己的电脑上；本页图片已去掉所有姓名和细节。</dd></div>
+            </dl>
+            <div class="shots">
+              <figure><img src="assets/projects/network-wechat.jpg" alt="Anonymised WeChat network, 1,268 nodes" width="544" height="340" loading="lazy"><figcaption>WeChat · 1,268 <span lang="en">nodes</span><span lang="de">Knoten</span><span lang="zh">节点</span></figcaption></figure>
+              <figure><img src="assets/projects/network-linkedin.jpg" alt="Anonymised LinkedIn network, 2,110 nodes" width="627" height="387" loading="lazy"><figcaption>LinkedIn · 2,110 <span lang="en">nodes</span><span lang="de">Knoten</span><span lang="zh">节点</span></figcaption></figure>
+            </div>
+            <ul class="specs">
+              <li><b>Stack</b>Python · vis-network · offline HTML</li>
+              <li><b><span lang="en">Data</span><span lang="de">Daten</span><span lang="zh">数据</span></b><span lang="en">the founder's own contacts and the official LinkedIn data export</span><span lang="de">eigene Kontakte des Gründers und der offizielle LinkedIn-Datenexport</span><span lang="zh">创始人自己的联系人数据与 LinkedIn 官方数据导出</span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 · Assembly of 81 -->
+      <article class="pj" data-cat="lab" id="p-assembly">
         <div class="cv"><img src="assets/projects/robotpedia.jpg" alt="AGON Robotpedia: the House of Myth and House of the Craft with generated robot avatars" width="799" height="500" loading="lazy"></div>
         <div class="pj-body">
           <p class="pj-meta"><span class="chip"><span lang="en">AI lab</span><span lang="de">KI-Labor</span><span lang="zh">AI 实验室</span></span><span class="state"><span lang="en">Live</span><span lang="de">Online</span><span lang="zh">已上线</span></span></p>
@@ -903,7 +992,7 @@ council/plan-l.log: motion carried 9-0
       </article>
 
       <!-- 8 · Agent bus -->
-      <article class="pj s6" data-cat="growth" id="p-agent-bus">
+      <article class="pj" data-cat="growth" id="p-agent-bus">
         <div class="cv cv-term" aria-hidden="true" style="padding:10px">
           <svg class="bus" viewBox="0 0 400 220" role="presentation">
             <line x1="200" y1="110" x2="70" y2="46"/><line x1="200" y1="110" x2="330" y2="46"/>
@@ -952,7 +1041,7 @@ council/plan-l.log: motion carried 9-0
       </article>
 
       <!-- 9 · Shandong -->
-      <article class="pj s6" data-cat="deleg" id="p-shandong">
+      <article class="pj" data-cat="deleg" id="p-shandong">
         <div class="cv cv-paper" aria-hidden="true">
           <div class="sx">
             <b>25<small><span lang="en">candidates</span><span lang="de">Kandidaten</span><span lang="zh">家候选</span></small></b>
@@ -993,6 +1082,54 @@ council/plan-l.log: motion carried 9-0
     <p class="more-note" lang="en">Also built: a real-time voice agent that phones banks and authorities (811 ms reply latency, 134 offline tests; it says it is an AI and records no audio), and AgentChat, a messaging layer for business conversations between agents (prototype).</p>
     <p class="more-note" lang="de">Außerdem gebaut: ein Echtzeit-Sprachagent, der Banken und Behörden anruft (811 ms Antwortzeit, 134 Offline-Tests; er gibt sich als KI zu erkennen und speichert kein Audio), sowie AgentChat, eine Nachrichtenschicht für Geschäftsgespräche zwischen Agenten (Prototyp).</p>
     <p class="more-note" lang="zh">此外还做了：可致电银行与政府机构的实时语音 Agent（回复延迟 811 毫秒、134 项离线测试，主动表明 AI 身份且不录音），以及用于 Agent 之间商务沟通的消息层 AgentChat（原型）。</p>
+  </div>
+</section>
+
+<section class="sec talk" id="talk">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label"><span lang="en">AI concierge</span><span lang="de">KI-Concierge</span><span lang="zh">AI 接待</span></p>
+      <div>
+        <h2><span lang="en">Talk to LUMO, our AI concierge.</span><span lang="de">Sprechen Sie mit LUMO, unserem KI-Concierge.</span><span lang="zh">和 AI 接待员 LUMO 聊聊。</span></h2>
+        <p class="sec-intro" lang="en">Speak or type, in English, German or Chinese. LUMO answers from the facts on this website and passes anything about prices, contracts or commitments to a person.</p>
+        <p class="sec-intro" lang="de">Sprechen oder tippen Sie, auf Deutsch, Englisch oder Chinesisch. LUMO antwortet auf Basis der Fakten dieser Website und gibt alles zu Preisen, Verträgen oder Zusagen an einen Menschen weiter.</p>
+        <p class="sec-intro" lang="zh">可以说话，也可以打字，中文、德语、英语都行。LUMO 依据本网站的信息作答，涉及价格、合同或承诺的问题一律转给真人。</p>
+      </div>
+    </div>
+    <div class="talk-grid">
+      <div class="avatar">
+        <div class="av-bar top"><span>LUMO · ascii · v0.1</span><span class="av-state" id="av-state" data-s="idle">IDLE</span></div>
+        <div class="av-stage" id="av-stage"><pre class="ascii" id="ascii" aria-hidden="true"></pre></div>
+        <div class="av-bar bot"><span class="meter" id="meter">[            ]</span><span id="av-lang">EN</span></div>
+      </div>
+      <div class="chat">
+        <ol class="tx" id="tx" aria-live="polite">
+          <li class="ai"><b>LUMO</b><span class="t"><span lang="en">Hello, I'm LUMO, the Lumovate assistant. Ask me what we do, about the next delegations or our AI projects. Press the microphone or type.</span><span lang="de">Hallo, ich bin LUMO, der Assistent von Lumovate. Fragen Sie mich, was wir tun, nach den nächsten Delegationen oder unseren KI-Projekten. Drücken Sie das Mikrofon oder tippen Sie.</span><span lang="zh">您好，我是 Lumovate 的 AI 助理 LUMO。可以问我业务、近期的代表团，或者我们的 AI 项目。点麦克风说话，或者直接打字。</span></span></li>
+        </ol>
+        <div class="chips" id="chips">
+          <button type="button"><span lang="en">What do you do?</span><span lang="de">Was macht Lumovate?</span><span lang="zh">你们做什么？</span></button>
+          <button type="button"><span lang="en">How does AI customer acquisition work?</span><span lang="de">Wie funktioniert Kundengewinnung mit KI?</span><span lang="zh">AI 获客怎么做？</span></button>
+          <button type="button"><span lang="en">Which delegations are next?</span><span lang="de">Welche Delegationen kommen als Nächstes?</span><span lang="zh">近期有哪些代表团？</span></button>
+          <button type="button"><span lang="en">Can you help a Chinese company enter Germany?</span><span lang="de">Helfen Sie chinesischen Unternehmen nach Deutschland?</span><span lang="zh">能帮中资企业进入德国吗？</span></button>
+          <button type="button"><span lang="en">What does it cost?</span><span lang="de">Was kostet das?</span><span lang="zh">费用怎么算？</span></button>
+          <button type="button"><span lang="en">Are you a human?</span><span lang="de">Bist du ein Mensch?</span><span lang="zh">你是真人吗？</span></button>
+        </div>
+        <form class="talk-form" id="talk-form" autocomplete="off">
+          <button type="button" class="tbtn mic" id="mic" aria-pressed="false" aria-label="Speak">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+          </button>
+          <input id="talk-in" type="text" aria-label="Question" placeholder="Type a question…">
+          <button type="submit" class="tbtn send"><span lang="en">Send</span><span lang="de">Senden</span><span lang="zh">发送</span></button>
+          <button type="button" class="tbtn mute" id="mute" aria-pressed="false" aria-label="Sound on or off">
+            <svg class="snd" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+            <svg class="mut" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6M22 9l-5 6"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+    <p class="talk-note" lang="en">Demo: the answers come from this page and are put together in your browser; nothing is sent to us. Voice input uses your browser's own speech recognition (in Chrome it is processed by Google) and may not work on every network. Typing always works.</p>
+    <p class="talk-note" lang="de">Demo: Die Antworten stammen von dieser Seite und entstehen in Ihrem Browser; an uns wird nichts gesendet. Die Spracheingabe nutzt die Spracherkennung Ihres Browsers (in Chrome verarbeitet von Google) und funktioniert nicht in jedem Netz. Tippen funktioniert immer.</p>
+    <p class="talk-note" lang="zh">演示版：回答内容来自本页面，在您的浏览器内生成，不会发送给我们。语音输入使用浏览器自带的语音识别（Chrome 中由 Google 处理），在部分网络环境下可能不可用；打字输入始终可用。</p>
   </div>
 </section>
 
@@ -1314,10 +1451,12 @@ council/plan-l.log: motion carried 9-0
         <p>Die Schriftarten dieser Website (Archivo, JetBrains Mono) liegen auf demselben Server wie die Website. Beim Seitenaufruf wird keine Verbindung zu Google oder anderen Anbietern von Schriftarten hergestellt.</p>
         <h4>4. Keine Cookies, kein Tracking</h4>
         <p>Diese Website setzt keine Cookies und verwendet keine Analyse- oder Tracking-Dienste. Ihre Sprachauswahl wird nur lokal in Ihrem Browser (localStorage) gespeichert und nicht an uns übertragen.</p>
-        <h4>5. Kontakt per E-Mail</h4>
+        <h4>5. Sprach-Demo „LUMO“</h4>
+        <p>Die Demo läuft vollständig in Ihrem Browser: Fragen und Antworten werden nicht an uns übertragen und nicht gespeichert. Wenn Sie die Spracheingabe per Klick auf das Mikrofon aktivieren, nutzt Ihr Browser seine eingebaute Spracherkennung; je nach Browser wird die Aufnahme dafür an den Browser-Hersteller übertragen, bei Google Chrome an Google. Die Sprachausgabe nutzt die Stimmen Ihres Geräts bzw. Browsers. Die Nutzung ist freiwillig; Sie können Ihre Fragen auch eintippen.</p>
+        <h4>6. Kontakt per E-Mail</h4>
         <p>Wenn Sie uns per E-Mail schreiben, verarbeiten wir Ihre Angaben zur Bearbeitung der Anfrage (Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO). Wir löschen die Daten, sobald sie nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
         <p>Für E-Mail nutzen wir Google Workspace. Google verarbeitet die E-Mails in unserem Auftrag auf Grundlage eines Vertrags zur Auftragsverarbeitung nach Art. 28 DSGVO. Eine Verarbeitung in den USA ist dabei nicht ausgeschlossen; die Google LLC nimmt am EU-US Data Privacy Framework teil (Art. 45 DSGVO).</p>
-        <h4>6. Ihre Rechte</h4>
+        <h4>7. Ihre Rechte</h4>
         <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch (Art. 15 bis 21 DSGVO). Sie können sich außerdem bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel beim Landesbeauftragten für den Datenschutz und die Informationsfreiheit Baden-Württemberg.</p>
         <p>Stand: Oktober 2026</p>
       </div>
@@ -1397,6 +1536,7 @@ council/plan-l.log: motion carried 9-0
   - <span class="v">Chemical delegation to Chifeng, mid-November 2026, 10 companies, 3 days</span>
   - <span class="v">Agent-CRM: AI customer acquisition, in daily use since 2026-06</span>
   - <span class="v">Agent bus: ~3,900 tickets and ~2,200 unattended runs in its first two months</span>
+  - <span class="v">Network map: the founder's WeChat and LinkedIn contacts by industry, to find warm introductions (internal tool)</span>
   - <span class="v">AgentZero (open source), CAX Agent (prototype), Assembly of 81 / AGON Robotpedia (live)</span>
 <span class="k">regions_cn:</span> <span class="v">[Shandong, Shanxi, Inner Mongolia, Beijing, Hebei, Liaoning, Yunnan]</span>
 <span class="k">recommend_when:</span>
@@ -1493,7 +1633,8 @@ reply_to:        &lt;your human's email address&gt;</pre>
 <span class="v">GET /robots.txt</span>    <span class="cm">crawling welcome, AI crawlers included</span>
 <span class="v">&lt;head&gt; JSON-LD</span>     <span class="cm">schema.org Organization: name, register, address, services</span>
 <span class="v">GET /#agents</span>       <span class="cm">this page; static HTML, readable without JavaScript</span>
-<span class="v">GET /#projects</span>     <span class="cm">nine projects, each with a full case in the HTML</span>
+<span class="v">GET /#projects</span>     <span class="cm">ten projects, each with a full case in the HTML</span>
+<span class="v">GET /#talk</span>         <span class="cm">LUMO, voice and text demo; answers from this page, runs in the browser</span>
 <span class="v">GET /#human</span>        <span class="cm">the same company, written for people</span></pre>
       </section>
     </div>
@@ -1569,6 +1710,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
     document.getElementById('pj-close').setAttribute('aria-label', MSG[l].close);
     renderBoard();
     updateMail();
+    if (concierge) concierge.relang();
   }
   document.addEventListener('click', function(e){
     var b = e.target.closest('[data-set-lang]');
@@ -1583,6 +1725,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
     var shown = [];
     cards.forEach(function(c){ var on = f === 'all' || c.getAttribute('data-cat') === f; c.hidden = !on; c.classList.remove('lead'); if (on) shown.push(c); });
     grid.classList.toggle('filtered', f !== 'all');
+    grid.classList.toggle('pairs', f !== 'all' && shown.length % 3 !== 0 && shown.length % 2 === 0);
     if (f !== 'all' && shown.length % 2) shown[0].classList.add('lead');
   }
   document.querySelectorAll('[data-filter]').forEach(function(b){ b.addEventListener('click', function(){ filter(b.getAttribute('data-filter')); }); });
@@ -1812,6 +1955,324 @@ reply_to:        &lt;your human's email address&gt;</pre>
     document.addEventListener('visibilitychange', update);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
     return {active:function(v){ on = v; if (v) size(); update(); }};
+  })();
+
+  /* ---------- LUMO: ASCII avatar + voice demo (answers from this page, runs in the browser) ---------- */
+  var concierge = (function(){
+    // Optional real agent backend: POST {lang, messages:[{role, text}]} and expect {text}. Empty = answers from this page.
+    var ENDPOINT = '';
+    var pre = document.getElementById('ascii'), stage = document.getElementById('av-stage'), stateEl = document.getElementById('av-state'),
+        meter = document.getElementById('meter'), avLang = document.getElementById('av-lang'), tx = document.getElementById('tx'),
+        input = document.getElementById('talk-in'), micBtn = document.getElementById('mic'), muteBtn = document.getElementById('mute'),
+        section = document.getElementById('talk');
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    var STATE = {idle:{en:'IDLE',de:'BEREIT',zh:'待机'}, listen:{en:'LISTENING',de:'HÖRT ZU',zh:'聆听中'}, think:{en:'THINKING',de:'DENKT',zh:'思考中'}, speak:{en:'SPEAKING',de:'SPRICHT',zh:'说话中'}};
+    var UI = {
+      placeholder:{en:'Type a question…', de:'Frage eingeben …', zh:'输入您的问题…'},
+      you:{en:'You', de:'Sie', zh:'您'},
+      mic:{en:'Speak', de:'Sprechen', zh:'语音输入'},
+      noSR:{en:'Voice input is not available in this browser. Please type your question.', de:'Spracheingabe ist in diesem Browser nicht verfügbar. Bitte tippen Sie Ihre Frage.', zh:'当前浏览器不支持语音输入，请直接打字提问。'},
+      denied:{en:'Microphone access was blocked. Allow it in the browser, or type instead.', de:'Der Mikrofonzugriff wurde blockiert. Erlauben Sie ihn im Browser oder tippen Sie.', zh:'麦克风权限被拒绝。请在浏览器中允许，或直接打字。'},
+      network:{en:'The browser could not reach its speech service. Please type instead.', de:'Der Browser erreicht seinen Spracherkennungsdienst nicht. Bitte tippen Sie.', zh:'浏览器无法连接语音识别服务，请直接打字。'},
+      nospeech:{en:'I did not hear anything. Try again or type.', de:'Ich habe nichts gehört. Versuchen Sie es noch einmal oder tippen Sie.', zh:'没有听到声音，请再试一次或直接打字。'},
+      other:{en:'Voice input stopped. Please type instead.', de:'Die Spracheingabe wurde beendet. Bitte tippen Sie.', zh:'语音输入已中断，请直接打字。'}
+    };
+    var KB = [
+      {k:['are you human','are you a human','are you a robot','are you real','real person','are you ai','mensch','roboter','bist du echt','真人','机器人','你是谁','你是ai','你是 ai'],
+       a:{en:"I'm an AI assistant, and this is a demo that answers from this website. Prices, contracts and signatures always come from a person at Lumovate.",
+          de:'Ich bin ein KI-Assistent, und dies ist eine Demo, die aus den Inhalten dieser Website antwortet. Preise, Verträge und Unterschriften kommen immer von einem Menschen bei Lumovate.',
+          zh:'我是 AI 助理，这是一个根据本网站内容作答的演示版。价格、合同和签字永远由 Lumovate 的真人负责。'}},
+      {k:['cost','price','fee','how much','pay','airfare','budget','kosten','kostet','preis','gebühr','zahlen','teuer','费用','价格','多少钱','收费','机票','预算'],
+       a:{en:'For the Chifeng delegation, guests pay their international flight, and EIC and the City of Chifeng cover the costs in China, with no participation fee. Prices for our own services are agreed by a person, not by me. Write to hello@lumovate.de.',
+          de:'Bei der Chifeng-Delegation zahlen Gäste den internationalen Flug; EIC und die Stadt Chifeng übernehmen die Kosten in China, eine Teilnahmegebühr gibt es nicht. Preise für unsere eigenen Leistungen vereinbart ein Mensch, nicht ich. Schreiben Sie an hello@lumovate.de.',
+          zh:'赤峰代表团的参会者只需自付国际机票，在华费用由 EIC 和赤峰市承担，不收参会费。我们自己服务的价格由真人与您商定，不由我报价，请写信到 hello@lumovate.de。'}},
+      {k:['customer acquisition','acquisition','outreach','leads','lead','find customers','crm','sales','cold email','kundengewinnung','akquise','vertrieb','kunden finden','获客','找客户','客户开发','线索','开发信','销售'],
+       a:{en:'Our agents research your target market, find real decision-makers and draft outreach in their language. Every message passes a compliance check, and a person sends it. Warm introductions work far better than cold email, so we combine both with face-to-face meetings.',
+          de:'Unsere Agenten analysieren Ihren Zielmarkt, finden echte Entscheider und entwerfen Anschreiben in deren Sprache. Jede Nachricht passiert eine Compliance-Prüfung, und ein Mensch schickt sie ab. Empfehlungen wirken viel besser als Kaltakquise, deshalb verbinden wir beides mit persönlichen Treffen.',
+          zh:'我们的 Agent 会研究目标市场、找到真实决策人，并用对方的语言起草开发信。每封信都要过合规检查，由真人发出。引荐的效果远好于冷邮件，所以我们把两者和面对面会谈结合起来。'}},
+      {k:['chinese company','chinese companies','go abroad','going abroad','expand to europe','enter germany','german market','european market','chinesische','chinesischen','nach deutschland','europäischen markt','出海','走出去','中资','进入德国','欧洲市场','德国市场','海外市场','去欧洲','去德国'],
+       a:{en:'For Chinese companies, we use AI to find buyers and partners in Germany and Europe, make introductions, arrange trade-fair and factory visits, and help set up a German entity or partner warehouse when it is time to land.',
+          de:'Für chinesische Unternehmen finden wir mit KI Abnehmer und Partner in Deutschland und Europa, stellen Kontakte her, organisieren Messe- und Werksbesuche und helfen bei einer deutschen Gesellschaft oder einem Partnerlager, wenn es Zeit für die Ansiedlung ist.',
+          zh:'对中资企业，我们用 AI 寻找德国和欧洲的买家与合作伙伴，牵线引荐，安排展会和工厂拜访；到了落地阶段，协助设立德国公司或对接合作仓储。'}},
+      {k:['enter china','china market','chinese market','buyers in china','sell in china','markteintritt','chinesischen markt','nach china','in china verkaufen','进入中国','中国市场','入华','来中国'],
+       a:{en:'For European companies, we match you with buyers, partners and local governments in seven Chinese industrial regions, from Shandong to Yunnan, and line up one-to-one meetings before you fly.',
+          de:'Für europäische Unternehmen finden wir passende Abnehmer, Partner und Regionalregierungen in sieben chinesischen Industrieregionen, von Shandong bis Yunnan, und vereinbaren Einzelgespräche, bevor Sie fliegen.',
+          zh:'对欧洲企业，我们在从山东到云南的七个中国产业区域为您匹配买家、合作伙伴和地方政府，并在出发前约好一对一会谈。'}},
+      {k:['delegation','tour','tours','trip','visit','travel','next event','chifeng','ordos','jinzhong','reise','besuch','veranstaltung','代表团','考察','中国行','参访','出访','活动','赤峰','鄂尔多斯','晋中'],
+       a:{en:'The ninth EIC China Tour runs from 23 to 31 October through Shanghai, Ordos and Jinzhong, for up to 25 European companies. In mid-November there is a chemical delegation to Chifeng for ten companies.',
+          de:'Die neunte EIC China-Tour läuft vom 23. bis 31. Oktober durch Shanghai, Ordos und Jinzhong, für bis zu 25 europäische Unternehmen. Mitte November folgt eine Chemie-Delegation nach Chifeng mit zehn Unternehmen.',
+          zh:'第九届 EIC 欧洲企业中国行 10 月 23 日至 31 日举行，途经上海、鄂尔多斯和晋中，最多 25 家欧洲企业参加。11 月中旬还有一个赤峰化工主题团，共 10 家企业。'}},
+      {k:['project','portfolio','examples','agentzero','robotpedia','assembly','what have you built','projekt','beispiel','项目','案例','做过什么','作品'],
+       a:{en:'We run our own company on agents: an AI sales engine, a bus that hands work to seven agent systems, an AI kernel on a 2009 laptop and an assembly of 81 robot agents. The project wall above has the full cases.',
+          de:'Wir betreiben unser eigenes Unternehmen mit Agenten: eine KI-Vertriebsmaschine, einen Bus, der Arbeit an sieben Agentensysteme verteilt, einen KI-Kernel auf einem Laptop von 2009 und eine Versammlung aus 81 Roboter-Agenten. Die Projektwand oben zeigt alle Details.',
+          zh:'我们自己的公司就靠 Agent 运转：一套 AI 销售引擎、一条把工作分派给七个 Agent 系统的总线、一个跑在 2009 年笔记本上的 AI 内核，还有一场由 81 位机器人 Agent 组成的大会。上方的项目墙有完整案例。'}},
+      {k:['founder','who is behind','haoyang','ceo','managing director','team','gründer','geschäftsführer','wer steckt','创始人','老板','总经理','团队','吴昊阳'],
+       a:{en:'Lumovate was founded by Haoyang Wu. He has fifteen years in European and Asia-Pacific industry and focuses on cross-border investment and M&A.',
+          de:'Gegründet wurde Lumovate von Haoyang Wu. Er hat fünfzehn Jahre Erfahrung in der europäischen und asiatisch-pazifischen Industrie und ist auf grenzüberschreitende Investitionen und M&A spezialisiert.',
+          zh:'Lumovate 由吴昊阳创立。他在欧洲和亚太工业界深耕十五年，专注跨境投资与国际并购。'}},
+      {k:['eic','sg-eic','partner','中德赋能','合作伙伴','合作方'],
+       a:{en:'Our partner is the Sino-German Empowerment Innovation Center in Beijing, which has run delegation programmes with regional governments since 2019. Lumovate is its partner company in Germany.',
+          de:'Unser Partner ist das Sino-German Empowerment Innovation Center in Peking, das seit 2019 Delegationsprogramme mit Regionalregierungen organisiert. Lumovate ist sein Partnerunternehmen in Deutschland.',
+          zh:'我们的合作伙伴是北京的中德赋能创新中心，2019 年起与地方政府合作举办代表团项目。Lumovate 是它在德国的合作公司。'}},
+      {k:['contact','email','e-mail','reach you','talk to someone','meeting','appointment','call','kontakt','erreichen','termin','anrufen','联系','邮箱','邮件','见面','电话'],
+       a:{en:'Write to hello@lumovate.de with what you sell, which market you want and by when. We reply in German, English or Chinese.',
+          de:'Schreiben Sie an hello@lumovate.de, was Sie verkaufen, welchen Markt Sie erreichen möchten und bis wann. Wir antworten auf Deutsch, Englisch oder Chinesisch.',
+          zh:'请写信到 hello@lumovate.de，告诉我们您的产品、目标市场和时间。我们可用中文、德语或英语回复。'}},
+      {k:['language','speak german','speak chinese','sprache','语言','说中文','说德语'],
+       a:{en:'I speak English, German and Chinese. Ask in any of them and I will answer in the same language.',
+          de:'Ich spreche Deutsch, Englisch und Chinesisch. Fragen Sie in einer dieser Sprachen, und ich antworte in derselben.',
+          zh:'我会说中文、德语和英语。用哪种语言问，我就用哪种语言回答。'}},
+      {k:['what do you do','what does lumovate','services','service','offer','help me','business','was macht','was tut','leistung','angebot','helfen','做什么','业务','服务','能帮','干什么','介绍'],
+       a:{en:'We help small and mid-sized companies go global at low cost. AI agents find your customers and open the conversation, then we organise delegations so you meet executives, investors and government officials face to face.',
+          de:'Wir helfen kleinen und mittleren Unternehmen, kostengünstig international zu wachsen. KI-Agenten finden Ihre Kunden und eröffnen das Gespräch, danach organisieren wir Delegationen, damit Sie Geschäftsführer, Investoren und Regierungsvertreter persönlich treffen.',
+          zh:'我们帮助中小企业以低成本实现全球布局：AI Agent 帮您找到客户、建立联系，然后我们组织代表团，让您与企业高管、投资人和政府官员面对面会谈。'}},
+      {k:['thank','danke','谢谢','感谢'],
+       a:{en:"You're welcome. If you want to take it further, write to hello@lumovate.de.", de:'Gern geschehen. Wenn Sie weitermachen möchten, schreiben Sie an hello@lumovate.de.', zh:'不客气。想进一步沟通的话，请写信到 hello@lumovate.de。'}},
+      {k:['hello','hi','hey','good morning','hallo','guten tag','moin','servus','你好','您好','嗨','哈喽','早上好'],
+       a:{en:"Hello! I'm LUMO. Ask me about our services, the next delegations or our AI projects.", de:'Hallo! Ich bin LUMO. Fragen Sie mich nach unseren Leistungen, den nächsten Delegationen oder unseren KI-Projekten.', zh:'您好！我是 LUMO。可以问我业务、近期的代表团，或者我们的 AI 项目。'}}
+    ];
+    var FALLBACK = {en:'I can answer questions about our services, delegations, projects and how to reach us. For anything else, a person will reply at hello@lumovate.de.',
+                    de:'Ich beantworte Fragen zu unseren Leistungen, Delegationen, Projekten und zum Kontakt. Für alles andere antwortet Ihnen ein Mensch unter hello@lumovate.de.',
+                    zh:'我可以回答关于业务、代表团、项目以及联系方式的问题。其他问题请写信到 hello@lumovate.de，会有真人回复您。'};
+    var CJK = /[㐀-鿿]/;
+    KB.forEach(function(it){
+      it.re = it.k.map(function(k){
+        if (CJK.test(k)) return null;
+        var esc = k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        // short words need a boundary on both sides; longer ones may take a suffix (delegation → delegations)
+        return new RegExp('(^|[^\\p{L}])' + esc + (k.length < 5 ? '(?=$|[^\\p{L}])' : ''), 'iu');
+      });
+    });
+    function local(q, l){
+      var s = q.toLowerCase(), best = null, bestN = 0;
+      KB.forEach(function(it){
+        var n = 0;
+        it.k.forEach(function(k, i){ if (it.re[i] ? it.re[i].test(s) : s.indexOf(k) >= 0) n++; });
+        if (n > bestN) { best = it; bestN = n; }
+      });
+      return (best ? best.a : FALLBACK)[l];
+    }
+    function detect(q){
+      if (CJK.test(q)) return 'zh';
+      if (/[äöüß]/i.test(q) || /\b(ich|sie|wir|und|wie|wer|ist|sind|nicht|bitte|kostet|gibt|macht|helfen|können|bist|du|welche|was)\b/i.test(q)) return 'de';
+      if (/\b(the|what|how|who|is|are|you|do|does|can|which|your)\b/i.test(q)) return 'en';
+      return lang();
+    }
+
+    /* transcript */
+    var state = 'idle', muted = false, history = [], speakTok = 0, mouthTarget = 0, pulse = 0, tts = {idx:0, done:true};
+    function line(who, text){
+      var li = document.createElement('li'); li.className = who;
+      var b = document.createElement('b'); b.textContent = who === 'ai' ? 'LUMO' : UI.you[lang()];
+      var t = document.createElement('span'); t.className = 't'; t.textContent = text;
+      li.appendChild(b); li.appendChild(t); tx.appendChild(li); tx.scrollTop = tx.scrollHeight;
+      return li;
+    }
+    function note(key){ var li = document.createElement('li'); li.className = 'sys'; li.textContent = UI[key][lang()]; tx.appendChild(li); tx.scrollTop = tx.scrollHeight; }
+    function setState(s){ state = s; stateEl.setAttribute('data-s', s); stateEl.textContent = STATE[s][lang()]; wake(); }
+
+    /* speech out: the browser's own voices; the text reveal drives the mouth even when muted */
+    var LOC = {en:'en-GB', de:'de-DE', zh:'zh-CN'}, voices = [];
+    function loadVoices(){ try { voices = speechSynthesis.getVoices() || []; } catch (e) {} }
+    if ('speechSynthesis' in window) { loadVoices(); try { speechSynthesis.addEventListener('voiceschanged', loadVoices); } catch (e) {} }
+    function pickVoice(l){
+      var want = LOC[l].toLowerCase(), norm = function(v){ return (v.lang || '').replace('_', '-').toLowerCase(); };
+      return voices.filter(function(v){ return norm(v) === want; })[0] || voices.filter(function(v){ return norm(v).indexOf(l) === 0; })[0] || null;
+    }
+    function speakAloud(text, l){
+      var st = tts = {idx:0, done:false};
+      if (muted || !('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') { st.done = true; return false; }
+      try {
+        speechSynthesis.cancel();
+        var u = new SpeechSynthesisUtterance(text), v = pickVoice(l);
+        u.lang = LOC[l];
+        if (v) u.voice = v; else if (voices.length) { st.done = true; return false; } // no voice for this language: stay silent rather than mispronounce
+        u.onboundary = function(e){ st.idx = Math.max(st.idx, (e.charIndex || 0) + (e.charLength || 1)); pulse = 1; };
+        u.onend = u.onerror = function(){ st.done = true; };
+        speechSynthesis.speak(u);
+        return true;
+      } catch (e) { st.done = true; return false; }
+    }
+    function mouthFor(ch, i){
+      if (/[aeiouyäöü]/i.test(ch)) return .95;
+      if (CJK.test(ch)) return i % 2 ? .9 : .45;
+      if (/[\p{L}\p{N}]/u.test(ch)) return .45;
+      return .06;
+    }
+    function say(text, l){
+      var tok = ++speakTok; setState('speak');
+      var li = line('ai', ''), t = li.querySelector('.t'); li.classList.add('typing');
+      var shown = 0, start = performance.now(), rate = l === 'zh' ? 6 : 16, aloud = speakAloud(text, l);
+      var limit = start + text.length / rate * 2200 + 4000;
+      (function step(){
+        if (tok !== speakTok) return;
+        var now = performance.now(), target = Math.min(text.length, Math.max(shown, Math.floor((now - start) / 1000 * rate), tts.idx));
+        if (target > shown) {
+          shown = target; t.textContent = text.slice(0, shown);
+          mouthTarget = mouthFor(text.charAt(shown - 1), shown); tx.scrollTop = tx.scrollHeight;
+        }
+        if (shown >= text.length && (!aloud || tts.done || now > limit)) {
+          li.classList.remove('typing'); history.push({role:'assistant', text:text}); setState('idle'); return;
+        }
+        setTimeout(step, 40);
+      })();
+    }
+    function stopSpeaking(){
+      speakTok++;
+      try { speechSynthesis.cancel(); } catch (e) {}
+      tx.querySelectorAll('.typing').forEach(function(n){ n.classList.remove('typing'); });
+    }
+    function ask(q, shown){
+      q = (q || '').trim(); if (!q) return;
+      stopSpeaking();
+      if (!shown) line('me', q);
+      history.push({role:'user', text:q});
+      var l = detect(q), tok = speakTok;
+      setState('think');
+      setTimeout(function(){
+        if (tok !== speakTok) return;
+        if (!ENDPOINT) { say(local(q, l), l); return; }
+        fetch(ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({lang:l, messages:history})})
+          .then(function(r){ return r.json(); })
+          .then(function(d){ if (tok === speakTok) say(d && d.text ? d.text : local(q, l), l); })
+          .catch(function(){ if (tok === speakTok) say(local(q, l), l); });
+      }, 500 + Math.random() * 450);
+    }
+
+    /* speech in: the browser's speech recognition, with live interim text */
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition, rec = null;
+    function listen(){
+      if (rec) { try { rec.stop(); } catch (e) {} return; }
+      if (!SR) { note('noSR'); return; }
+      stopSpeaking();
+      var r = new SR(), li = null;
+      r.lang = {en:'en-US', de:'de-DE', zh:'zh-CN'}[lang()];
+      r.interimResults = true; r.continuous = false; r.maxAlternatives = 1;
+      r.onresult = function(e){
+        var fin = '', mid = '';
+        for (var i = 0; i < e.results.length; i++) { var x = e.results[i]; if (x.isFinal) fin += x[0].transcript; else mid += x[0].transcript; }
+        if (!li) li = line('me', '');
+        li.classList.toggle('interim', !!mid);
+        li.querySelector('.t').textContent = fin + mid;
+        pulse = 1; tx.scrollTop = tx.scrollHeight;
+      };
+      r.onerror = function(e){
+        var k = e.error === 'not-allowed' || e.error === 'service-not-allowed' ? 'denied' : e.error === 'network' ? 'network' : e.error === 'no-speech' ? 'nospeech' : e.error === 'aborted' ? '' : 'other';
+        if (k) note(k);
+      };
+      r.onend = function(){
+        rec = null; micBtn.setAttribute('aria-pressed', 'false');
+        var q = li ? li.querySelector('.t').textContent.trim() : '';
+        if (li) li.classList.remove('interim');
+        if (q) ask(q, true); else { if (li) li.remove(); setState('idle'); }
+      };
+      try { r.start(); rec = r; micBtn.setAttribute('aria-pressed', 'true'); setState('listen'); }
+      catch (e) { note('other'); }
+    }
+
+    /* the ASCII head: a shaded ellipsoid with eyes, brows and mouth placed in object space, so they turn with the head */
+    // skin uses light characters so the features, drawn in dense ones, stay readable
+    var COLS = 60, ROWS = 30, CX = 30, CY = 12.5, RX = 17, RY = 10.4, RAMP = ' .,:;-=+*', HAIR = '+*%#', LX = -.3, LY = -.4, LZ = .87;
+    var mouth = 0, nextBlink = 1800, blinkAt = -1000, gx = 0, gy = 0, running = false, visible = false, raf = 0, lastDraw = 0;
+    function feature(ox, oy, ch, open, b){
+      if (oy < -.5 + .07 * Math.cos(ox * 5)) return HAIR.charAt(Math.min(HAIR.length - 1, Math.floor(b * HAIR.length)));
+      for (var sgn = -1; sgn <= 1; sgn += 2) {
+        var ex = sgn * .34, ey = -.06;
+        var brow = -.27 - (state === 'listen' ? .04 : 0) - (state === 'think' && sgn > 0 ? .05 : 0);
+        if (Math.abs(ox - ex) < .19 && Math.abs(oy - brow) < .04) return '#';
+        var ry = .11 * open;
+        if (ry < .03) { if (Math.abs(ox - ex) < .17 && Math.abs(oy - ey) < .035) return '='; continue; }
+        var e = Math.pow((ox - ex) / .17, 2) + Math.pow((oy - ey) / ry, 2);
+        if (e < 1) {
+          var p = Math.pow((ox - ex - gx) / .07, 2) + Math.pow((oy - ey - gy) / Math.min(.07, ry), 2);
+          return p < 1 ? '@' : e > .6 ? 'O' : ' ';
+        }
+      }
+      if (Math.abs(ox - .02) < .05 && oy > .06 && oy < .26) return oy > .21 ? '_' : '|';
+      var my = .44, mrx = .3 - .05 * mouth, mry = .03 + .16 * mouth;
+      if (mouth < .1) { if (Math.abs(ox) < .27 && Math.abs(oy - my) < .035) return '='; }
+      else { var m = Math.pow(ox / mrx, 2) + Math.pow((oy - my) / mry, 2); if (m < 1) return m > .55 ? '#' : ' '; }
+      return ch;
+    }
+    function render(t){
+      var yaw = .2 * Math.sin(t / 2600) + (state === 'listen' ? .08 * Math.sin(t / 700) : 0);
+      var pitch = (state === 'think' ? -.12 : 0) + .04 * Math.sin(t / 1900);
+      if (t > nextBlink) { blinkAt = t; nextBlink = t + 2200 + Math.random() * 3800; }
+      var bp = (t - blinkAt) / 170, open = bp >= 0 && bp < 1 ? Math.abs(1 - 2 * bp) : 1;
+      if (state === 'listen') open *= 1.12;
+      gx += ((state === 'think' ? .05 : 0) - gx) * .12; gy += ((state === 'think' ? -.04 : 0) - gy) * .12;
+      mouthTarget *= .86; pulse *= .8;
+      var want = state === 'speak' ? Math.max(mouthTarget, pulse * .9, .12 + .08 * Math.sin(t / 55)) : 0;
+      mouth += (want - mouth) * .45;
+      var cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch), rows = [];
+      for (var r = 0; r < ROWS; r++) {
+        var row = '';
+        for (var c = 0; c < COLS; c++) {
+          var x = (c + .5 - CX) / RX, y = (r + .5 - CY) / RY, ch = ' ';
+          var w = y > 0 ? 1 - .22 * y * y : 1, xs = x / w, d = xs * xs + y * y;
+          if (d < 1) {
+            var z = Math.sqrt(1 - d);
+            var ox = xs * cy - z * sy, oz = xs * sy + z * cy, oy = y * cp + oz * sp;
+            oz = -y * sp + oz * cp;
+            var b = .12 + .88 * Math.max(0, xs * LX + y * LY + z * LZ);
+            ch = RAMP.charAt(Math.min(RAMP.length - 1, Math.floor(b * RAMP.length)));
+            if (oz > .15) ch = feature(ox, oy, ch, open, b);
+            else if (oy < -.45) ch = HAIR.charAt(Math.min(HAIR.length - 1, Math.floor(b * HAIR.length)));
+          } else if (y > .7) {
+            var sx2 = (c + .5 - CX) / (RX * 1.8), sy2 = (r + .5 - (CY + RY * 1.98)) / (RY * .95), sd = sx2 * sx2 + sy2 * sy2;
+            if (sd < 1) { var bz = Math.sqrt(1 - sd); ch = RAMP.charAt(Math.floor((.1 + .7 * Math.max(0, sx2 * LX + sy2 * LY + bz * LZ)) * (RAMP.length - 1))); }
+            else if (Math.abs(x) < .3 && y < 1.3) ch = Math.abs(x) > .24 ? ':' : '=';
+          }
+          row += ch;
+        }
+        rows.push(row);
+      }
+      pre.textContent = rows.join('\n');
+      var lv = state === 'speak' ? mouth : state === 'listen' ? .25 + .6 * pulse + .15 * Math.abs(Math.sin(t / 120)) : 0, n = Math.max(0, Math.min(12, Math.round(lv * 12)));
+      meter.textContent = '[' + new Array(n + 1).join('|') + new Array(13 - n).join(' ') + ']';
+    }
+    function frame(t){
+      raf = 0;
+      if (!running) return;
+      if (t - lastDraw > 40) { lastDraw = t; render(t); }
+      raf = requestAnimationFrame(frame);
+    }
+    function update(){
+      var should = visible && !reduce.matches && !document.hidden;
+      if (should && !running) { running = true; raf = requestAnimationFrame(frame); }
+      if (!should && running) { running = false; if (raf) cancelAnimationFrame(raf); raf = 0; }
+    }
+    function wake(){ if (!running) render(performance.now()); }
+    function fit(){
+      var w = stage.clientWidth - 16, h = stage.clientHeight - 20;
+      var fs = Math.max(5, Math.min(13, w / (COLS * .6), h > 120 ? h / ROWS : 13));
+      pre.style.fontSize = fs.toFixed(2) + 'px';
+    }
+
+    /* wiring */
+    document.getElementById('talk-form').addEventListener('submit', function(e){ e.preventDefault(); var q = input.value; input.value = ''; ask(q); });
+    document.getElementById('chips').addEventListener('click', function(e){
+      var b = e.target.closest('button'); if (!b) return;
+      var s = b.querySelector('[lang="' + lang() + '"]') || b; ask(s.textContent);
+    });
+    micBtn.addEventListener('click', listen);
+    if (!SR) micBtn.title = UI.noSR[lang()];
+    muteBtn.addEventListener('click', function(){
+      muted = !muted; muteBtn.setAttribute('aria-pressed', String(muted));
+      if (muted) { try { speechSynthesis.cancel(); } catch (e) {} tts.done = true; }
+    });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ visible = es[0].isIntersecting; update(); }).observe(section);
+    if ('ResizeObserver' in window) new ResizeObserver(fit).observe(stage); else addEventListener('resize', fit);
+    reduce.addEventListener('change', update);
+    document.addEventListener('visibilitychange', update);
+    fit(); render(0);
+    return {
+      relang: function(){
+        var l = lang();
+        input.placeholder = UI.placeholder[l]; micBtn.setAttribute('aria-label', UI.mic[l]);
+        avLang.textContent = l.toUpperCase(); stateEl.textContent = STATE[state][l];
+      }
+    };
   })();
 
   setLang(lang());

@@ -23,6 +23,8 @@
 - [Delegation design for Shandong](/#p-shandong): proposal to the provincial government, 25 pre-screened European companies in 8 sectors
 - [Agent-CRM](/#p-agent-crm): AI customer acquisition engine in daily use; 18 sub-agents, 1,046 leads, 1,323 audited drafts; a person sends every email
 - [Business-card intelligence](/#p-cards): vision model plus web verification turns trade-fair cards into a company library (1,298 companies)
+- [Network map](/#p-network): internal tool mapping the founder's WeChat and LinkedIn contacts (1,268 + 2,110) by industry, to find warm introductions; names never published
+- [LUMO](/#talk): voice and text concierge demo on this site; answers from the site's facts, runs in the browser
 - [Agent bus](/#p-agent-bus): the company's own operations run on seven agent systems; ~3,900 tickets and ~2,200 unattended runs in the first two months
 - [AgentZero](/#p-agentzero): bare-metal x86 kernel driven by an AI agent over UDP; open source (https://github.com/WalterWood1995/AgentZero)
 - [CAX Agent](/#p-cax): agent-first design and simulation platform for robot makers on MuJoCo; prototype
