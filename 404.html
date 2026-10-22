@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lumovate GmbH · 404</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B0906'/%3E%3Cpath d='M6 22 Q16 2 26 22' fill='none' stroke='%23FFB547' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='6' cy='22' r='3' fill='%23FFB547'/%3E%3Ccircle cx='26' cy='22' r='3' fill='%23FFE3B0'/%3E%3C/svg%3E">
+<!-- absolute paths: GitHub Pages serves this file for any missing URL, at any depth -->
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+/* Layout: one terminal screen, same amber world as the agent entrance of index.html */
+:root{--t-bg:#0B0906;--t-fg:#FFB547;--t-mid:#E0AB5C;--t-dim:#A37A35;--t-hi:#FFE3B0;--t-line:#3B2C15;--t-scan:#FFB5470B;--t-glow:#FFB54766;
+  --f-mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,"PingFang SC","Microsoft YaHei",monospace;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background-color:var(--t-bg);color:var(--t-fg);font:400 1rem/1.7 var(--f-mono);
+  background-image:repeating-linear-gradient(0deg,var(--t-scan) 0 1px,transparent 1px 3px);
+  display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px))}
+main{width:min(640px,100%)}
+h1{margin:0 0 18px;font-size:clamp(1.6rem,1.1rem + 2.4vw,2.8rem);line-height:1.15;color:var(--t-hi);text-shadow:0 0 18px var(--t-glow);overflow-wrap:anywhere}
+p{margin:0 0 6px;color:var(--t-mid)}
+.dim{color:var(--t-dim)}
+a{color:var(--t-hi)}
+nav{margin-top:28px;padding-top:16px;border-top:1px dashed var(--t-line);display:flex;flex-wrap:wrap;gap:8px 22px}
+.cursor{display:inline-block;width:.55em;height:.95em;margin-left:.1em;background:var(--t-fg);vertical-align:-.08em;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.cursor{animation:none}}
+</style>
+</head>
+<body>
+<main>
+  <h1>&gt; GET <span id="path">/…</span> 404<span class="cursor" aria-hidden="true"></span></h1>
+  <p lang="en">This page does not exist.</p>
+  <p lang="de">Diese Seite gibt es nicht.</p>
+  <p lang="zh">此页面不存在。</p>
+  <p class="dim">Lumovate GmbH · Stuttgart · HRB 806417</p>
+  <nav>
+    <a href="/#human">lumovate.de →</a>
+    <a href="/#projects">Projects · Projekte · 项目</a>
+    <a href="/#agents">&gt;_ agents</a>
+  </nav>
+</main>
+<script>document.getElementById('path').textContent = location.pathname || '/';</script>
+</body>
+</html>

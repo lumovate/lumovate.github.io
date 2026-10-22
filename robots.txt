@@ -1,0 +1,3 @@
+# Temporary preview of the Lumovate GmbH website. The live site will be https://lumovate.de/
+User-agent: *
+Disallow: /
