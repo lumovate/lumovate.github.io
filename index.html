@@ -446,7 +446,9 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 .av-state[data-s="listen"],.av-state[data-s="speak"]{color:var(--t-ok)}
 .av-state::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-right:7px;vertical-align:1px}
 .av-stage{flex:1;display:grid;place-items:center;min-height:320px;padding:10px 8px;overflow:hidden}
-.ascii{margin:0;font-family:var(--f-mono);font-size:10px;line-height:1;letter-spacing:0;white-space:pre;color:var(--t-fg);text-shadow:0 0 7px var(--t-glow);user-select:none}
+.av-stage > pre{grid-area:1/1}
+.ascii{margin:0;font-family:var(--f-mono);font-size:10px;line-height:1;letter-spacing:0;white-space:pre;color:var(--t-fg);text-shadow:0 0 8px var(--t-glow);user-select:none;font-weight:700}
+.ascii.rain{color:var(--t-dim);opacity:.45;text-shadow:none;font-weight:400}
 .meter{font:500 .72rem var(--f-mono);color:var(--t-mid);letter-spacing:0;white-space:pre}
 .tx{list-style:none;margin:0;padding:16px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;height:clamp(280px,46vh,440px)}
 .tx li{max-width:88%;font-size:.96rem;line-height:1.5;overflow-wrap:anywhere}
@@ -1099,7 +1101,7 @@ council/plan-l.log: motion carried 9-0
     <div class="talk-grid">
       <div class="avatar">
         <div class="av-bar top"><span>LUMO · AI · ascii</span><span class="av-state" id="av-state" data-s="idle">IDLE</span></div>
-        <div class="av-stage" id="av-stage"><pre class="ascii" id="ascii" aria-hidden="true"></pre></div>
+        <div class="av-stage" id="av-stage"><pre class="ascii rain" id="ascii-rain" aria-hidden="true"></pre><pre class="ascii" id="ascii" aria-hidden="true"></pre></div>
         <div class="av-bar bot"><span class="meter" id="meter">[            ]</span><span id="av-lang">EN</span></div>
       </div>
       <div class="chat">
@@ -2069,7 +2071,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
       return li;
     }
     function note(key){ var li = document.createElement('li'); li.className = 'sys'; li.textContent = UI[key][lang()]; tx.appendChild(li); tx.scrollTop = tx.scrollHeight; }
-    function setState(s){ state = s; stateEl.setAttribute('data-s', s); stateEl.textContent = STATE[s][lang()]; wake(); }
+    function setState(s){ var changed = s !== state; state = s; stateEl.setAttribute('data-s', s); stateEl.textContent = STATE[s][lang()]; if (changed) gestureFor(s); wake(); }
 
     /* speech out: the browser's own voices; the text reveal drives the mouth even when muted */
     var LOC = {en:'en-GB', de:'de-DE', zh:'zh-CN'}, voices = [];
@@ -2170,105 +2172,109 @@ reply_to:        &lt;your human's email address&gt;</pre>
       catch (e) { note('other'); }
     }
 
-    /* LUMO's face: an ASCII rendering of the founder's photo (60 x 100 cells, background removed).
-       Blinks, mouth movement, a scan line and small glitches are applied to the character grid each frame. */
-    var COLS = 100, ROWS = 60, RAMP = " `.:,^<+|7xjVXO8BQ&&@@";
-    var FACE = [
-      "                                                                                                    ",
-      "                                                                                                    ",
-      "                                         QBBBB8OXO    &BO                                           ",
-      "                                        &QQ8V7||||+^+xOBOjj  &                                      ",
-      "                                      8j|<^,:::......::<xXx<V888                                    ",
-      "                                   &X7<::::.....``````..:,|+^+V7V                                   ",
-      "                                  V^:.`.....`....`````````....,,^<V                                 ",
-      "                                V<:.`...`````````````````````.``..,<                                ",
-      "                              O^::.`...`````````````````````````````..,+j                           ",
-      "                            B<:..``.:....``````````````````.``..``````.,+                           ",
-      "                           j:.:.`.::...``````````..`````````..````````..:                           ",
-      "                          7::....:..```....`..```````````````````````````:                          ",
-      "                         7:::...:..::.::.....``....```````````.````.`````.:7                        ",
-      "                        j,:::..:.:....``..```..``````````````````````````..:                        ",
-      "                       Q<::.::,...:....`..`....```````````````````````````.:<                       ",
-      "                       V,,,:::::.::.:..`......::.......```````````.``.``..`.:                       ",
-      "                       7^::...........:...::,,,,^^^^^^^,:....``.`````````....<                      ",
-      "                      &+,:....``..`.::,,^<++++||77x7|7+^,,,,,,:::.````````...^                      ",
-      "                      x^,.``.``.`.:^<+|7xjjjVVVVVVXVx|||||||||++<^,.```````..,                      ",
-      "                     B+^::.````.,<|7jVVXOO8B8OOO8888XOjVVjVXXVjjj7+^:.`.```..:                      ",
-      "                     O|^,:.``.:^|jXO8B8BBBB888BBQQ&Q8OOXOO8OO8OOOV7<,:..```..:                      ",
-      "                     &|<,:...:^|jXO888888B&QBB8BBQQ&&&QQQQQB88B88Xx|^....``..:                      ",
-      "                     B^,,.:..,7XVXOXO8BB&&@@@@&&&&&&@&&&&&@&&&QB8Xx7<:.`.:....<                     ",
-      "                     O^,::..,xVXXXXjVO8Q&@@@@@@@@@@@@@@@@&&QBOOXVXV7|<:.......<                     ",
-      "                     |,::`..+VX8Xj7+++++|xVX8Q@@@@@@&&Q8XVj7+<<++7xx|+^.`.`...                      ",
-      "                     +:....:xO8j7777xjjx|+<+xj8Q&&&BOOx||<<+7x||||++|7+,`....:                      ",
-      "                     X:...`^O88O88O8888XjjjjVVO8BBBXjjjjjXB&Q8OOOOVVjjj|.`...,                      ",
-      "                      +,..`xQQ88Oj+,<::..,+7xVOBQ&8XVjxjjx|<<:,<<+xVVVVj,``..<                      ",
-      "                      V7:..OQ8Oj7+||x+,:,<,+7V8Q@@QBXx7jx+V:..<7,,^|jjVV+``.:|                      ",
-      "                      OX<..O88OXOOOOOXx+<<+xXO8B&@QOx7xOjjVjjjO8OXVXVxjj7..:^                       ",
-      "                      XO+:,XXVjjVOXXVXVjVXQQBOOB&&QXx7xXOXj777xjVOXVjx7x|.`,+                       ",
-      "                      8O|,^OOVVX8BBBQQ&&&@&B8BBBB&BXx7xOO8BB8BQ&QBOVVjxj|..^7                       ",
-      "                      &XO7^88O88B&&&Q&&@&&&Q8B88BQ8V77jXVXB&&&&&&QB8XVjj7,^<                        ",
-      "                       BOO<8QBBQ&&@&&&&Q&QQQ8X88BB8Vx|7jVOBQ&Q&&QQB8OVjj|<|x                        ",
-      "                        BXxOQ&Q&&&&@&QQ8Vjjj77j88&Bxx<^<+7X8BQ&QBQB8OXVV<<7                         ",
-      "                        &8XOQ&QBBQQQ8Oj7|xxOB88BB@&XV|7jx<+7xV888OOOVVXV|x                          ",
-      "                           &Q&Q8O8Oj7<^|jVVjxxXB8BOVj7||+^+||+|jVVVVjVVV                            ",
-      "                            BBBOVV7<<+jO8888OXV|||+<,:,<|7jVjx+<+777xjjV                            ",
-      "                            QB8OXx|7|jVVXVO8OOO8Oj7+<<+|7xj7xxx||||77xj                             ",
-      "                             8OOVjjx777xOO8O8XO88XXOx||xjjj|||++xx77xjV                             ",
-      "                             B8OXXXjxx7^:,<+|<<<<<<^,^^^^,,:,+xVVjxxxVX                             ",
-      "                              8OXXOXXXOOV<<V&Q@&@&B@Q&&Q<.,xjxjOVxxjVX                              ",
-      "                              &OOXXXXX8BQBj77jXX8888VV|<<+VVVxXV7xjVX                               ",
-      "                             &j|VVVXXX8Q&@&QOVOQBBOxxx|xVXVXVVV77xjX                                ",
-      "                            8|..|xjVOX8Q&&&&&&8VVVx77jVVXXXXVjx7xjX                                 ",
-      "                           O+...+x7xVVOBQ&&&&&B8Xj|xVVXOOXVXVjxjVX                                  ",
-      "                          Ox,.`:<xj77jVOQ&&Q&&&BOVjxjjVXXVVjxxjVVV                                  ",
-      "                       Q&QV<:`:,<7VXj7jjOQ&&&&&BBB8OOOVOXVVx7jjVV<|                                 ",
-      "                 &QBOO8&@8x^.`::^7VOOXx|xXBQQQQQBB88OOVXVjjxx7jjx.:                                 ",
-      "          &&&QB8OOOXXVQ@&Bx,`.::^|jO8B8j+|VO88OOO8OOOXXx|+|+|7xx<`.                                 ",
-      "    &&&QQQBBBBB8XXOOO8&@&8j,``.:,+jXBQQBV+<+7jjXVXjjjx|<<<<+|77<:`.                                 ",
-      "&&QQBB888BOXOOQQOXOV8&&@&8V<``..,<7V8Q&Q8V7+<<<<<<<<^^^<+||77|<,.``jB&BXO                           ",
-      "&Q&QXOQB8OXV8O&&QXx8&Q@@@8Xj:``.:^|jOBQ&BOVxxj|<<^^<<++|7xxx7+^:```jQ&QBOOO8                        ",
-      "&&&QXXQOVVXVB8&@BjO&Q&@@&&OV|``.:,<7VO8QQ8VjVO8XVjx7|777xjjx+^:.``:O&&QQOOOOOOB                     ",
-      "@&&&QVOXjVXV&QQ&OO@&@@&V|<<OV,``.,^+xjXO88OVjj88OXx|||7jVVx|<::.`.xB@@&BOX8B8OOO8                   ",
-      "&8Q&@OjXjjXO&@&&Q&@@@&^..:,xV|`..:,<|xVXOOOXXVjjx7xxxjVXVj7<,:.`.jO&@&QBBXOOOO88O88B                ",
-      "88&&@&xjVVOOQ@&@@@@@@X::,,^+8V+...,^+|xVXXOOXVjjxjVVVVVVj|<^,:.<X88&@@Q888OOOBBOO8OOOB              ",
-      "8Q&&&@X7jXB88&&@@@@@&^:,^<|7BOj,.::<|xjXOOOOOOOOOOXOXVVx|<,^,:|O88B@@@QO8BVV8QBBBB88OBBB&           ",
-      "Q&&&B@&x7VBB8Q&@@@@&^:^<<7xj8QOj^,:,7jX8BQ8OOOO8OOOVjjx|<,^<<jOBB8&@@&BO8BOVBB8QBOOBBQBBBBQ         ",
-      "&&QQB@@j|jOB8Q@@@@O,,^<+7xVXQQBX+^<,|VO8Q&QB8OOOOXVVVj|<,<+|O88&QQ@@@&B8B8BVBBBQBQQBQBBQBBBBB&      "
-    ];
-    var EYES = [[38, 28], [61, 28]], MOUTH = {x:50.0, y:41.5, hw:10.0};
-    var GRID = FACE.map(function(r){ return r.split(''); }), LEVEL = {};
-    for (var li = RAMP.length - 1; li >= 0; li--) LEVEL[RAMP.charAt(li)] = li;
-    function brighter(ch, k){ return ch === ' ' ? ch : RAMP.charAt(Math.max(1, Math.min(RAMP.length - 1, (LEVEL[ch] || 1) + k))); }
+    /* LUMO's face: the founder's photo cut to the head and reduced to a coarse texture, wrapped on an ellipsoid.
+       Turns, nods, tilts, blinks and the mouth are computed per frame; a dim binary rain fills the background. */
+    var TEX = "                                                              nn                              lk eedddfjl  n                         eccbbbabbbcg f                       nhcbbbbbbaaaaabede                      dbabbaaaaaaaaaaabbcc                   cbbbaaaaaaaaaaaaaaaabbe               icbabbaaaaaaaaaaaaaaaaaaabd            hbbabbbaaaaaaaaaaaaaaabaaaac           hbbabcbbaaaaaaabaaaaaabaaaaaac          cbbbbbaaabaaaaaaaaaaaaaaaaaaaae        dbbbbbbbbbbbbaaabaaaaaaaaaaaaaab        cbbbbbbbbbbaabbaaaaaaaaabaaaaaabc      fbbbcbbbabaaabbaaaaaaaaaaaabaaaaab      ccbbcbcbbbabbbbbbbaaaaaaaaaaaaababf     ccbbbbcbcbbbbbccccccbbaaaaabaaaaabc     cbbbbbbbbcbdeeefffffeccbbbaaaaaabbb    hcbbbbbabdefhhhhiiiihfeeeddcbaaaaabb    dcbabbbceghjkklkjkkihhhhhggfecaaaaab    dbbbabdgijkllnmllllkjiiijiiigdbbaaab    ccbaacgjlmmnnmlmmnnlkjkkjjjjhecbaaabe   dcbbbeiklmmmmnmllmmmmllkkjjjifcbbaab    cbbbchjkklmnopponnnonnnnmllkigcaabbae   cbbbfjjkkmnopppppppppoomlkjjjgfbabbae  gbbabikljhhikmooppppponlligggihfdaabb   ebbbckligfgffffimopnmkhfedeeefgheabab   gbbaelljklnoljijkmnmjjhhjlljkihihbabb    bbainmnmjihhijklmnljiijlkiijkkkjdaab    fbalnmjedfcbegiknpmkiigedbedfiklgabc    kcbmmljjkjgffgjmopnkhjgjedhfgijkiabe    lebmmllllkiggilmnpniikjjijmlklkjjbch    lfdlkklmllllnonmnomjiklkhijkmkjiibcj    mgdmllnoooppponnnomjiklmmmnomkkjibd     mlenmmnppopppommmnliikjmnnnonmkkjdf     omgnnnopppoooomlmnlihikmnnonnmlkifi      ninooppppomkjijmnliffgklmnmnmllhgk      nmmoooopnkhijlkmomifhggijllllklhi         nonmmlifhjjlmmnliiigeffikkkjkk          pnnlkgegklkhgiihfddehhgegiijk            nmkhggklkllligeddeghhhfefhij            nmkihhijjkkjljhgfghhffffgghk            nlkjigghkjjijiigefggeefhhhik            pmkkiiidbegfffeefecbcfhighj              mlkkkkkfglpppopokcdhgihgij              olkkjlmlhghijjhgddhhghfgi                ijjkkmnmjilkigfgihihgfhj               behjkkmmmnkhhgfhhiihgfgi               caeghjklmmmljhfhiiihhgghk                aeighilmlllkigghiihhghi                  dijghimmmmkkiiiiihfghhe                  hkighjlmmlkkjihihgghhb                   kljfhkkjkjjjiiffffhe                      mhegiiiiiihfeeef                         lgeefghhfedeef                             feddddde                ", TW = 40, TH = 55, LV = 16, ASPECT = 0.726;
+    var EYES = [[-0.377, 0.038], [0.351, 0.038]], MOUTH = [0.0, 0.575, 0.325];
+    var COLS = 44, ROWS = 30, CX = 22, CY = 15.2, RYC = 13.2, RXC = RYC * ASPECT / .6, DEPTH = ASPECT * 1.05;
+    var RAMP = ' .:-=+x10#@', LX = -.3, LY = -.4, LZ = .87;
+    var rainPre = document.getElementById('ascii-rain'), drops = [];
+    for (var di = 0; di < COLS; di++) drops.push({y: Math.random() * ROWS * 2 - ROWS, v: .12 + Math.random() * .25});
     var mouth = .45, nextBlink = 1800, blinkAt = -1000, running = false, visible = false, raf = 0, lastDraw = 0;
+
+    // poses are [yaw, pitch, roll, ms]: yaw turns the head, pitch nods (positive = down), roll tilts
+    var GESTURES = {
+      nod:    [[0, .22, 0, 240], [0, -.04, 0, 220], [0, .15, 0, 200], [0, 0, 0, 260]],
+      small:  [[0, .1, 0, 180], [0, 0, 0, 220]],
+      shake:  [[-.32, 0, 0, 260], [.3, 0, 0, 320], [-.2, 0, 0, 280], [0, 0, 0, 260]],
+      left:   [[-.55, .03, 0, 700], [-.55, .03, 0, 900], [0, 0, 0, 700]],
+      right:  [[.55, .03, 0, 700], [.55, .03, 0, 900], [0, 0, 0, 700]],
+      tilt:   [[.1, .05, .15, 500], [.1, .05, .15, 900], [0, 0, 0, 500]],
+      glance: [[.32, -.08, 0, 350], [.32, -.08, 0, 600], [0, 0, 0, 450]],
+      think:  [[.34, -.2, .06, 600]]
+    };
+    var IDLE = ['left', 'right', 'nod', 'tilt', 'glance', 'shake'];
+    var pose = {yaw: 0, pitch: 0, roll: 0}, from = {yaw: 0, pitch: 0, roll: 0}, keys = [], keyStart = 0, nextIdle = 2600, nextTalkNod = 0, clock = 0;
+    function play(name){
+      from = {yaw: pose.yaw, pitch: pose.pitch, roll: pose.roll};
+      keys = GESTURES[name].map(function(k){ return {yaw: k[0], pitch: k[1], roll: k[2], d: k[3]}; });
+      keyStart = clock;
+    }
+    function gestureFor(s){
+      if (s === 'listen') play('tilt');
+      else if (s === 'think') play('think');
+      else if (s === 'speak') play('nod');
+      else if (s === 'idle') { play('small'); nextIdle = clock + 2500; }
+    }
+    function animatePose(t){
+      if (keys.length) {
+        var k = keys[0], p = Math.min(1, (t - keyStart) / k.d), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        pose.yaw = from.yaw + (k.yaw - from.yaw) * e; pose.pitch = from.pitch + (k.pitch - from.pitch) * e; pose.roll = from.roll + (k.roll - from.roll) * e;
+        if (p >= 1 && (keys.length > 1 || state !== 'think')) { from = {yaw: k.yaw, pitch: k.pitch, roll: k.roll}; keys.shift(); keyStart = t; }
+      } else if (state === 'idle' && t > nextIdle) {
+        play(IDLE[Math.floor(Math.random() * IDLE.length)]); nextIdle = t + 3200 + Math.random() * 3600;
+      } else if (state === 'speak' && t > nextTalkNod) {
+        play('small'); nextTalkNod = t + 1100 + Math.random() * 1400;
+      }
+    }
+    function sample(ox, oy){
+      var u = Math.floor((ox + 1) / 2 * TW), v = Math.floor((oy + 1) / 2 * TH);
+      if (u < 0 || v < 0 || u >= TW || v >= TH) return -1;
+      var ch = TEX.charCodeAt(v * TW + u);
+      return ch === 32 ? -1 : (ch - 97) / (LV - 1);
+    }
     function render(t){
+      clock = t;
+      animatePose(t);
       if (t > nextBlink) { blinkAt = t; nextBlink = t + 2400 + Math.random() * 3600; }
-      var closed = t - blinkAt >= 0 && t - blinkAt < 140;
+      var closed = t - blinkAt >= 0 && t - blinkAt < 150;
       mouthTarget *= .86; pulse *= .8;
       // .45 keeps the photo's own smile; lower closes the lips, higher opens the mouth
       var want = state === 'speak' ? Math.max(mouthTarget, pulse * .9, .3 + .12 * Math.sin(t / 55)) : .45;
       mouth += (want - mouth) * .45;
-      var rows = GRID.map(function(r){ return r.slice(); }), r, c;
-      var st = .78 + .5 * mouth, y0 = Math.floor(MOUTH.y - 3), y1 = Math.ceil(MOUTH.y + 4);
-      for (r = y0; r <= y1; r++) {
-        for (c = Math.floor(MOUTH.x - MOUTH.hw - 2); c <= Math.ceil(MOUTH.x + MOUTH.hw + 2); c++) {
-          var w = 1 - Math.abs(c - MOUTH.x) / (MOUTH.hw + 2); if (w <= 0) continue;
-          var sr = Math.round(MOUTH.y + (r - MOUTH.y) / (1 + (st - 1) * w));
-          rows[r][c] = GRID[Math.max(y0, Math.min(y1, sr))][c];
+      var yaw = pose.yaw + .05 * Math.sin(t / 1700), pitch = pose.pitch + .025 * Math.sin(t / 2300), roll = pose.roll;
+      var cyw = Math.cos(yaw), syw = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch), cr = Math.cos(roll), sr = Math.sin(roll);
+      var st = .78 + .5 * mouth, face = [], rain = [];
+      for (var r = 0; r < ROWS; r++) {
+        var row = '', rrow = '';
+        for (var c = 0; c < COLS; c++) {
+          var x = (c + .5 - CX) / RXC, y = (r + .5 - CY) / RYC;
+          var X = x * ASPECT, Y = y, Xr = X * cr + Y * sr, Yr = -X * sr + Y * cr;
+          x = Xr / ASPECT; y = Yr;
+          var d = x * x + y * y, ch = ' ';
+          if (d < 1) {
+            var z = Math.sqrt(1 - d), Px = x * ASPECT, Pz = z * DEPTH;
+            var y1 = y * cp + Pz * sp, z1 = -y * sp + Pz * cp;
+            var ox = (Px * cyw - z1 * syw) / ASPECT, oy = y1;
+            if (Math.abs(ox - MOUTH[0]) < MOUTH[2] + .1 && Math.abs(oy - MOUTH[1]) < .22) {
+              var w = 1 - Math.abs(ox - MOUTH[0]) / (MOUTH[2] + .1);
+              oy = MOUTH[1] + (oy - MOUTH[1]) / (1 + (st - 1) * w);
+            }
+            if (closed) for (var e = 0; e < 2; e++) if (Math.abs(ox - EYES[e][0]) < .2 && Math.abs(oy - EYES[e][1]) < .09) oy -= .14;
+            var v = sample(ox, oy);
+            if (v < 0 && oy < .15) v = .06;        // beyond the photo on the upper head: hair
+            if (v >= 0) {
+              var lam = Math.max(0, x * LX + y * LY + z * LZ);
+              ch = RAMP.charAt(1 + Math.round(Math.min(1, v * (.62 + .48 * lam)) * (RAMP.length - 2)));
+            }
+          }
+          row += ch;
+          var dr = drops[c], k = dr.y - r;
+          rrow += ch === ' ' && k >= 0 && k < 4 && (c % 2 === 0) ? ((c * 7 + r * 13 + Math.floor(t / 180)) % 3 ? '1' : '0') : ' ';
         }
+        face.push(row); rain.push(rrow);
       }
-      if (closed) EYES.forEach(function(e){
-        for (var rr = e[1] - 1; rr <= e[1] + 1; rr++) for (var cc = e[0] - 5; cc <= e[0] + 5; cc++) rows[rr][cc] = GRID[e[1] - 3][cc];
-      });
-      var band = Math.floor((t / (state === 'listen' ? 900 : 2800)) % 1 * (ROWS + 12)) - 6;
-      for (r = band; r < band + 2; r++) if (r >= 0 && r < ROWS) rows[r] = rows[r].map(function(ch){ return brighter(ch, 3); });
-      var glitches = state === 'think' ? 3 : state === 'listen' ? 2 : state === 'speak' ? 1 : .4;
+      drops.forEach(function(dr){ dr.y += dr.v; if (dr.y > ROWS + 6) { dr.y = -Math.random() * ROWS; dr.v = .12 + Math.random() * .25; } });
+      var band = Math.floor((t / (state === 'listen' ? 900 : 2800)) % 1 * (ROWS + 10)) - 5;
+      if (band >= 0 && band < ROWS) face[band] = face[band].replace(/[^ ]/g, function(ch){ var i = RAMP.indexOf(ch); return RAMP.charAt(Math.min(RAMP.length - 1, i + 2)); });
+      var glitches = state === 'think' ? 2 : state === 'listen' ? 1 : .3;
       for (var g = 0; g < glitches; g++) {
         if (Math.random() > glitches - g) break;
-        var gr = Math.floor(Math.random() * ROWS), d = Math.random() < .5 ? -1 : 1;
-        rows[gr] = d > 0 ? [' '].concat(rows[gr].slice(0, -1)) : rows[gr].slice(1).concat([' ']);
+        var gr = Math.floor(Math.random() * ROWS);
+        face[gr] = Math.random() < .5 ? ' ' + face[gr].slice(0, -1) : face[gr].slice(1) + ' ';
       }
-      for (var f = 0; f < 14; f++) { var fr = Math.floor(Math.random() * ROWS), fc = Math.floor(Math.random() * COLS); rows[fr][fc] = brighter(rows[fr][fc], 2); }
-      pre.textContent = rows.map(function(x){ return x.join(''); }).join('\n');
+      pre.textContent = face.join('\n');
+      rainPre.textContent = rain.join('\n');
       var lv = state === 'speak' ? mouth : state === 'listen' ? .25 + .6 * pulse + .15 * Math.abs(Math.sin(t / 120)) : 0, n = Math.max(0, Math.min(12, Math.round(lv * 12)));
       meter.textContent = '[' + new Array(n + 1).join('|') + new Array(13 - n).join(' ') + ']';
     }
@@ -2286,8 +2292,8 @@ reply_to:        &lt;your human's email address&gt;</pre>
     function wake(){ if (!running) render(performance.now()); }
     function fit(){
       var w = stage.clientWidth - 16, h = stage.clientHeight - 20;
-      var fs = Math.max(3, Math.min(11, w / (COLS * .6), h > 120 ? h / ROWS : 11));
-      pre.style.fontSize = fs.toFixed(2) + 'px';
+      var fs = Math.max(6, Math.min(18, w / (COLS * .6), h > 120 ? h / ROWS : 18));
+      pre.style.fontSize = rainPre.style.fontSize = fs.toFixed(2) + 'px';
     }
 
     /* wiring */
