@@ -29,7 +29,6 @@
 - [Agent bus](/#p-agent-bus): the company's own operations run on seven agent systems; ~3,900 tickets and ~2,200 unattended runs in the first two months
 - [AgentZero](/#p-agentzero): bare-metal x86 kernel driven by an AI agent over UDP; open source (https://github.com/WalterWood1995/AgentZero)
 - [CAX Agent](/#p-cax): agent-first design and simulation platform for robot makers on MuJoCo; prototype
-- [Assembly of 81 / AGON Robotpedia](/#p-assembly): 81 robots played by AI agents ratified a charter for a humanoid-robot games; live at https://agon-robotpedia.onrender.com
 
 ## Regions
 
