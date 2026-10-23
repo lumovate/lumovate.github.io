@@ -583,12 +583,13 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 .quote figcaption{margin-top:14px;font:400 .78rem var(--f-mono);color:var(--muted)}
 .fine{font-size:.82rem;color:var(--muted)}
 
-.founder{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:28px 48px;align-items:start}
-@media (max-width:640px){.founder{grid-template-columns:minmax(0,1fr)}.founder img{max-width:200px}}
-.founder img{border-radius:var(--radius);filter:grayscale(.15) contrast(1.02);width:100%;height:auto;background:var(--paper-2)}
-.founder h3{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(--step-1);margin:0}
-.founder .role{font:400 .8rem var(--f-mono);color:var(--lumen-ink);margin:4px 0 14px}
-.founder p{max-width:66ch;margin:0;color:var(--muted)}
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.team article{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px 22px;display:grid;gap:8px;align-content:start}
+.team-k{margin:0;font:500 .7rem var(--f-mono);letter-spacing:.14em;color:var(--lumen-ink)}
+.team h3{margin:0;font-family:var(--f-display);font-weight:720;font-stretch:108%;font-size:var(--step-1);line-height:1.2}
+:root[data-lang="zh"] .team h3{font-stretch:100%}
+.team article p:not(.team-k){margin:0;color:var(--muted)}
+@media (max-width:860px){.team{grid-template-columns:minmax(0,1fr)}}
 
 .contact{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px 48px;align-items:start}
 @media (max-width:860px){.contact{grid-template-columns:minmax(0,1fr)}}
@@ -1603,21 +1604,34 @@ council/plan-l.log: motion carried 9-0
   </div>
 </section>
 
-<section class="sec" id="founder">
+<section class="sec" id="team">
   <div class="wrap">
     <div class="sec-head">
-      <p class="label"><span lang="en">Founder</span><span lang="de">Gründer</span><span lang="zh">创始人</span></p>
-      <h2><span lang="en">The human name on the door.</span><span lang="de">Der menschliche Name an der Tür.</span><span lang="zh">门上那个人的名字。</span></h2>
+      <p class="label"><span lang="en">Team</span><span lang="de">Team</span><span lang="zh">团队</span></p>
+      <h2><span lang="en">A small team, many agents.</span><span lang="de">Ein kleines Team, viele Agenten.</span><span lang="zh">小团队，多 Agent。</span></h2>
     </div>
-    <div class="founder">
-      <img src="assets/haoyang-wu.jpg" alt="Portrait of Haoyang Wu" width="413" height="530" loading="lazy">
-      <div>
-        <h3>Haoyang Wu · 吴昊阳</h3>
-        <p class="role"><span lang="en">Founder &amp; Managing Director</span><span lang="de">Gründer &amp; Geschäftsführer</span><span lang="zh">创始人兼总经理</span></p>
-        <p lang="en">With fifteen years in European and Asia-Pacific industry, Haoyang Wu specialises in cross-border investment and international M&amp;A: connecting European industrial companies with Chinese industrial capital and regional government funds, and identifying European technology targets for Chinese industrial players. He previously served as General Manager China at MAKA Systems, Head of Asia Pacific at Reichenbacher Hamuel (Scherdel Group) and International Project Partner at Trafalgar GmbH. M.Eng. in Production Systems Engineering, RWTH Aachen University.</p>
-        <p lang="de">Haoyang Wu bringt fünfzehn Jahre Erfahrung aus der europäischen und asiatisch-pazifischen Industrie mit und ist auf grenzüberschreitende Investitionen und internationale M&amp;A spezialisiert: Er verbindet europäische Industrieunternehmen mit chinesischem Industriekapital und regionalen Regierungsfonds und findet europäische Technologieunternehmen für chinesische Industriegruppen. Zuvor war er General Manager China bei MAKA Systems, Head of Asia Pacific bei Reichenbacher Hamuel (Scherdel-Gruppe) und International Project Partner bei der Trafalgar GmbH. M.Eng. in Production Systems Engineering, RWTH Aachen.</p>
-        <p lang="zh">深耕欧洲及亚太工业界十五年，专注跨境投资与国际并购：为欧洲工业企业对接中国产业资本与地方政府基金，为中国产业方寻找欧洲优质技术标的。曾任 MAKA Systems 中国区总经理、Reichenbacher Hamuel（Scherdel 集团）亚太区负责人，Trafalgar GmbH 国际项目合伙人。德国亚琛工业大学生产系统工程硕士。</p>
-      </div>
+    <div class="team">
+      <article>
+        <p class="team-k">INDUSTRY · M&amp;A</p>
+        <h3><span lang="en">Industry and investment</span><span lang="de">Industrie und Investitionen</span><span lang="zh">产业与投资</span></h3>
+        <p lang="en">Fifteen years in European and Asia-Pacific industry, including country and regional management in German machine builders. Cross-border investment and M&amp;A: European industrial companies meet Chinese industrial capital and regional government funds; Chinese groups find European technology.</p>
+        <p lang="de">Fünfzehn Jahre in der europäischen und asiatisch-pazifischen Industrie, darunter Länder- und Regionalleitung bei deutschen Maschinenbauern. Grenzüberschreitende Investitionen und M&amp;A: europäische Industrieunternehmen treffen chinesisches Industriekapital und regionale Regierungsfonds; chinesische Gruppen finden europäische Technologie.</p>
+        <p lang="zh">十五年欧洲与亚太工业经验，曾在德国装备企业负责国家和区域业务。跨境投资与并购：为欧洲工业企业对接中国产业资本与地方政府基金，为中国产业方寻找欧洲技术标的。</p>
+      </article>
+      <article>
+        <p class="team-k">STUTTGART · BEIJING</p>
+        <h3><span lang="en">Delegations and government</span><span lang="de">Delegationen und Behörden</span><span lang="zh">代表团与政府对接</span></h3>
+        <p lang="en">With our partner SG-EIC in Beijing we run the European Companies China Tour with regional governments: company selection on the European side, matching, the programme on the ground and follow-up after every trip.</p>
+        <p lang="de">Mit unserem Partner SG-EIC in Peking organisieren wir die China-Tour für europäische Unternehmen gemeinsam mit Regionalregierungen: Auswahl auf europäischer Seite, Matching, das Programm vor Ort und die Nachbereitung jeder Reise.</p>
+        <p lang="zh">与北京的合作伙伴中德赋能创新中心一起，联合地方政府举办「欧洲企业中国行」：欧洲一侧的企业筛选、撮合、当地行程和每次活动后的跟进。</p>
+      </article>
+      <article>
+        <p class="team-k">7 AGENT SYSTEMS</p>
+        <h3><span lang="en">Agents, with a human in the loop</span><span lang="de">Agenten, mit Mensch in der Schleife</span><span lang="zh">AI Agent，人工把关</span></h3>
+        <p lang="en">Research, outreach drafts, follow-up and back office run on seven agent systems we built ourselves. Anything about money, contracts or commitments waits for a person to approve it.</p>
+        <p lang="de">Recherche, Anschreiben, Nachverfolgung und Backoffice laufen auf sieben selbst gebauten Agentensystemen. Alles zu Geld, Verträgen oder Zusagen wartet auf die Freigabe eines Menschen.</p>
+        <p lang="zh">市场调研、开发信起草、跟进和后台事务，由我们自建的七个 Agent 系统完成；凡涉及钱、合同和承诺的事项，一律等人工批准。</p>
+      </article>
     </div>
   </div>
 </section>
@@ -2680,9 +2694,9 @@ reply_to:        &lt;your human's email address&gt;</pre>
           de:'Wir betreiben unser eigenes Unternehmen mit Agenten: eine KI-Vertriebsmaschine, einen Bus, der Arbeit an sieben Agentensysteme verteilt, und einen KI-Kernel, der auf einem Laptop von 2009 ohne Betriebssystem das Nervensystem eines Wurms rechnet. Die Projektwand oben zeigt alle Details.',
           zh:'我们自己的公司就靠 Agent 运转：一套 AI 销售引擎、一条把工作分派给七个 Agent 系统的总线、还有一个在没有操作系统的 2009 年笔记本上跑线虫神经系统的 AI 内核。上方的项目墙有完整案例。'}},
       {k:['founder','who is behind','haoyang','ceo','managing director','team','gründer','geschäftsführer','wer steckt','创始人','老板','总经理','团队','吴昊阳'],
-       a:{en:"Lumovate's founder has fifteen years in European and Asia-Pacific industry and focuses on cross-border investment and M&A. The founder section on this page has more.",
-          de:'Der Gründer von Lumovate hat fünfzehn Jahre Erfahrung in der europäischen und asiatisch-pazifischen Industrie und ist auf grenzüberschreitende Investitionen und M&A spezialisiert. Mehr dazu im Abschnitt zum Gründer auf dieser Seite.',
-          zh:'Lumovate 的创始人在欧洲和亚太工业界深耕十五年，专注跨境投资与国际并购。本页「创始人」一栏有更多介绍。'}},
+       a:{en:"Lumovate's founder has fifteen years in European and Asia-Pacific industry and focuses on cross-border investment and M&A. The team section on this page has more.",
+          de:'Der Gründer von Lumovate hat fünfzehn Jahre Erfahrung in der europäischen und asiatisch-pazifischen Industrie und ist auf grenzüberschreitende Investitionen und M&A spezialisiert. Mehr dazu im Abschnitt Team auf dieser Seite.',
+          zh:'Lumovate 的创始人在欧洲和亚太工业界深耕十五年，专注跨境投资与国际并购。本页「团队」一栏有更多介绍。'}},
       {k:['eic','sg-eic','partner','中德赋能','合作伙伴','合作方'],
        a:{en:'Our partner is the Sino-German Empowerment Innovation Center in Beijing, founded in 2019, which has run the China Tour for European companies with regional governments since 2024. Lumovate is its partner company in Germany.',
           de:'Unser Partner ist das Sino-German Empowerment Innovation Center in Peking, 2019 gegründet, das seit 2024 mit Regionalregierungen die China-Tour für europäische Unternehmen organisiert. Lumovate ist sein Partnerunternehmen in Deutschland.',
