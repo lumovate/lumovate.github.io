@@ -447,15 +447,12 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 :root[data-lang="en"] .a-city.on .a-name[lang="en"],:root[data-lang="de"] .a-city.on .a-name[lang="de"],:root[data-lang="zh"] .a-city.on .a-name[lang="zh"],
 :root:not([data-lang]) .a-city.on .a-name[lang="en"]{display:inline}
 @keyframes ring{from{transform:scale(.6);opacity:1}to{transform:scale(1.6);opacity:0}}
-/* edition tabs: month on top, year and the edition in braille below */
-.tour-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.tour-tabs button{display:grid;gap:1px;text-align:left;font:600 .86rem/1.1 var(--f-mono);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:6px 10px;cursor:pointer}
-.tour-tabs button small{font:400 .66rem var(--f-mono);color:var(--muted)}
-.mo{font:inherit}
-.tour-tabs small,.tmx thead small{display:flex;gap:4px;align-items:center}
-.br{font-style:normal;font-family:"Segoe UI Symbol","Apple Braille","Noto Sans Symbols 2",sans-serif;font-size:1.3em;line-height:.8;color:var(--lumen-ink)}
-.cd{font-style:normal;color:var(--lumen-ink)}
-[aria-selected="true"] .br,[aria-selected="true"] .cd{color:var(--lumen)}
+/* edition tabs: Roman numeral = which edition, Arabic year.month = when; equal widths read as one timeline */
+.tour-tabs{display:grid;grid-template-columns:repeat(var(--tabs,10),minmax(0,1fr));gap:5px;margin-bottom:14px}
+@media (max-width:520px){.tour-tabs{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.tour-tabs button{display:grid;justify-items:center;gap:3px;text-align:center;font:600 .78rem/1.1 var(--f-body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:7px 2px 6px;cursor:pointer}
+.rn{font:700 .86rem/1 var(--f-display);font-stretch:108%;letter-spacing:.04em}
+.tour-tabs button small{font:400 .6rem var(--f-mono);color:var(--muted)}
 .tour-tabs button.todo{border-style:dashed;background:transparent;color:var(--muted)}
 .tour-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .tour-tabs button[aria-selected="true"] small{color:inherit;opacity:.75}
@@ -499,7 +496,7 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 .tmx caption{text-align:left;font:500 .7rem var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-bottom:8px}
 .tmx th,.tmx td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:center}
 .tmx tbody th{text-align:left;font-weight:500;white-space:nowrap}
-.tmx thead button{display:grid;margin:auto;font:600 .78rem/1.1 var(--f-mono);color:var(--ink);background:none;border:0;padding:2px 4px;cursor:pointer}
+.tmx thead button{display:grid;justify-items:center;gap:2px;margin:auto;font:600 .72rem/1.1 var(--f-body);color:var(--ink);background:none;border:0;padding:2px 4px;cursor:pointer}
 .tmx thead button small{font:400 .62rem var(--f-mono);color:var(--muted)}
 .tmx .todo button{color:var(--muted)}
 .tmx .sel{background:color-mix(in srgb,var(--lumen) 14%,transparent)}
@@ -2543,19 +2540,18 @@ reply_to:        &lt;your human's email address&gt;</pre>
       mxcap:{en:'Focus industries by edition', de:'Schwerpunktbranchen je Tour', zh:'各届专题行业'}
     };
     function L(o){ return '<span lang="en">' + o.en + '</span><span lang="de">' + o.de + '</span><span lang="zh">' + o.zh + '</span>'; }
-    // braille digits 1..0 are the letters a..j after the number sign ⠼
-    function braille(n){ return '⠼' + String(n).split('').map(function(c){ return '⠚⠁⠃⠉⠙⠑⠋⠛⠓⠊'.charAt(+c); }).join(''); }
+    function roman(n){ var r = '', v = [[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']]; v.forEach(function(p){ while (n >= p[0]) { r += p[1]; n -= p[0]; } }); return r; }
     function words(s){ return (s || '').split(/\s+/).filter(Boolean); }
     function count(li, s){ return [].reduce.call(li.querySelectorAll('.t-proj [data-s="' + s + '"]'), function(n, p){ return n + (+p.getAttribute('data-count') || 1); }, 0); }
     var data = [].slice.call(list.querySelectorAll('.tour')).map(function(li){
       var n = li.getAttribute('data-n');
-      // tabs: the month is the big figure (they already run in order); below it the year and, in braille, the edition
+      // tabs: a Roman numeral says which edition, the Arabic year.month says when
       var when = li.getAttribute('data-when') || ((li.querySelector('.t-when') || {}).textContent || '').slice(0, 7);
       var m = /^(\d{4})\.(\d{2})$/.exec(when);
-      var mark = /^\d+$/.test(n) ? '<i class="br" title="' + n + '">' + braille(+n) + '</i>' : '<i class="cd">' + (li.getAttribute('data-route') || n).split(' ')[0] + '</i>';
-      var label = '<b class="mo">' + (m ? m[2] : '–') + '</b>';
-      when = (m ? m[1] : (li.getAttribute('data-year') || '')) + ' ' + mark;
-      return {li:li, n:n, label:label, year:when, when:(m ? m[1] + '.' + m[2] : ''),
+      var label = /^\d+$/.test(n) ? '<b class="rn">' + roman(+n) + '</b>'
+        : L({en:li.getAttribute('data-tab-en'), de:li.getAttribute('data-tab-de'), zh:li.getAttribute('data-tab-zh')});
+      when = m ? m[1] + '.' + m[2] : (li.getAttribute('data-year') || '');
+      return {li:li, n:n, label:label, year:when, when:when,
               todo:li.hasAttribute('data-todo'),
               route:words(li.getAttribute('data-route')).filter(function(c){ return CITY[c]; }),
               ind:words(li.getAttribute('data-ind')).filter(function(k){ return IND[k]; }),
@@ -2694,6 +2690,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
       var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!k) return;
       e.preventDefault(); var i = (cur + k + data.length) % data.length; select(i, true); data[i].tab.focus();
     });
+    tabs.style.setProperty('--tabs', data.length);
     mx.addEventListener('click', function(e){ var b = e.target.closest('[data-pick]'); if (b) select(+b.getAttribute('data-pick'), true); });
 
     var cur = -1, len = 0, t0 = 0, raf = 0, running = false, visible = false, on = false, auto = true, autoAt = 0;
