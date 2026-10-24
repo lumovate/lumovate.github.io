@@ -19,7 +19,7 @@
 ## Projects
 
 - [9th EIC China Tour](/#p-eic-tour-9): 2026-10-23 to 2026-10-31, Shanghai, Ordos, Jinzhong; company visits, B2B matchmaking, official receptions; max. 25 European companies
-- [EIC China Tour, all editions](/#tours): run since 2024; documented so far: 1st Dalian (2024-03), 3rd Tianjin TEDA (2025-04), 5th Taicang, Baoji, Datong (2025-12), 6th Beijing and Jinzhong (2026-04), 7th Chongqing (2026-05), 8th Jinan and Zouping, Shandong (2026-09); routes, focus industries, centres opened and letters of intent
+- [EIC China Tour, all editions](/#tours): run since 2024 by SG-EIC with regional governments; 1st Dalian-Jinzhong (2024-03), 2nd Beijing-Tangshan-Jinzhong (2024-11), 3rd Tianjin-Zhengzhou-Jinzhong (2025-04), 4th Ordos-Jinzhong (2025-11), 5th Taicang-Shanghai-Baoji-Datong-Beijing (2025-12), 6th Beijing-Jinzhong (2026-04), 7th Shanghai-Chongqing (2026-05), 8th Jinan-Zouping-Yantai-Beijing (2026-09); 138 European delegates in editions 1-8; innovation centres signed or opened in Dalian, Shunyi, Tianjin TEDA, Jinzhong and Beijing
 - [Chemical delegation to Chifeng](/#p-chifeng): mid-November 2026, 10 European chemical companies, 3 days; guests pay international airfare, EIC and the City of Chifeng host in-China costs
 - [Delegation design for Shandong](/#p-shandong): proposal to the provincial government, 25 pre-screened European companies in 8 sectors
 - [Agent-CRM](/#p-agent-crm): AI customer acquisition engine in daily use; 18 sub-agents, 1,046 leads, 1,323 audited drafts; a person sends every email
