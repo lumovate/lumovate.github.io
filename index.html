@@ -1401,7 +1401,7 @@ council/plan-l.log: motion carried 9-0
             <ul class="t-proj"></ul>
             <p class="t-open"><span lang="en">Under way now. Signed and intended projects will be listed here after the tour.</span><span lang="de">Läuft gerade. Unterzeichnete und geplante Projekte stehen nach der Tour hier.</span><span lang="zh">活动进行中，落地与意向项目将在活动结束后列在这里。</span></p>
           </li>
-          <li class="tour" data-n="cif" data-tab="CIF" data-year="2026" data-route="CIF" data-ind="chem materials hydrogen">
+          <li class="tour" data-n="cif" data-tab-en="Chifeng" data-tab-de="Chifeng" data-tab-zh="赤峰专题" data-when="2026.11" data-year="2026" data-route="CIF" data-ind="chem materials hydrogen">
             <p class="t-when"><span lang="en">Mid-Nov 2026 · themed delegation</span><span lang="de">Mitte Nov. 2026 · Themen-Delegation</span><span lang="zh">2026 年 11 月中旬 · 专题团</span></p>
             <h3><span lang="en">Chemical delegation to Chifeng</span><span lang="de">Chemie-Delegation nach Chifeng</span><span lang="zh">赤峰化工主题团</span></h3>
             <p class="t-sum" lang="en">Ten European chemical companies, three days, four tracks: fluorochemicals and new materials, green hydrogen and ammonia, bio-based and fine chemicals, soda ash and salt chemicals.</p>
@@ -2541,7 +2541,11 @@ reply_to:        &lt;your human's email address&gt;</pre>
     function count(li, s){ return [].reduce.call(li.querySelectorAll('.t-proj [data-s="' + s + '"]'), function(n, p){ return n + (+p.getAttribute('data-count') || 1); }, 0); }
     var data = [].slice.call(list.querySelectorAll('.tour')).map(function(li){
       var n = li.getAttribute('data-n');
-      return {li:li, n:n, label:li.getAttribute('data-tab') || (n.length < 2 ? '0' + n : n), year:li.getAttribute('data-year') || '',
+      // tabs read as editions, not months: "第5届 / No. 5" over the year and month it ran
+      var when = li.getAttribute('data-when') || ((li.querySelector('.t-when') || {}).textContent || '').slice(0, 7);
+      var label = li.hasAttribute('data-tab-en') ? L({en:li.getAttribute('data-tab-en'), de:li.getAttribute('data-tab-de'), zh:li.getAttribute('data-tab-zh')})
+        : L({en:'No. ' + n, de:n + '. Tour', zh:'第 ' + n + ' 届'});
+      return {li:li, n:n, label:label, year:/^\d{4}\.\d{2}$/.test(when) ? when : (li.getAttribute('data-year') || ''),
               todo:li.hasAttribute('data-todo'),
               route:words(li.getAttribute('data-route')).filter(function(c){ return CITY[c]; }),
               ind:words(li.getAttribute('data-ind')).filter(function(k){ return IND[k]; }),
