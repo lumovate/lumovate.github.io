@@ -452,7 +452,11 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 @media (max-width:520px){.tour-tabs{grid-template-columns:repeat(5,minmax(0,1fr))}}
 .tour-tabs button{display:grid;justify-items:center;gap:3px;text-align:center;font:600 .82rem/1.1 var(--f-body);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:8px 2px 7px;cursor:pointer;transition:border-color .2s}
 .tour-tabs button:hover{border-color:var(--ink)}
-.rn{font:760 1.05rem/1 var(--f-display);font-stretch:112%;letter-spacing:.02em}
+.mo{font:760 1.15rem/1 var(--f-display);font-stretch:112%;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.tour-tabs small,.tmx thead small{display:flex;gap:4px;align-items:center;justify-content:center}
+.br{font-style:normal;font-family:"Segoe UI Symbol","Apple Braille","Noto Sans Symbols 2",sans-serif;font-size:1.55em;line-height:.8;letter-spacing:.04em;color:var(--lumen-ink)}
+.cd{font-style:normal;font-size:.9em;letter-spacing:.06em;color:var(--lumen-ink)}
+[aria-selected="true"] .br,[aria-selected="true"] .cd{color:var(--lumen)}
 .tour-tabs button small{font:400 .6rem var(--f-mono);letter-spacing:0;color:var(--muted)}
 .tour-tabs button.todo{border-style:dashed;background:transparent;color:var(--muted)}
 .tour-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
@@ -498,7 +502,7 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 .tmx th,.tmx td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:center}
 .tmx tbody th{text-align:left;font-weight:500;white-space:nowrap}
 .tmx thead button{display:grid;justify-items:center;gap:2px;margin:auto;font:600 .72rem/1.1 var(--f-body);color:var(--ink);background:none;border:0;padding:2px 4px;cursor:pointer}
-.tmx .rn{font-size:.95rem}
+.tmx .mo{font-size:.95rem}
 .tmx thead button small{font:400 .62rem var(--f-mono);color:var(--muted)}
 .tmx .todo button{color:var(--muted)}
 .tmx .sel{background:color-mix(in srgb,var(--lumen) 14%,transparent)}
@@ -2542,16 +2546,19 @@ reply_to:        &lt;your human's email address&gt;</pre>
       mxcap:{en:'Focus industries by edition', de:'Schwerpunktbranchen je Tour', zh:'各届专题行业'}
     };
     function L(o){ return '<span lang="en">' + o.en + '</span><span lang="de">' + o.de + '</span><span lang="zh">' + o.zh + '</span>'; }
-    function roman(n){ var r = '', v = [[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']]; v.forEach(function(p){ while (n >= p[0]) { r += p[1]; n -= p[0]; } }); return r; }
+    // braille digits 1..0 are the letters a..j after the number sign ⠼
+    function braille(n){ return '⠼' + String(n).split('').map(function(c){ return '⠚⠁⠃⠉⠙⠑⠋⠛⠓⠊'.charAt(+c); }).join(''); }
     function words(s){ return (s || '').split(/\s+/).filter(Boolean); }
     function count(li, s){ return [].reduce.call(li.querySelectorAll('.t-proj [data-s="' + s + '"]'), function(n, p){ return n + (+p.getAttribute('data-count') || 1); }, 0); }
     var data = [].slice.call(list.querySelectorAll('.tour')).map(function(li){
       var n = li.getAttribute('data-n');
-      // tabs read as editions, not months: "第5届 / No. 5" over the year and month it ran
+      // tabs: the month is the big figure (they already run in order); below it the year and, in braille, the edition
       var when = li.getAttribute('data-when') || ((li.querySelector('.t-when') || {}).textContent || '').slice(0, 7);
-      var label = li.hasAttribute('data-tab-en') ? L({en:li.getAttribute('data-tab-en'), de:li.getAttribute('data-tab-de'), zh:li.getAttribute('data-tab-zh')})
-        : '<b class="rn">' + roman(+n) + '</b>';
-      return {li:li, n:n, label:label, year:/^\d{4}\.\d{2}$/.test(when) ? when : (li.getAttribute('data-year') || ''),
+      var m = /^(\d{4})\.(\d{2})$/.exec(when);
+      var mark = /^\d+$/.test(n) ? '<i class="br" title="' + n + '">' + braille(+n) + '</i>' : '<i class="cd">' + (li.getAttribute('data-route') || n).split(' ')[0] + '</i>';
+      var label = '<b class="mo">' + (m ? m[2] : '–') + '</b>';
+      when = (m ? m[1] : (li.getAttribute('data-year') || '')) + ' ' + mark;
+      return {li:li, n:n, label:label, year:when, when:(m ? m[1] + '.' + m[2] : ''),
               todo:li.hasAttribute('data-todo'),
               route:words(li.getAttribute('data-route')).filter(function(c){ return CITY[c]; }),
               ind:words(li.getAttribute('data-ind')).filter(function(k){ return IND[k]; }),
@@ -2681,7 +2688,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
       var b = document.createElement('button');
       b.type = 'button'; b.setAttribute('role', 'tab'); b.id = 'tour-tab-' + d.n; b.className = d.todo ? 'todo' : '';
       b.innerHTML = d.label + '<small>' + (d.todo ? L(T.todo) : d.year) + '</small>';
-      if (/^\d+$/.test(d.n)) b.setAttribute('aria-label', '第 ' + d.n + ' 届 · Edition ' + d.n + ' · ' + d.year);
+      b.setAttribute('aria-label', (/^\d+$/.test(d.n) ? '第 ' + d.n + ' 届 · Edition ' + d.n : (d.li.getAttribute('data-tab-zh') + ' · ' + d.li.getAttribute('data-tab-en'))) + ' · ' + d.when);
       b.addEventListener('click', function(){ select(i, true); });
       tabs.appendChild(b); d.tab = b;
       d.li.setAttribute('role', 'tabpanel'); d.li.setAttribute('aria-labelledby', b.id);
