@@ -354,6 +354,9 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
 .pj-grid.filtered .pj{grid-column:span 4;flex-direction:column}
 .pj-grid.filtered .pj .cv{flex:none;aspect-ratio:16/10;min-height:0}
 .pj-grid.filtered.pairs .pj{grid-column:span 6}
+.pj-grid.filtered.solo .pj{grid-column:1/-1;flex-direction:row}
+.pj-grid.filtered.solo .pj .cv{flex:1.3 1 0;aspect-ratio:auto;min-height:100%}
+.pj-grid.filtered.solo .pj .pj-body{flex:1 1 0}
 .shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .shots figure{margin:0;display:grid;gap:6px}
 .shots img{width:100%;height:auto;border-radius:4px;background:var(--t-bg)}
@@ -365,8 +368,8 @@ h2{font-family:var(--f-display);font-weight:720;font-stretch:110%;font-size:var(
   .pj-grid.filtered .pj.lead{grid-column:1/-1}
 }
 @media (max-width:640px){
-  .pj,.pj.s6,.pj.s8,.pj-grid.filtered .pj,.pj-grid.filtered.pairs .pj{grid-column:1/-1;flex-direction:column}
-  .pj.s8 .cv{flex:none;aspect-ratio:16/10;min-height:0}
+  .pj,.pj.s6,.pj.s8,.pj-grid.filtered .pj,.pj-grid.filtered.pairs .pj,.pj-grid.filtered.solo .pj{grid-column:1/-1;flex-direction:column}
+  .pj.s8 .cv,.pj-grid.filtered.solo .pj .cv{flex:none;aspect-ratio:16/10;min-height:0}
 }
 .pj-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:9px;flex:1;min-width:0}
 .pj-meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font:500 .7rem var(--f-mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin:0}
@@ -871,10 +874,11 @@ council/plan-l.log: motion carried 9-0
     </div>
 
     <div class="filters" role="group" aria-label="Filter projects">
-      <button type="button" data-filter="all" aria-pressed="true"><span lang="en">All</span><span lang="de">Alle</span><span lang="zh">全部</span><i>9</i></button>
+      <button type="button" data-filter="all" aria-pressed="true"><span lang="en">All</span><span lang="de">Alle</span><span lang="zh">全部</span><i>10</i></button>
       <button type="button" data-filter="deleg" aria-pressed="false"><span lang="en">Delegations</span><span lang="de">Delegationen</span><span lang="zh">代表团</span><i>3</i></button>
       <button type="button" data-filter="growth" aria-pressed="false"><span lang="en">AI for growth</span><span lang="de">KI für Wachstum</span><span lang="zh">AI 获客与运营</span><i>4</i></button>
       <button type="button" data-filter="lab" aria-pressed="false"><span lang="en">AI lab</span><span lang="de">KI-Labor</span><span lang="zh">AI 实验室</span><i>2</i></button>
+      <button type="button" data-filter="access" aria-pressed="false"><span lang="en">Market access</span><span lang="de">Markteintritt</span><span lang="zh">市场切入</span><i>1</i></button>
     </div>
 
     <div class="pj-grid" id="pj-grid">
@@ -1104,6 +1108,7 @@ council/plan-l.log: motion carried 9-0
             </dl>
             <ul class="specs">
               <li><b>Stack</b>Python · MuJoCo · MCP · OpenPLC · Gymnasium</li>
+              <li><b>Links</b><a href="https://clearfab.lumovate.de" rel="noopener" target="_blank"><span lang="en">ClearFab: parts simulation &amp; manufacturing cost platform</span><span lang="de">ClearFab: Simulation &amp; Fertigungskosten für Bauteile</span><span lang="zh">ClearFab 明造：零件仿真与制造成本平台</span> ↗</a></li>
             </ul>
           </div>
         </div>
@@ -1192,6 +1197,45 @@ council/plan-l.log: motion carried 9-0
             </dl>
             <ul class="specs">
               <li><b>Stack</b>Python CLIs · headless Claude Code · JSONL ledgers · MCP</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10 · Extreme Domain Robotics (represented) -->
+      <article class="pj s6" data-cat="access" id="p-edr">
+        <div class="cv cv-video"><video src="assets/projects/teyuhang-robotics-720p.mp4" poster="assets/projects/teyuhang-poster.jpg" muted loop playsinline preload="none" aria-label="Extreme Domain Robotics demo, no sound: in a test hall a legged robot carrying an arm, a wheeled rover and a caged drone move together as one inspection team."></video></div>
+        <div class="pj-body">
+          <p class="pj-meta"><span class="chip"><span lang="en">Market access</span><span lang="de">Markteintritt</span><span lang="zh">市场切入</span></span><span class="state"><span lang="en">China → Europe</span><span lang="de">China → Europa</span><span lang="zh">中国 → 欧洲</span></span></p>
+          <h3><a class="pj-link" href="#p-edr"><span lang="en">Extreme Domain Robotics: inspection where people can’t go</span><span lang="de">Extreme Domain Robotics: Inspektion an unzugänglichen Stellen</span><span lang="zh">特域航：人到不了的地方做检查</span></a></h3>
+          <p class="pj-line" lang="en">A Chinese robotics maker whose underwater, confined-space and ground robots inspect places people cannot easily reach. Lumovate represents the company in the European market.</p>
+          <p class="pj-line" lang="de">Ein chinesischer Robotikhersteller, dessen Unterwasser-, Engraum- und Bodenroboter Stellen inspizieren, die für Menschen schwer erreichbar sind. Lumovate vertritt das Unternehmen im europäischen Markt.</p>
+          <p class="pj-line" lang="zh">一家中国机器人公司，用水下、受限空间与地面机器人检查人难以抵达的位置。Lumovate 代理其进入欧洲市场。</p>
+          <p class="pj-facts"><span lang="en">Underwater ROV · confined-space drones · ground robots</span><span lang="de">Unterwasser-ROV · Engraum-Drohnen · Bodenroboter</span><span lang="zh">水下 ROV · 受限空间无人机 · 地面机器人</span></p>
+          <div class="pj-more">
+            <dl class="case">
+              <div><dt><span lang="en">What they do</span><span lang="de">Was sie tun</span><span lang="zh">他们做什么</span></dt>
+                <dd lang="en">They inspect hard-to-reach structures without sending people in. An underwater robot with cameras and sonar checks submerged surfaces; small caged drones fly into tunnels, shafts and ducts; wheeled and legged robots cover ground routes. Mapping and AI tie the footage to exact positions, so an inspection becomes located, reviewable data that can be compared over time.</dd>
+                <dd lang="de">Sie inspizieren schwer zugängliche Strukturen, ohne Menschen hineinzuschicken. Ein Unterwasserroboter mit Kameras und Sonar prüft untergetauchte Flächen; kleine Käfigdrohnen fliegen in Tunnel, Schächte und Kanäle; Rad- und Laufroboter decken Bodenwege ab. Kartierung und KI verknüpfen die Aufnahmen mit genauen Positionen, sodass aus einer Inspektion verortete, nachprüfbare und über die Zeit vergleichbare Daten werden.</dd>
+                <dd lang="zh">不派人进入就能检查难以抵达的结构。带相机与声呐的水下机器人查水下表面；笼式小无人机飞进隧道、竖井与管道；轮式与足式机器人走地面路线。建图与 AI 把画面对应到具体位置，一次检查就变成可定位、可复核、可与历次对比的数据。</dd></div>
+              <div><dt><span lang="en">Where it fits in Europe</span><span lang="de">Wo es in Europa passt</span><span lang="zh">在欧洲的切入点</span></dt>
+                <dd lang="en">Civilian inspection work: net cages in aquaculture, ship hulls in ports, bridges and confined industrial spaces — places that today need divers, scaffolding or shutdowns. We start where the buyer is a private operator or an engineering firm.</dd>
+                <dd lang="de">Zivile Inspektionsarbeit: Netzkäfige in der Aquakultur, Schiffsrümpfe in Häfen, Brücken und enge Industrieräume — Stellen, die heute Taucher, Gerüste oder Stillstände erfordern. Wir beginnen dort, wo der Käufer ein privater Betreiber oder ein Ingenieurbüro ist.</dd>
+                <dd lang="zh">面向民用检查：水产网箱、港口船体、桥梁与受限工业空间——这些位置今天要靠潜水员、脚手架或停工。我们从买方是私营运营商或工程公司的场景切入。</dd></div>
+              <div><dt><span lang="en">Our part</span><span lang="de">Unser Beitrag</span><span lang="zh">我们的工作</span></dt>
+                <dd lang="en">Represent the company in Europe: find the right operators and engineering partners, run the first paid pilots with a local service firm, and clear the groundwork — export classification and a data-handling setup that keeps inspection data on the customer’s side — before anything is sold.</dd>
+                <dd lang="de">Das Unternehmen in Europa vertreten: die richtigen Betreiber und Ingenieurpartner finden, erste bezahlte Pilotprojekte mit einem lokalen Dienstleister durchführen und die Grundlagen klären — Exportklassifizierung und eine Datenhaltung, die Inspektionsdaten auf der Kundenseite belässt — bevor etwas verkauft wird.</dd>
+                <dd lang="zh">在欧洲代理该公司：找对运营方与工程伙伴，与当地服务商跑通首批付费试点，并在对外销售前先做好前置功课——出口分类，以及把检查数据留在客户一侧的数据架构。</dd></div>
+            </dl>
+            <div class="shots">
+              <figure><img src="assets/projects/teyuhang-fleet.jpg" alt="An underwater robot rising from water on the left, a wheeled rover and a legged robot carrying an arm in a test hall on the right" width="1600" height="402" loading="lazy"><figcaption><span lang="en">One inspection team: underwater, ground and air</span><span lang="de">Ein Inspektionsteam: Wasser, Boden und Luft</span><span lang="zh">一个检查组：水下、地面与空中</span></figcaption></figure>
+              <figure><img src="assets/projects/teyuhang-rov.jpg" alt="Yellow and black underwater inspection robot with cameras and a sonar head, on a dock by a lake" width="820" height="1089" loading="lazy"><figcaption><span lang="en">Underwater ROV · optical + sonar</span><span lang="de">Unterwasser-ROV · optisch + Sonar</span><span lang="zh">水下 ROV · 光学 + 声呐</span></figcaption></figure>
+              <figure><img src="assets/projects/teyuhang-drone.jpg" alt="A small drone in a protective cage flying inside a narrow concrete service tunnel" width="820" height="435" loading="lazy"><figcaption><span lang="en">Caged drone · tunnels and ducts</span><span lang="de">Käfigdrohne · Tunnel und Kanäle</span><span lang="zh">笼式无人机 · 隧道与管道</span></figcaption></figure>
+            </div>
+            <ul class="specs">
+              <li><b><span lang="en">Maker</span><span lang="de">Hersteller</span><span lang="zh">厂商</span></b><span lang="en">Extreme Domain Robotics, Guangzhou</span><span lang="de">Extreme Domain Robotics, Guangzhou</span><span lang="zh">特域航（广州）</span></li>
+              <li><b><span lang="en">Our role</span><span lang="de">Unsere Rolle</span><span lang="zh">我们的角色</span></b><span lang="en">European market representation</span><span lang="de">Vertretung im europäischen Markt</span><span lang="zh">欧洲市场代理</span></li>
+              <li><b><span lang="en">Status</span><span lang="de">Stand</span><span lang="zh">进展</span></b><span lang="en">In preparation — product range and export compliance under review</span><span lang="de">In Vorbereitung — Produktpalette und Exportkonformität in Prüfung</span><span lang="zh">筹备中——产品线与出口合规审查进行中</span></li>
             </ul>
           </div>
         </div>
@@ -2239,6 +2283,7 @@ reply_to:        &lt;your human's email address&gt;</pre>
     cards.forEach(function(c){ var on = f === 'all' || c.getAttribute('data-cat') === f; c.hidden = !on; c.classList.remove('lead'); if (on) shown.push(c); });
     grid.classList.toggle('filtered', f !== 'all');
     grid.classList.toggle('pairs', f !== 'all' && shown.length % 3 !== 0 && shown.length % 2 === 0);
+    grid.classList.toggle('solo', f !== 'all' && shown.length === 1);
     if (f !== 'all' && shown.length % 2) shown[0].classList.add('lead');
   }
   document.querySelectorAll('[data-filter]').forEach(function(b){ b.addEventListener('click', function(){ filter(b.getAttribute('data-filter')); }); });
