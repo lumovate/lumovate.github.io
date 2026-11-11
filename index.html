@@ -874,10 +874,10 @@ council/plan-l.log: motion carried 9-0
     </div>
 
     <div class="filters" role="group" aria-label="Filter projects">
-      <button type="button" data-filter="all" aria-pressed="true"><span lang="en">All</span><span lang="de">Alle</span><span lang="zh">全部</span><i>11</i></button>
+      <button type="button" data-filter="all" aria-pressed="true"><span lang="en">All</span><span lang="de">Alle</span><span lang="zh">全部</span><i>12</i></button>
       <button type="button" data-filter="deleg" aria-pressed="false"><span lang="en">Delegations</span><span lang="de">Delegationen</span><span lang="zh">代表团</span><i>3</i></button>
       <button type="button" data-filter="growth" aria-pressed="false"><span lang="en">AI for growth</span><span lang="de">KI für Wachstum</span><span lang="zh">AI 获客与运营</span><i>4</i></button>
-      <button type="button" data-filter="lab" aria-pressed="false"><span lang="en">AI lab</span><span lang="de">KI-Labor</span><span lang="zh">AI 实验室</span><i>3</i></button>
+      <button type="button" data-filter="lab" aria-pressed="false"><span lang="en">AI lab</span><span lang="de">KI-Labor</span><span lang="zh">AI 实验室</span><i>4</i></button>
       <button type="button" data-filter="access" aria-pressed="false"><span lang="en">Market access</span><span lang="de">Markteintritt</span><span lang="zh">市场切入</span><i>1</i></button>
     </div>
 
@@ -1138,6 +1138,39 @@ council/plan-l.log: motion carried 9-0
                 <dd lang="de">Ein Vokabelspiel auf Basis lateinischer Wortwurzeln.</dd>
                 <dd lang="zh">基于拉丁词根的背单词游戏。</dd></div>
             </dl>
+          </div>
+        </div>
+      </article>
+
+      <!-- ClearFab (added 2026-11-11) -->
+      <article class="pj" data-cat="lab" id="p-clearfab">
+        <div class="cv"><img src="assets/projects/clearfab-fea.jpg" alt="ClearFab FEA page: a die-cast bracket with its stress field next to the AI simulation assistant (demo data)" width="1120" height="700" loading="lazy"></div>
+        <div class="pj-body">
+          <p class="pj-meta"><span class="chip"><span lang="en">AI lab</span><span lang="de">KI-Labor</span><span lang="zh">AI 实验室</span></span><span class="state"><span lang="en">Beta · invite only</span><span lang="de">Beta · nur mit Einladung</span><span lang="zh">内测 · 需邀请码</span></span></p>
+          <h3><a class="pj-link" href="#p-clearfab">ClearFab</a></h3>
+          <p class="pj-line" lang="en">A manufacturing platform where engineers and buyers work by chat: AI CAD from drawings, FEA and topology optimisation in one sentence, process selection with transparent cost, and an open RFQ hall.</p>
+          <p class="pj-line" lang="de">Eine Fertigungsplattform, auf der Ingenieure und Einkäufer per Chat arbeiten: KI-CAD aus Zeichnungen, FEM und Topologieoptimierung in einem Satz, Verfahrenswahl mit transparenten Kosten und eine offene Anfragebörse.</p>
+          <p class="pj-line" lang="zh">工程师和采购用对话完成工作的制造平台：看图生成 CAD、一句话做有限元仿真和拓扑优化、按产量比选工艺并公开逐工序成本，以及开放的询价大厅。</p>
+          <p class="pj-facts"><span lang="en">Own FEA kernel · 19 process routes · EN / DE / 中文 + 13 more</span><span lang="de">Eigener FEM-Kern · 19 Prozessrouten · EN / DE / 中文 + 13 weitere</span><span lang="zh">自研 FEA 内核 · 19 条工艺路线 · 中英德等 16 种语言</span></p>
+          <div class="pj-more">
+            <dl class="case">
+              <div><dt><span lang="en">Problem</span><span lang="de">Problem</span><span lang="zh">问题</span></dt>
+                <dd lang="en">Small manufacturers rarely own simulation software or have a CAE engineer, and buyers get one opaque price instead of a comparison of processes and costs.</dd>
+                <dd lang="de">Kleine Hersteller haben selten Simulationssoftware oder einen CAE-Ingenieur, und Einkäufer bekommen einen intransparenten Gesamtpreis statt eines Vergleichs von Verfahren und Kosten.</dd>
+                <dd lang="zh">中小制造企业很少有仿真软件和 CAE 工程师；采购拿到的往往只是一个看不透的总价，而不是工艺和成本的比较。</dd></div>
+              <div><dt><span lang="en">What we built</span><span lang="de">Was wir gebaut haben</span><span lang="zh">我们做了什么</span></dt>
+                <dd lang="en">Upload a drawing or 3D file and say what you need. The AI sets up the analysis, our own solver computes it, and the AI explains the result: static, thermal and topology optimisation with a smooth CAD rebuild. Process routes and step-by-step cost come from a process database; RFQs go to an open supplier hall.</dd>
+                <dd lang="de">Zeichnung oder 3D-Datei hochladen und sagen, was gebraucht wird. Die KI richtet die Analyse ein, unser eigener Solver rechnet, und die KI erklärt das Ergebnis: Statik, Wärme und Topologieoptimierung mit glatter CAD-Rückführung. Prozessrouten und Kosten je Arbeitsschritt kommen aus einer Verfahrensdatenbank; Anfragen gehen an eine offene Lieferantenbörse.</dd>
+                <dd lang="zh">上传图纸或 3D 文件，说出要求：AI 设置分析，我们自研的求解器计算，再由 AI 解读结果；支持静力、热分析和拓扑优化，并能把优化结果重建成光滑 CAD。工艺路线和逐工序成本来自工艺数据库，询价单发到开放的供应商大厅。</dd></div>
+              <div><dt><span lang="en">Where it stands</span><span lang="de">Stand</span><span lang="zh">进展</span></dt>
+                <dd lang="en">Closed beta since November 2026. The FEA page is open to invited testers; cost figures are still being calibrated against real quotes.</dd>
+                <dd lang="de">Geschlossene Beta seit November 2026. Die FEM-Seite ist für eingeladene Tester offen; die Kostenwerte werden noch an echten Angeboten kalibriert.</dd>
+                <dd lang="zh">2026 年 11 月起内测。FEA 页面对受邀测试者开放；成本数据仍在用真实报价校准。</dd></div>
+            </dl>
+            <ul class="specs">
+              <li><b>Stack</b>Python · NumPy/SciPy FEA · OpenCascade · Claude</li>
+              <li><b>Links</b><a href="https://clearfab.lumovate.de" rel="noopener" target="_blank"><span lang="en">Open ClearFab</span><span lang="de">ClearFab öffnen</span><span lang="zh">进入 ClearFab</span> ↗</a></li>
+            </ul>
           </div>
         </div>
       </article>

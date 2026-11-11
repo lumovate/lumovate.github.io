@@ -29,6 +29,7 @@
 - [Agent bus](/#p-agent-bus): the company's own operations run on seven agent systems; ~3,900 tickets and ~2,200 unattended runs in the first two months
 - [AgentZero](/#p-agentzero): bare-metal x86 kernel driven by an AI agent over UDP; open source (https://github.com/WalterWood1995/AgentZero)
 - [CAX Agent](/#p-cax): agent-first design and simulation platform for robot makers on MuJoCo; prototype
+- [ClearFab](/#p-clearfab): manufacturing platform operated by chat: AI CAD from drawings, FEA, thermal and topology optimisation on an own solver, process selection with step-by-step cost, open RFQ hall; closed beta, invite only (https://clearfab.lumovate.de)
 
 ## Regions
 
